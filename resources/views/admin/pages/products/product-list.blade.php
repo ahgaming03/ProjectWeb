@@ -7,26 +7,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>RoyalUI Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../../css/style.css">
     <!-- endinject -->
-    <link rel="shortcut icon" href="images/favicon.png" />
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
 <body>
     <div class="container-scroller">
-        <!-- partial:partials/_navbar.html -->
+        <!-- partial:../../partials/_navbar.html -->
         <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
             <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-                <a class="navbar-brand brand-logo me-5" href="{{ url('admin/dashboard') }}"><img src="images/logo.svg"
+                <a class="navbar-brand brand-logo me-5" href="../../index.html"><img src="../../images/logo.svg"
                         class="me-2" alt="logo" /></a>
-                <a class="navbar-brand brand-logo-mini" href="{{ url('admin/dashboard') }}"><img
-                        src="images/logo-mini.svg" alt="logo" /></a>
+                <a class="navbar-brand brand-logo-mini" href="../../index.html"><img src="../../images/logo-mini.svg"
+                        alt="logo" /></a>
             </div>
             <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
                 <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -56,7 +57,7 @@
                             <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                             <a class="dropdown-item">
                                 <div class="item-thumbnail">
-                                    <img src="images/faces/face4.jpg" alt="image" class="profile-pic">
+                                    <img src="../../images/faces/face4.jpg" alt="image" class="profile-pic">
                                 </div>
                                 <div class="item-content flex-grow">
                                     <h6 class="ellipsis font-weight-normal">David Grey
@@ -68,7 +69,7 @@
                             </a>
                             <a class="dropdown-item">
                                 <div class="item-thumbnail">
-                                    <img src="images/faces/face2.jpg" alt="image" class="profile-pic">
+                                    <img src="../../images/faces/face2.jpg" alt="image" class="profile-pic">
                                 </div>
                                 <div class="item-content flex-grow">
                                     <h6 class="ellipsis font-weight-normal">Tim Cook
@@ -80,7 +81,7 @@
                             </a>
                             <a class="dropdown-item">
                                 <div class="item-thumbnail">
-                                    <img src="images/faces/face3.jpg" alt="image" class="profile-pic">
+                                    <img src="../../images/faces/face3.jpg" alt="image" class="profile-pic">
                                 </div>
                                 <div class="item-content flex-grow">
                                     <h6 class="ellipsis font-weight-normal"> Johnson
@@ -145,7 +146,7 @@
                     <li class="nav-item nav-profile dropdown">
                         <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
                             id="profileDropdown">
-                            <img src="images/faces/face28.jpg" alt="profile" />
+                            <img src="../../images/faces/face28.jpg" alt="profile" />
                         </a>
                         <div class="dropdown-menu dropdown-menu-right navbar-dropdown"
                             aria-labelledby="profileDropdown">
@@ -168,7 +169,7 @@
         </nav>
         <!-- partial -->
         <div class="container-fluid page-body-wrapper">
-            <!-- partial:partials/_sidebar.html -->
+            <!-- partial:../../partials/_sidebar.html -->
             <nav class="sidebar sidebar-offcanvas" id="sidebar">
                 <ul class="nav">
                     <li class="nav-item">
@@ -187,9 +188,9 @@
                         <div class="collapse" id="ui-basic">
                             <ul class="nav flex-column sub-menu">
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="{{url('admin/pages/products/product-list')}}">Show all</a></li>
+                                        href="../../pages/ui-features/buttons.html">Show all</a></li>
                                 <li class="nav-item"> <a class="nav-link"
-                                        href="#">Add new</a></li>
+                                        href="../../pages/ui-features/typography.html">Add new</a></li>
                             </ul>
                         </div>
                     </li>
@@ -198,24 +199,57 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="font-weight-bold mb-0">Title</h4>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
-                                        <i class="ti-clipboard btn-icon-prepend"></i>Report
-                                    </button>
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Product list</h4>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <th>ID</th>
+                                            <th>Name</th>
+                                            <th>Price</th>
+                                            <th>Image</th>
+                                            <th>Stock</th>
+                                            <th>Category</th>
+                                            <th>Last update</th>
+                                            <th>Created at</th>
+                                            <th>Action</th>
+                                        </thead>
+                                        @foreach ($pro as $p)
+                                            <tbody>
+                                                <td>{{ $p->pro_id }}</td>
+                                                <td>{{ $p->name }}</td>
+                                                <td>{{ $p->price }}</td>
+                                                <td><img src="../../images/products/{{ $p->image }}"
+                                                        style="width: 120px; height: 120px"></td>
+                                                <td>{{ $p->stock }}</td>
+                                                <td>
+                                                    @foreach ($cat as $c)
+                                                        {{ $p->cat_id == $c->cat_id ? $c->name : '' }}
+                                                    @endforeach
+                                                </td>
+                                                <td>{{ $p->updated_at }}</td>
+                                                <td>{{ $p->created_at }}</td>
+
+                                                <td>
+                                                    <a href="#" title="Edit this product"><i
+                                                            class="bi bi-pencil-fill"></i></a> &nbsp;
+                                                    <a href="#" title="Delete this product"
+                                                        onclick="return confirm('Are you delete this product?');"><i
+                                                            class="bi bi-x-square"></i></a> &nbsp;
+                                                </td>
+                                            </tbody>
+                                        @endforeach
+                                    </table>
+
                                 </div>
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- content-wrapper ends -->
-                <!-- partial:partials/_footer.html -->
+                <!-- partial:../../partials/_footer.html -->
                 <footer class="footer">
                     <div class="d-sm-flex justify-content-center justify-content-sm-between">
                         <span class="text-muted text-center text-sm-left d-block d-sm-inline-block">Copyright © <a
@@ -233,22 +267,18 @@
         <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-
     <!-- plugins:js -->
-    <script src="vendors/base/vendor.bundle.base.js"></script>
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
-    <script src="vendors/chart.js/Chart.min.js"></script>
-    <script src="js/jquery.cookie.js" type="text/javascript"></script>
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="js/off-canvas.js"></script>
-    <script src="js/hoverable-collapse.js"></script>
-    <script src="js/template.js"></script>
-    <script src="js/todolist.js"></script>
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="js/dashboard.js"></script>
     <!-- End custom js for this page-->
 </body>
 

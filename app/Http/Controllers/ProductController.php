@@ -15,6 +15,12 @@ class ProductController extends Controller
         return view('admin.pages.products.product-list', compact('pro', 'cat'));
     }
 
+    public function productAdd()
+    {
+        $cat = Category::get();
+        return view('admin.pages.products.product-add', compact('cat'));
+    }
+
 
 
 }

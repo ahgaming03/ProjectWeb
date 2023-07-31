@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 use Illuminate\Support\Facades\Route;
@@ -26,5 +27,6 @@ Route::get('admin/dashboard',[AdminController::class, 'dashboard']);
 // products
 Route::get('admin/pages/products/product-list',[ProductController::class, 'productList']);
 Route::get('admin/pages/products/product-add',[ProductController::class, 'productAdd']);
+Route::get('admin/pages/customers/order-list',[OrderController::class, 'orderList']);
 
 

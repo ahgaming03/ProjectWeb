@@ -1,48 +1,90 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>RoyalUI Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
+    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <!-- endinject -->
+    <!-- plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="../../css/style.css">
+    <!-- endinject -->
+    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
 
-    <!-- Bootstrap CSS -->
-    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-
-    <title>Customer Order Information</title>
-  </head>
-  <body>
-    <div class="container">
-      <h1>Customer Order Information</h1>
-
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Product</th>
-            <th scope="col">Quantity</th>
-            <th scope="col">Total Price</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Here is where your server-side code will insert rows of data. -->
-          <!-- For instance, if using PHP: -->
-          <!-- 
-          <?php foreach($orders as $order): ?>
-            <tr>
-              <th scope="row"><?php echo $order->id; ?></th>
-              <td><?php echo $order->product_name; ?></td>
-              <td><?php echo $order->quantity; ?></td>
-              <td><?php echo $order->total_price; ?></td>
-            </tr>
-          <?php endforeach; ?> 
-          -->
-        </tbody>
-      </table>
+<body>
+    <div class="container-scroller">
+        <!-- partial:admin/partials/_navbar.blade.php -->
+        @include('admin.partials._navbar')
+        <!-- partial -->
+        <div class="container-fluid page-body-wrapper">
+            <!-- partial:admin/partials/_sidebar.blade.php -->
+            @include('admin.partials._sidebar')
+            <!-- partial -->
+            <div class="main-panel">
+                <div class="content-wrapper">
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Order list</h4>
+                                <table class="table">
+                                    <thead>
+                                      <tr>
+                                        <th scope="col">#</th>
+                                        <th scope="col">Product</th>
+                                        <th scope="col">Quantity</th>
+                                        <th scope="col">Total Price</th>
+                                      </tr>
+                                    </thead>
+                                    <tbody>
+                                      <!-- Here is where your server-side code will insert rows of data. -->
+                                      <!-- For instance, if using PHP: -->
+                                      <!--
+                                      <?php foreach($orders as $order): ?>
+                                        <tr>
+                                          <th scope="row"><?php echo $order->id; ?></th>
+                                          <td><?php echo $order->product_name; ?></td>
+                                          <td><?php echo $order->quantity; ?></td>
+                                          <td><?php echo $order->total_price; ?></td>
+                                        </tr>
+                                      <?php endforeach; ?>
+                                      -->
+                                    </tbody>
+                                  </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- content-wrapper ends -->
+                <!-- partial:admin.partials._footer.blade.php -->
+                @include('admin.partials._footer')
+                <!-- partial -->
+            </div>
+            <!-- main-panel ends -->
+        </div>
+        <!-- page-body-wrapper ends -->
     </div>
-    <!-- Optional JavaScript -->
-    <!-- Popper.js, then Bootstrap JS -->
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" crossorigin="anonymous"></script>
-  </body>
+    <!-- container-scroller -->
+    <!-- plugins:js -->
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page-->
+    <!-- End plugin js for this page-->
+    <!-- inject:js -->
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/todolist.js"></script>
+    <!-- endinject -->
+    <!-- Custom js for this page-->
+    <!-- End custom js for this page-->
+</body>
+
 </html>

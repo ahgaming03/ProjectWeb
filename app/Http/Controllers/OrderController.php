@@ -12,6 +12,6 @@ class OrderController extends Controller
     {
         $orders = Order::get();
         $customers = Customer::get();
-        return view('admin.pages.order.order-list', compact('orders', 'customers'));
+        return view('admin.pages.customers.order-list', compact('orders', 'customers'));
     }
 }

@@ -20,19 +20,4 @@ class ProductController extends Controller
         $cat = Category::get();
         return view('admin.pages.products.product-add', compact('cat'));
     }
-
-    public function productsave(Request $request)
-    {
-        $pro = new Product();
-        $pro->productID = $request->id;
-        $pro->productName = $request->name;
-        $pro->productPrice = $request->price;
-        $pro->productImage = $request->image;
-        $pro->productDetails = $request->details;
-        $pro->catID = $request->category;
-        $pro->productsave();
-        return redirect()->back()->with('success', 'Product added successfully!');
-    }
-
-
 }

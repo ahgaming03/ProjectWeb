@@ -53,8 +53,9 @@
             </a>
             <div class="collapse" id="customer">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/customers/customer-list')}}">Show all</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/customers/order-list')}}">Orders</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/Customers/customer-list')}}">Customer List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/Customers/order-list')}}">Orders List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/Customers/feedback-list')}}">Feedback List</a></li>
               </ul>
             </div>
           </li>

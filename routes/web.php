@@ -37,7 +37,10 @@ Route::get('admin/admin-add',[AdminController::class, 'adminAdd']);
 Route::get('admin/pages/products/product-list',[ProductController::class, 'productList']);
 Route::get('admin/pages/products/product-add',[ProductController::class, 'productAdd']);
 
-// admin customers management
-Route::get('admin/pages/customers/order-list',[OrderController::class, 'orderList']);
+// admin customers
+Route::get('admin/pages/Customers/customer-list',[OrderController::class, 'customerList']);
+Route::get('admin/pages/Customers/order-list',[CustomerController::class, 'orderList']);
+Route::get('admin/pages/Customers/feedback-list',[CustomerController::class, 'feedbackList']);
+
 
 

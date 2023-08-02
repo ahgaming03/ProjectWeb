@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>Login</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{ asset('admin/vendors/ti-icons/css/themify-icons.css') }}">
-    <link rel="stylesheet" href="{{ asset('admin/vendors/base/vendor.bundle.base.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
+    <link rel="shortcut icon" href="{{ asset('admjn/images/favicon.png') }}" />
 </head>
 
 <body>
@@ -26,7 +26,7 @@
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
                         <div class="auth-form-transparent text-left p-3">
                             <div class="brand-logo">
-                                <img src="{{ asset('admin/images/logo.svg') }}" alt="logo">
+                                <img src="{{ asset('images/logo.svg') }}" alt="logo">
                             </div>
                             <h4>Welcome back!</h4>
                             <h6 class="font-weight-light">Happy to see you again!</h6>
@@ -91,13 +91,13 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('admin/vendors/base/vendor.bundle.base.js') }}"></script>
+    <script src="{{ asset('admjn/vendors/base/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="admin/js/off-canvas.js"></script>
-    <script src="admin/js/hoverable-collapse.js"></script>
-    <script src="admin/js/template.js"></script>
-    <script src="admin/js/todolist.js"></script>
+    <script src="{{asset('admjn/js/off-canvas.js')}}"></script>
+    <script src="{{asset('admjn/js/hoverable-collapse.js')}}"></script>
+    <script src="{{asset('admjn/js/template.js')}}"></script>
+    <script src="{{asset('admjn/js/todolist.js')}}"></script>
     <!-- endinject -->
 </body>
 

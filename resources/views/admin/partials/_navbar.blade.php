@@ -1,9 +1,9 @@
 <nav class="navbar col-lg-12 col-12 p-0 fixed-top d-flex flex-row">
     <div class="text-center navbar-brand-wrapper d-flex align-items-center justify-content-center">
-        <a class="navbar-brand brand-logo me-5" href="{{ url('admin/dashboard') }}"><img
-                src="{{ asset('admin/images/logo.svg') }}" class="me-2" alt="logo" /></a>
-        <a class="navbar-brand brand-logo-mini" href="{{ url('admin/dashboard') }}"><img
-                src="{{ asset('admin/images/logo-mini.svg') }}" alt="logo" /></a>
+        <a class="navbar-brand brand-logo me-5" href="{{ url('admjn/dashboard') }}"><img
+                src="{{ asset('admjn/images/logo.svg') }}" class="me-2" alt="logo" /></a>
+        <a class="navbar-brand brand-logo-mini" href="{{ url('admjn/dashboard') }}"><img
+                src="{{ asset('admjn/images/logo-mini.svg') }}" alt="logo" /></a>
     </div>
     <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
         <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
@@ -32,7 +32,7 @@
                     <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
                     <a class="dropdown-item">
                         <div class="item-thumbnail">
-                            <img src="{{ asset('admin/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
+                            <img src="{{ asset('admjn/images/faces/face4.jpg') }}" alt="image" class="profile-pic">
                         </div>
                         <div class="item-content flex-grow">
                             <h6 class="ellipsis font-weight-normal">David Grey
@@ -44,7 +44,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="item-thumbnail">
-                            <img src="{{ asset('admin/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
+                            <img src="{{ asset('admjn/images/faces/face2.jpg') }}" alt="image" class="profile-pic">
                         </div>
                         <div class="item-content flex-grow">
                             <h6 class="ellipsis font-weight-normal">Tim Cook
@@ -56,7 +56,7 @@
                     </a>
                     <a class="dropdown-item">
                         <div class="item-thumbnail">
-                            <img src="{{ asset('admin/images/faces/face3.jpg') }}" alt="image" class="profile-pic">
+                            <img src="{{ asset('admjn/images/faces/face3.jpg') }}" alt="image" class="profile-pic">
                         </div>
                         <div class="item-content flex-grow">
                             <h6 class="ellipsis font-weight-normal"> Johnson
@@ -119,7 +119,7 @@
             </li>
             <li class="nav-item nav-profile dropdown">
                 <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown" id="profileDropdown">
-                    <img src="{{ asset('admin/images/faces/face28.jpg') }}" alt="profile" />
+                    <img src="{{ asset('admjn/images/faces/face28.jpg') }}" alt="profile" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
                     <a class="dropdown-item">

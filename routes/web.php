@@ -28,13 +28,16 @@ Route::get('/admin', function(){
 
 // admin dashboard
 Route::get('admin/dashboard',[AdminController::class, 'dashboard']);
-Route::get('admin/pages/admins/admin-list',[AdminController::class, 'adminList'])->name('admin.admin-list');
 
-// admin products
+// admin account management
+Route::get('admin/admin-list',[AdminController::class, 'adminList']);
+Route::get('admin/admin-add',[AdminController::class, 'adminAdd']);
+
+// admin products management
 Route::get('admin/pages/products/product-list',[ProductController::class, 'productList']);
 Route::get('admin/pages/products/product-add',[ProductController::class, 'productAdd']);
 
-// admin customers
+// admin customers management
 Route::get('admin/pages/customers/order-list',[OrderController::class, 'orderList']);
 
 

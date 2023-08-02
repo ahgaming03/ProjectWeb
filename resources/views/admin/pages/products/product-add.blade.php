@@ -7,13 +7,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>RoyalUI Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="{{asset('admjn/css/style.css')}}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="shortcut icon" href="{{ asset('admjn/images/favicon.png') }}" />
 </head>
 
 <body>
@@ -48,13 +48,13 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="../../vendors/base/vendor.bundle.base.js"></script>
+    <script src="{{ asset('admjn/vendors/base/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/todolist.js"></script>
+    <script src="{{ asset('admjn/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('admjn/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('admjn/js/template.js') }}"></script>
+    <script src="{{ asset('admjn/js/todolist.js') }}"></script>
     <!-- endinject -->
 </body>
 

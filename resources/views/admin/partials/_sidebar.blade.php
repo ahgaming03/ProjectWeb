@@ -7,6 +7,19 @@
             </a>
           </li>
           <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="admin">
+              <i class="ti-palette menu-icon"></i>
+              <span class="menu-title">Admin management</span>
+              <i class="menu-arrow"></i>
+            </a>
+            <div class="collapse" id="admin">
+              <ul class="nav flex-column sub-menu">
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/admin-list')}}">Show all</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/admin-add')}}">Add new</a></li>
+              </ul>
+            </div>
+          </li>
+          <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
               <i class="ti-palette menu-icon"></i>
               <span class="menu-title">Product management</span>

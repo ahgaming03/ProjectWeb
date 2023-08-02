@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>GamingGear Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('admin/vendors/ti-icons/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('admin/vendors/base/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admin/vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{asset('admin/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('admin/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('admin/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{ asset('admin/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
@@ -30,21 +30,14 @@
             <!-- partial -->
             <div class="main-panel">
                 <div class="content-wrapper">
-                    <div class="row">
-                        <div class="col-md-12 grid-margin">
-                            <div class="d-flex justify-content-between align-items-center">
-                                <div>
-                                    <h4 class="font-weight-bold mb-0">Title</h4>
-                                </div>
-                                <div>
-                                    <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
-                                        <i class="ti-clipboard btn-icon-prepend"></i>Report
-                                    </button>
-                                </div>
+                    <div class="col-lg-12 grid-margin stretch-card">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Product list</h4>
+
                             </div>
                         </div>
                     </div>
-
                 </div>
                 <!-- content-wrapper ends -->
                 <!-- partial:admin.partials._footer.blade.php -->
@@ -57,20 +50,17 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="{{ asset('admin/vendors/base/vendor.bundle.base.js') }}"></script>
+    <script src="../../vendors/base/vendor.bundle.base.js"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
-    <script src="{{ asset('admin/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{asset('admin/js/jquery.cookie.js')}}" type="text/javascript"></script>
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="{{ asset('admin/js/off-canvas.js') }}"></script>
-    <script src="{{ asset('admin/js/hoverable-collapse.js') }}"></script>
-    <script src="{{ asset('admin/js/template.js') }}"></script>
-    <script src="{{ asset('admin/js/todolist.js') }}"></script>
+    <script src="../../js/off-canvas.js"></script>
+    <script src="../../js/hoverable-collapse.js"></script>
+    <script src="../../js/template.js"></script>
+    <script src="../../js/todolist.js"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
-    <script src="{{ asset('admin/js/dashboard.js') }}"></script>
     <!-- End custom js for this page-->
 </body>
 

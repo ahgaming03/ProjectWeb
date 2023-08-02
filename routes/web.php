@@ -18,11 +18,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin/login');
+});
+Route::get('/admin', function(){
+    return view('admin/login');
 });
 
 // admin dashboard
 Route::get('admin/dashboard',[AdminController::class, 'dashboard']);
+Route::get('admin/pages/admins/admin-list',[AdminController::class, 'adminList'])->name('admin.admin-list');
 
 // products
 Route::get('admin/pages/products/product-list',[ProductController::class, 'productList']);

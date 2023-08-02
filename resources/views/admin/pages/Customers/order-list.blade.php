@@ -5,17 +5,17 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <title>RoyalUI Admin</title>
+    <title>GamingGear Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="../../vendors/ti-icons/css/themify-icons.css">
-    <link rel="stylesheet" href="../../vendors/base/vendor.bundle.base.css">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="../../css/style.css">
+    <link rel="stylesheet" href="{{ asset('admjn/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="../../images/favicon.png" />
+    <link rel="shortcut icon" href="{{ asset('admjn/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
@@ -34,30 +34,53 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Order list</h4>
-                                <table class="table">
-                                    <thead>
-                                      <tr>
-                                        <th scope="col">#</th>
-                                        <th scope="col">Product</th>
-                                        <th scope="col">Quantity</th>
-                                        <th scope="col">Total Price</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                      <!-- Here is where your server-side code will insert rows of data. -->
-                                      <!-- For instance, if using PHP: -->
-                                      <!--
-                                      <?php foreach($orders as $order): ?>
-                                        <tr>
-                                          <th scope="row"><?php echo $order->id; ?></th>
-                                          <td><?php echo $order->product_name; ?></td>
-                                          <td><?php echo $order->quantity; ?></td>
-                                          <td><?php echo $order->total_price; ?></td>
-                                        </tr>
-                                      <?php endforeach; ?>
-                                      -->
-                                    </tbody>
-                                  </table>
+                                <div class="table-responsive">
+                                    <table class="table table-hover table-striped table-bordered table-info">
+                                        <thead>
+                                            <tr>
+                                                <th>OrderID</th>
+                                                <th>CutomerID</th>
+                                                <th>TotalPrice</th>
+                                                <th>OrderStatus</th>
+                                                <th>PaymentMethodID</th>
+                                                <th>Update</th>
+                                                <th>Create</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <tr>
+                                                <td>Jacob</td>
+                                                <td>Photoshop</td>
+                                                <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
+                                                <td><label class="badge badge-danger table-dark">Pending</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Messsy</td>
+                                                <td>Flash</td>
+                                                <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
+                                                <td><label class="badge badge-warning table-dark">In progress</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>John</td>
+                                                <td>Premier</td>
+                                                <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
+                                                <td><label class="badge badge-info table-dark">Fixed</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Peter</td>
+                                                <td>After effects</td>
+                                                <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
+                                                <td><label class="badge badge-success table-dark">Completed</label></td>
+                                            </tr>
+                                            <tr>
+                                                <td>Dave</td>
+                                                <td>53275535</td>
+                                                <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
+                                                <td><label class="badge badge-warning table-dark">In progress</label></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -73,15 +96,15 @@
     </div>
     <!-- container-scroller -->
     <!-- plugins:js -->
-    <script src="../../vendors/base/vendor.bundle.base.js"></script>
+    <script src="{{ asset('admjn/vendors/base/vendor.bundle.base.js') }}"></script>
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <!-- End plugin js for this page-->
     <!-- inject:js -->
-    <script src="../../js/off-canvas.js"></script>
-    <script src="../../js/hoverable-collapse.js"></script>
-    <script src="../../js/template.js"></script>
-    <script src="../../js/todolist.js"></script>
+    <script src="{{ asset('admjn/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('admjn/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('admjn/js/template.js') }}"></script>
+    <script src="{{ asset('admjn/js/todolist.js') }}"></script>
     <!-- endinject -->
     <!-- Custom js for this page-->
     <!-- End custom js for this page-->

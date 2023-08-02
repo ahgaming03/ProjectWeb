@@ -38,46 +38,25 @@
                                     <table class="table table-hover table-striped table-bordered table-info">
                                         <thead>
                                             <tr>
-                                                <th>OrderID</th>
-                                                <th>CutomerID</th>
-                                                <th>TotalPrice</th>
-                                                <th>OrderStatus</th>
-                                                <th>PaymentMethodID</th>
+                                                <th>Order ID</th>
+                                                <th>Cutomer ID</th>
+                                                <th>Total Price</th>
+                                                <th>Order Status</th>
+                                                <th>Payment Method ID</th>
                                                 <th>Update</th>
                                                 <th>Create</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Jacob</td>
-                                                <td>Photoshop</td>
-                                                <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                                <td><label class="badge badge-danger table-dark">Pending</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Messsy</td>
-                                                <td>Flash</td>
-                                                <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                                                <td><label class="badge badge-warning table-dark">In progress</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>John</td>
-                                                <td>Premier</td>
-                                                <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                                                <td><label class="badge badge-info table-dark">Fixed</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Peter</td>
-                                                <td>After effects</td>
-                                                <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                                                <td><label class="badge badge-success table-dark">Completed</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dave</td>
-                                                <td>53275535</td>
-                                                <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                                                <td><label class="badge badge-warning table-dark">In progress</label></td>
-                                            </tr>
+                                            @foreach ($orders as $order )
+                                            <td>{{ $order->orderID }}</td>
+                                            <td>{{ $order->customerID }}</td>
+                                            <td>{{ $order->totalPrice }}</td>
+                                            <td>{{ $order->orderStatus }}</td>
+                                            <td>{{ $order->paymentMethodID }}</td>
+                                            <td>{{ $order->updated_at }}</td>
+                                            <td>{{ $order->created_at }}</td>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

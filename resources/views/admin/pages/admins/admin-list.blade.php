@@ -33,9 +33,9 @@
                     <div class="col-lg-12 grid-margin stretch-card">
                         <div class="card">
                             <div class="card-body">
-                                <h4 class="card-title">Amin account list</h4>
+                                <h4 class="card-title">Admin account list</h4>
                                 <div class="table-responsive">
-                                    <table class="table table-hover">
+                                    <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
                                                 <th>User</th>

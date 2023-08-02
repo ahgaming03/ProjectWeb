@@ -18,8 +18,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('admin/login');
+    return view('welcome');
 });
+
+// admin login
 Route::get('/admin', function(){
     return view('admin/login');
 });
@@ -28,9 +30,11 @@ Route::get('/admin', function(){
 Route::get('admin/dashboard',[AdminController::class, 'dashboard']);
 Route::get('admin/pages/admins/admin-list',[AdminController::class, 'adminList'])->name('admin.admin-list');
 
-// products
+// admin products
 Route::get('admin/pages/products/product-list',[ProductController::class, 'productList']);
 Route::get('admin/pages/products/product-add',[ProductController::class, 'productAdd']);
+
+// admin customers
 Route::get('admin/pages/customers/order-list',[OrderController::class, 'orderList']);
 
 

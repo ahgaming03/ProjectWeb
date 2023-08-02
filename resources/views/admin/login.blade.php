@@ -26,7 +26,7 @@
                     <div class="col-lg-6 d-flex align-items-center justify-content-center">
                         <div class="auth-form-transparent text-left p-3">
                             <div class="brand-logo">
-                                <img src="{{ asset('images/logo.svg') }}" alt="logo">
+                                <img src="{{ asset('admjn/images/logo.svg') }}" alt="logo">
                             </div>
                             <h4>Welcome back!</h4>
                             <h6 class="font-weight-light">Happy to see you again!</h6>
@@ -66,7 +66,7 @@
                                 </div>
                                 <div class="my-3">
                                     <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                        href="../../index.html">LOGIN</a>
+                                        href="#">LOGIN</a>
                                 </div>
                                 <div class="mb-2 d-flex">
                                     <button type="button" class="btn btn-facebook auth-form-btn flex-grow me-1">

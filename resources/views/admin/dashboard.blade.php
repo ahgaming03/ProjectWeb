@@ -7,15 +7,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>GamingGear Admin</title>
     <!-- plugins:css -->
-    <link rel="stylesheet" href="{{asset('admjn/vendors/ti-icons/css/themify-icons.css')}}">
-    <link rel="stylesheet" href="{{asset('admjn/vendors/base/vendor.bundle.base.css')}}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/base/vendor.bundle.base.css') }}">
     <!-- endinject -->
     <!-- plugin css for this page -->
     <!-- End plugin css for this page -->
     <!-- inject:css -->
-    <link rel="stylesheet" href="{{asset('admjn/css/style.css')}}">
+    <link rel="stylesheet" href="{{ asset('admjn/css/style.css') }}">
     <!-- endinject -->
-    <link rel="shortcut icon" href="{{asset('admjn/images/favicon.png')}}" />
+    <link rel="shortcut icon" href="{{ asset('admjn/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 </head>
 
@@ -61,7 +61,7 @@
     <!-- endinject -->
     <!-- Plugin js for this page-->
     <script src="{{ asset('admjn/vendors/chart.js/Chart.min.js') }}"></script>
-    <script src="{{asset('admjn/js/jquery.cookie.js')}}" type="text/javascript"></script>
+    <script src="{{ asset('admjn/js/jquery.cookie.js') }}" type="text/javascript"></script>
     <!-- End plugin js for this page-->
     <!-- inject:js -->
     <script src="{{ asset('admjn/js/off-canvas.js') }}"></script>

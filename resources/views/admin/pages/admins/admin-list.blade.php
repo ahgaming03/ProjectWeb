@@ -38,43 +38,37 @@
                                     <table class="table table-hover table-striped">
                                         <thead>
                                             <tr>
-                                                <th>User</th>
-                                                <th>Product</th>
-                                                <th>Sale</th>
-                                                <th>Status</th>
+                                                <th>Photo</th>
+                                                <th>ID</th>
+                                                <th>First name</th>
+                                                <th>Last name</th>
+                                                <th>Email</th>
+                                                <th>Last update</th>
+                                                <th>Create at</th>
+                                                <th>Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <td>Jacob</td>
-                                                <td>Photoshop</td>
-                                                <td class="text-danger"> 28.76% <i class="ti-arrow-down"></i></td>
-                                                <td><label class="badge badge-danger">Pending</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Messsy</td>
-                                                <td>Flash</td>
-                                                <td class="text-danger"> 21.06% <i class="ti-arrow-down"></i></td>
-                                                <td><label class="badge badge-warning">In progress</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>John</td>
-                                                <td>Premier</td>
-                                                <td class="text-danger"> 35.00% <i class="ti-arrow-down"></i></td>
-                                                <td><label class="badge badge-info">Fixed</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Peter</td>
-                                                <td>After effects</td>
-                                                <td class="text-success"> 82.00% <i class="ti-arrow-up"></i></td>
-                                                <td><label class="badge badge-success">Completed</label></td>
-                                            </tr>
-                                            <tr>
-                                                <td>Dave</td>
-                                                <td>53275535</td>
-                                                <td class="text-success"> 98.05% <i class="ti-arrow-up"></i></td>
-                                                <td><label class="badge badge-warning">In progress</label></td>
-                                            </tr>
+                                            @foreach ($admin as $ad)
+                                                <tr>
+                                                    <td><img src="{{ $ad->photo == null ? asset('admjn/images/default-profile-photo.jpg') : asset('admjn/images/admin/' . $ad->photo) }}"
+                                                            alt=""></td>
+                                                    <td>{{ $ad->adminID }}</td>
+                                                    <td>{{ $ad->firstName }}</td>
+                                                    <td>{{ $ad->lastName }}</td>
+                                                    <td>{{ $ad->email }}</td>
+                                                    <td>{{ $ad->updated_at }}</td>
+                                                    <td>{{ $ad->created_at }}</td>
+                                                    <td>
+                                                        <span>
+                                                            <a href="#" title="Edit this product"><i
+                                                                    class="bi bi-pencil-fill"></i></a> &nbsp;
+                                                            <a href="#" title="Delete this product"><i
+                                                                    class="bi bi-trash-fill"></i></a> &nbsp;
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

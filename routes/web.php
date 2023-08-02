@@ -1,7 +1,6 @@
 <?php
-
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 
 use Illuminate\Support\Facades\Route;
@@ -35,7 +34,7 @@ Route::get('admin/pages/products/product-list',[ProductController::class, 'produ
 Route::get('admin/pages/products/product-add',[ProductController::class, 'productAdd']);
 
 // admin customers
-Route::get('admin/pages/Customers/customer-list',[OrderController::class, 'customerList']);
+Route::get('admin/pages/Customers/customer-list',[CustomerController::class, 'customerList']);
 Route::get('admin/pages/Customers/order-list',[CustomerController::class, 'orderList']);
 Route::get('admin/pages/Customers/feedback-list',[CustomerController::class, 'feedbackList']);
 

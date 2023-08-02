@@ -8,8 +8,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
-    protected $table = 'users'; // Specify the table name
-    protected $primaryKey = 'user_id'; // Specify the primary key column name
+    protected $table = 'customers'; // Specify the table name
+    protected $primaryKey = 'customerID'; // Specify the primary key column name
     public $timestamps = true; // Enable timestamps (created_at and updated_at)
 
     // Define other properties or relationships as needed

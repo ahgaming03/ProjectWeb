@@ -39,9 +39,9 @@
                                         <thead>
                                             <tr>
                                                 <th>CustomerID</th>
-                                                <th>User name</th>                                                                             
+                                                <th>User name</th>
                                                 <th>Email</th>
-                                                <th>Address</th>                                               
+                                                <th>Address</th>
                                                 <th>Updated at</th>
                                                 <th>Created at</th>
                                             </tr>
@@ -50,7 +50,7 @@
                                             @foreach($customers as $customer)
                                             <tr>
                                                 <td>{{ $customer->customerID }}</td>
-                                                <td>{{ $customer->username }}</td>                                                                               
+                                                <td>{{ $customer->username }}</td>
                                                 <td>{{ $customer->email }}</td>
                                                 <td>{{ $customer->address }}</td>
                                                 <!-- Add 'Photo' column data if applicable -->

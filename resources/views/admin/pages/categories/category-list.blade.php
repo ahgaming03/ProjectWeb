@@ -34,7 +34,15 @@
                         <div class="card">
                             <div class="card-body">
                                 <h4 class="card-title">Product list</h4>
-                                
+                                <table class="table table-hover">
+                                    <thead>
+                                       <tr>
+                                           <th>ID</th>
+                                           <th>Name</th>
+                                           <th>Description</th>
+                                       </tr>
+                                   </thead> 
+                                </table>
                             </div>
                         </div>
                     </div>

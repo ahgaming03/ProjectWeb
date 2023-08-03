@@ -32,7 +32,6 @@
                             <div class="card">
                                 <div class="card-body">
                                     <h4 class="card-title">Add new product</h4>
-
                                 </div>
                             </div>
                         </div>

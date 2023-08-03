@@ -29,21 +29,23 @@ Route::get('/admin', function(){
 Route::get('admin/dashboard',[AdminController::class, 'dashboard']);
 
 // admin account management
-Route::get('admin/admin-list',[AdminController::class, 'adminList']);
+Route::get('admin/admin-list',[AdminController::class, 'adminList'])->name('admin-list');
 Route::get('admin/admin-add',[AdminController::class, 'adminAdd']);
+Route::post('admin/admin-save',[AdminController::class, 'adminSave'])->name('admin-save');
+Route::get('admin/admin-edit/{id}',[AdminController::class, 'adminEdit']);
 
 // admin products management
-Route::get('admin/pages/products/product-list',[ProductController::class, 'productList']);
-Route::get('admin/pages/products/product-add',[ProductController::class, 'productAdd']);
+Route::get('admin/products/product-list',[ProductController::class, 'productList']);
+Route::get('admin/products/product-add',[ProductController::class, 'productAdd']);
 
 // admin category management
-Route::get('admin/pages/categories/categories-list',[ProductController::class, 'categoriesList']);
-Route::get('admin/pages/categoiesy/categories-add',[ProductController::class, 'categoriesAdd']);
+Route::get('admin/categories/categories-list',[ProductController::class, 'categoriesList']);
+Route::get('admin/categories/categories-add',[ProductController::class, 'categoriesAdd']);
 
 // admin customers
-Route::get('admin/pages/Customers/customer-list',[CustomerController::class, 'customerList']);
-Route::get('admin/pages/Customers/order-list',[CustomerController::class, 'orderList']);
-Route::get('admin/pages/Customers/feedback-list',[CustomerController::class, 'feedbackList']);
+Route::get('admin/customers/customer-list',[CustomerController::class, 'customerList']);
+Route::get('admin/customers/order-list',[CustomerController::class, 'orderList']);
+Route::get('admin/customers/feedback-list',[CustomerController::class, 'feedbackList']);
 
 
 

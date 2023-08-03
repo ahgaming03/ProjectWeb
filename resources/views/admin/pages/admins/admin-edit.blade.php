@@ -20,13 +20,19 @@
                                         {{ Session::get('success') }}
                                     </div>
                                 @endif
-                                <form class="forms-sample" method="POST" action="{{ url('admin/admin-save') }}">
+                                <form class="forms-sample" method="POST" action="{{ url('admin/admin-update') }}">
                                     @csrf
                                     <div class="row">
+                                        <div class="form-group">
+                                            <span>
+                                                <b>ID: </b>
+                                                {{ $admin->adminID }}
+                                            </span>
+                                        </div>
                                         <div class="form-group col-6">
                                             <label for="inputFirstName">First name</label>
                                             <input type="text" class="form-control" id="inputFirstName" name="firstName"
-                                                placeholder="Enter first name" value="{{ old('firstName') }}">
+                                                placeholder="Enter first name" value="{{ $admin->firstName }}">
                                             @error('firstName')
                                                 <div class="text-danger mt-2">
                                                     {{ $message }}
@@ -36,13 +42,13 @@
                                         <div class="form-group col-6">
                                             <label for="inputLastName">Last name</label>
                                             <input type="text" class="form-control" id="inputLastName" name="lastName"
-                                                placeholder="Enter last name" value="{{ old('lastName') }}">
+                                                placeholder="Enter last name" value="{{ $admin->lastName }}">
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputUsername">Username</label>
                                         <input type="text" class="form-control" id="inputUsername" name="username"
-                                            placeholder="Enter username"value="{{ old('username') }}">
+                                            placeholder="Enter username"value="{{ $admin->username }}">
                                         @error('username')
                                             <div class="text-danger mt-2">
                                                 {{ $message }}
@@ -52,7 +58,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword">Password</label>
                                         <input type="password" class="form-control" id="inputPassword" name="password"
-                                            placeholder="Enter password" min="8" value="{{ old('password') }}">
+                                            placeholder="Enter password" min="8" value="{{ $admin->password }}">
                                         @error('password')
                                             <div class="text-danger mt-2">
                                                 {{ $message }}
@@ -62,7 +68,7 @@
                                     <div class="form-group">
                                         <label for="inputEmail">Email</label>
                                         <input type="email" class="form-control" id="inputEmail" name="email"
-                                            placeholder="Enter email" value="{{ old('email') }}">
+                                            placeholder="Enter email" value="{{ $admin->email }}">
                                         @error('email')
                                             <div class="text-danger mt-2">
                                                 {{ $message }}
@@ -84,12 +90,11 @@
                                     <div class="form-group">
                                         <label for="inputAddress">Address</label>
                                         <input type="text" class="form-control" id="inputAddress" name="address"
-                                            placeholder="Enter location" value="{{ old('address') }}">
+                                            placeholder="Enter location" value="{{ $admin->address }}">
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
                                     <a href="{{ url('admin/admin-list') }}" class="btn btn-light">Cancel</a>
                                 </form>
-
                             </div>
                         </div>
                     </div>
@@ -103,10 +108,4 @@
         <!-- main-panel ends -->
     </div>
     <!-- page-body-wrapper ends -->
-    </div>
-    <!-- container-scroller -->
-@endsection
-
-@section('custom-js')
-    <script src="{{ asset('admjn/js/file-upload.js') }}"></script>
 @endsection

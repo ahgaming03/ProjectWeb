@@ -52,7 +52,7 @@
                                     <div class="form-group">
                                         <label for="inputPassword">Password</label>
                                         <input type="password" class="form-control" id="inputPassword" name="password"
-                                            placeholder="Enter password" min="8" value="{{ old('password') }}">
+                                            placeholder="Enter password">
                                         @error('password')
                                             <div class="text-danger mt-2">
                                                 {{ $message }}
@@ -61,25 +61,13 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="inputEmail">Email</label>
-                                        <input type="email" class="form-control" id="inputEmail" name="email"
+                                        <input type="text" class="form-control" id="inputEmail" name="email"
                                             placeholder="Enter email" value="{{ old('email') }}">
                                         @error('email')
                                             <div class="text-danger mt-2">
                                                 {{ $message }}
                                             </div>
                                         @enderror
-                                    </div>
-                                    <div class="form-group">
-                                        <label>File upload</label>
-                                        <input type="file" name="image[]" class="file-upload-default">
-                                        <div class="input-group col-xs-12">
-                                            <input type="text" class="form-control file-upload-info" disabled
-                                                name="photo" placeholder="Upload image">
-                                            <span class="input-group-append">
-                                                <button class="file-upload-browse btn btn-primary"
-                                                    type="button">Upload</button>
-                                            </span>
-                                        </div>
                                     </div>
                                     <div class="form-group">
                                         <label for="inputAddress">Address</label>

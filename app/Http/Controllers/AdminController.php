@@ -29,21 +29,16 @@ class AdminController extends Controller
             'firstName' => 'required|min:3',
             'username' => 'required|min:5',
             'password' => 'required|min:8|max:32',
-            'email' => 'required'
+            'email' => 'required|email',
         ]);
 
 
+        $photo = "default_profile_photo.jpg";
         $firstName = $request->firstName;
         $lastName = $request->lastName;
         $username = $request->username;
         $password = $request->password;
         $email = $request->email;
-        $fileName = $request->photo;
-        if ($fileName != null) {
-            $fileName = $request->photo;
-        } else {
-            $fileName = "default_profile_photo.jpg";
-        }
         $address = $request->address;
 
         $admin = new Admin();
@@ -52,12 +47,11 @@ class AdminController extends Controller
         $admin->username = $username;
         $admin->password = $password;
         $admin->email = $email;
-        $admin->photo = $fileName;
+        $admin->photo = $photo;
         $admin->address = $address;
         $admin->save();
 
         return redirect()->back()->with('success', 'Admin account added successfully');
-
     }
 
     public function adminEdit($id)
@@ -67,6 +61,48 @@ class AdminController extends Controller
     }
 
 
+    public function adminUpdate(Request $request)
+    {
+        $request->validate([
+            'firstName' => 'required|min:3',
+            'username' => 'required|min:5',
+            'password' => 'required|min:8|max:32',
+            'email' => 'required|email',
+        ]);
+
+        // photo
+        $photo = "default_profile_photo.jpg";
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $photo = time() . "_" . $file->getClientOriginalName();
+            $file->move('uploads', $photo);
+        }
+        $firstName = $request->firstName;
+        $lastName = $request->lastName;
+        $username = $request->username;
+        $password = $request->password;
+        $email = $request->email;
+        $address = $request->address;
+
+        $admin = Admin::where('adminID', '=', $request->adminID)->first();
+        $admin->firstName = $firstName;
+        $admin->lastName = $lastName;
+        $admin->username = $username;
+        $admin->password = $password;
+        $admin->email = $email;
+        $admin->photo = $photo;
+        // move to uploads folder
+        $admin->address = $address;
+        $admin->save();
+
+        return redirect()->back()->with('success', 'Admin account updated successfully');
+    }
+
+    public function adminDelete($id)
+    {
+        Admin::where('adminID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'Admin account deleted successfully');
+    }
 
 
 }

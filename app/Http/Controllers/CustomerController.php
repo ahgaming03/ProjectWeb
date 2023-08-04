@@ -13,7 +13,7 @@ class CustomerController extends Controller
     {
         // Fetch all customers
         $customers = Customer::all();
-
+      
         return view('admin.pages.Customers.customer-list', compact('customers'));
     }
 
@@ -32,4 +32,21 @@ class CustomerController extends Controller
         
         return view('admin.pages.Customers.feedback-list', compact('feedbacks'));
     }
+    
+        public function index()
+        {
+            return view('customer.index');
+        }
+
+        public function register()
+        {
+           
+            return view('customer.page.register');
+        }
+    
+        public function LoginUser()
+        {
+            return view('customer.page.LoginUser');
+        }
+    
 }

@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class AuthCheck
+class AlreadyLoggedIn
 {
     /**
      * Handle an incoming request.
@@ -15,8 +15,8 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has('adminID')) {
-            return redirect()->route('admin-login')->with('error', 'You have to login first.');
+        if (session()->has('adminID')) {
+            return back();
         }
         return $next($request);
     }

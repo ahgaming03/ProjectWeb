@@ -27,8 +27,8 @@
             </a>
             <div class="collapse" id="product">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/products/product-list')}}">Show all</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/products/product-add')}}">Add new</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/products/product-list')}}">Show all</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/products/product-add')}}">Add new</a></li>
               </ul>
             </div>
           </li>
@@ -40,8 +40,8 @@
             </a>
             <div class="collapse" id="category">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/categories/category-list')}}">Show all</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/categories/category-add')}}">Add new</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/categories/category-list')}}">Show all</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/categories/category-add')}}">Add new</a></li>
               </ul>
             </div>
           </li>
@@ -53,9 +53,9 @@
             </a>
             <div class="collapse" id="customer">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/Customers/customer-list')}}">Customer List</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/Customers/order-list')}}">Orders List</a></li>
-                <li class="nav-item"> <a class="nav-link" href="{{url('admin/pages/Customers/feedback-list')}}">Feedback List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/customers/customer-list')}}">Customer List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/customers/order-list')}}">Orders List</a></li>
+                <li class="nav-item"> <a class="nav-link" href="{{url('admin/customers/feedback-list')}}">Feedback List</a></li>
               </ul>
             </div>
           </li>

@@ -31,6 +31,7 @@
                                 <img src="{{ asset('admjn/images/logo.svg') }}" alt="logo">
                             </div>
                             <h4>Hello! let's get started</h4>
+                            <h6 class="font-weight-light">Sign in to continue.</h6>
                             @if (session('error'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     {{ session('error') }}
@@ -38,7 +39,6 @@
                                         aria-label="Close"></button>
                                 </div>
                             @endif
-                            <h6 class="font-weight-light">Sign in to continue.</h6>
                             <form class="pt-3" action="{{ route('admin-login-process') }}" method="POST">
                                 @csrf
                                 <div class="form-group">

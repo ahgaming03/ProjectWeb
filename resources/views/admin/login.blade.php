@@ -1,74 +1,101 @@
-@extends('admin.layout.frontend')
+<!DOCTYPE html>
+<html lang="en">
 
-@section('content')
-    <div class="container-fluid page-body-wrapper full-page-wrapper">
-        <div class="content-wrapper d-flex align-items-stretch auth auth-img-bg">
-            <div class="row flex-grow">
-                <div class="col-lg-6 d-flex align-items-center justify-content-center">
-                    <div class="auth-form-transparent text-left p-3">
-                        <div class="brand-logo">
-                            <img src="{{ asset('admjn/images/logo.svg') }}" alt="logo">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Skydash Admin</title>
+    <!-- plugins:css -->
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/feather/feather.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/ti-icons/css/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('admjn/vendors/css/vendor.bundle.base.css') }}">
+    <!-- endinject -->
+    <!-- Plugin css for this page -->
+    <!-- End plugin css for this page -->
+    <!-- inject:css -->
+    <link rel="stylesheet" href="{{ asset('admjn/css/vertical-layout-light/style.css') }}">
+
+    <!-- endinject -->
+    <link rel="shortcut icon" href="{{ asset('admjn/images/favicon.png') }}" />
+</head>
+
+<body>
+    <div class="container-scroller">
+        <div class="container-fluid page-body-wrapper full-page-wrapper">
+            <div class="content-wrapper d-flex align-items-center auth px-0">
+                <div class="row w-100 mx-0">
+                    <div class="col-lg-4 mx-auto">
+                        <div class="auth-form-light text-left py-5 px-4 px-sm-5">
+                            <div class="brand-logo">
+                                <img src="{{ asset('admjn/images/logo.svg') }}" alt="logo">
+                            </div>
+                            <h4>Hello! let's get started</h4>
+                            @if (session('error'))
+                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                    {{ session('error') }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
+                                        aria-label="Close"></button>
+                                </div>
+                            @endif
+                            <h6 class="font-weight-light">Sign in to continue.</h6>
+                            <form class="pt-3" action="{{ route('admin-login-process') }}" method="POST">
+                                @csrf
+                                <div class="form-group">
+                                    <input type="text" class="form-control form-control-lg" id="inputUsername"
+                                        placeholder="Username" name="username">
+                                    @error('username')
+                                        <div class="text text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="form-group">
+                                    <input type="password" class="form-control form-control-lg" id="inputePassword"
+                                        placeholder="Password" name="password">
+                                    @error('password')
+                                        <div class="text text-danger mt-2">{{ $message }}</div>
+                                    @enderror
+                                </div>
+                                <div class="mt-3">
+                                    <button type="submit"
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
+                                        SIGN IN</button>
+                                </div>
+                                <div class="my-2 d-flex justify-content-between align-items-center">
+                                    <div class="form-check">
+                                        <label class="form-check-label text-muted">
+                                            <input type="checkbox" class="form-check-input">
+                                            Keep me signed in
+                                        </label>
+                                    </div>
+                                    <a href="#" class="auth-link text-black">Forgot password?</a>
+                                </div>
+                                <div class="mb-2">
+                                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
+                                        <i class="ti-facebook mr-2"></i>Connect using facebook
+                                    </button>
+                                </div>
+                            </form>
                         </div>
-                        <h4>Welcome back!</h4>
-                        <h6 class="font-weight-light">Happy to see you again!</h6>
-                        @if (session('error'))
-                            <div class="alert alert-danger mt-3">
-                                {{ session('error') }}
-                            </div>
-                        @endif
-                        <form class="pt-3" action="{{ route('admin-login-process') }}" method="POST">
-                            @csrf
-                            <div class="form-group">
-                                <label for="inputUsername">Username</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend bg-transparent">
-                                        <span class="input-group-text bg-transparent border-right-0">
-                                            <i class="ti-user text-primary"></i>
-                                        </span>
-                                    </div>
-                                    <input type="text" class="form-control form-control-lg border-left-0"
-                                        id="inputUsername" placeholder="Username" name="username"
-                                        value="{{ old('username') }}">
-                                </div>
-                                @error('username')
-                                    <div class="text text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="form-group">
-                                <label for="inputPassword">Password</label>
-                                <div class="input-group">
-                                    <div class="input-group-prepend bg-transparent">
-                                        <span class="input-group-text bg-transparent border-right-0">
-                                            <i class="ti-lock text-primary"></i>
-                                        </span>
-                                    </div>
-                                    <input type="password" class="form-control form-control-lg border-left-0"
-                                        id="inputPassword" placeholder="Password" name="password">
-                                </div>
-                                @error('password')
-                                    <div class="text text-danger mt-2">{{ $message }}</div>
-                                @enderror
-                            </div>
-                            <div class="my-2 d-flex justify-content-between align-items-center">
-                                <a href="#" class="auth-link text-black">Forgot password?</a>
-                            </div>
-                            <div class="my-3">
-                                <button type="submit"
-                                    class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                    href="#">LOGIN</button>
-                            </div>
-                        </form>
                     </div>
                 </div>
-                <div class="col-lg-6 login-half-bg d-flex flex-row">
-                    <p class="text-white font-weight-medium text-center flex-grow align-self-end">Copyright &copy;
-                        2023 All rights reserved.</p>
-                </div>
             </div>
+            <!-- content-wrapper ends -->
         </div>
-        <!-- content-wrapper ends -->
-    </div>
-    <!-- page-body-wrapper ends -->
+        <!-- page-body-wrapper ends -->
     </div>
     <!-- container-scroller -->
-@endsection
+    <!-- plugins:js -->
+    <script src="{{ asset('admjn/vendors/js/vendor.bundle.base.js') }}"></script>
+    <!-- endinject -->
+    <!-- Plugin js for this page -->
+    <!-- End plugin js for this page -->
+    <!-- inject:js -->
+    <script src="{{ asset('admjn/js/off-canvas.js') }}"></script>
+    <script src="{{ asset('admjn/js/hoverable-collapse.js') }}"></script>
+    <script src="{{ asset('admjn/js/template.js') }}"></script>
+    <script src="{{ asset('admjn/js/settings.js') }}"></script>
+    <script src="{{ asset('admjn/js/todolist.js') }}"></script>
+    <!-- endinject -->
+</body>
+
+</html>

@@ -55,7 +55,7 @@ class AdminController extends Controller
             Session::put('adminName', $data->firstName . " " . $data->lastName);
             Session::put('adminPhoto', $data->photo);
         }
-        return view('admin.dashboard')->with('data');
+        return view('admin.dashboard', compact('data'));
     }
 
     public function adminList()

@@ -12,14 +12,27 @@
             <div class="content-wrapper">
                 <div class="row">
                     <div class="col-md-12 grid-margin">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <div>
-                                <h4 class="font-weight-bold mb-0">Title</h4>
-                            </div>
-                            <div>
-                                <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
-                                    <i class="ti-clipboard btn-icon-prepend"></i>Report
-                                </button>
+                        <div class="card">
+                            <div class="card-body">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div>
+                                        <h4 class="font-weight-bold mb-0">Hello, {{ session('adminName') }}</h4>
+                                    </div>
+                                    <div>
+                                        <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
+                                            <i class="ti-clipboard btn-icon-prepend"></i>Report
+                                        </button>
+                                    </div>
+                                </div>
+                                <div>
+                                    Your profile:
+                                    <ul>
+                                        <li>Username: {{ session('adminName') }}</li>
+                                        <li>Email: {{ session('adminEmail') }}</li>
+                                        <li>Phone: {{ session('adminPhone') }}</li>
+                                        <li>Address: {{ session('adminAddress') }}</li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>

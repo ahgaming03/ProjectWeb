@@ -20,7 +20,7 @@
                                         {{ Session::get('success') }}
                                     </div>
                                 @endif
-                                <form class="forms-sample" method="POST" action="{{ url('admin/admin-save') }}">
+                                <form class="forms-sample" method="POST" action="{{ route('admin-save') }}">
                                     @csrf
                                     <div class="row">
                                         <div class="form-group col-6">
@@ -75,7 +75,7 @@
                                             placeholder="Enter location" value="{{ old('address') }}">
                                     </div>
                                     <button type="submit" class="btn btn-primary me-2">Submit</button>
-                                    <a href="{{ url('admin/admin-list') }}" class="btn btn-light">Cancel</a>
+                                    <a href="{{ route('admin-list') }}" class="btn btn-light">Cancel</a>
                                 </form>
 
                             </div>

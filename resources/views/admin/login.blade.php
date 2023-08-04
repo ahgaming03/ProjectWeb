@@ -11,9 +11,15 @@
                         </div>
                         <h4>Welcome back!</h4>
                         <h6 class="font-weight-light">Happy to see you again!</h6>
-                        <form class="pt-3">
+                        @if (session('error'))
+                            <div class="alert alert-danger mt-3">
+                                {{ session('error') }}
+                            </div>
+                        @endif
+                        <form class="pt-3" action="{{ route('admin-login-process') }}" method="POST">
+                            @csrf
                             <div class="form-group">
-                                <label for="exampleInputEmail">Username</label>
+                                <label for="inputUsername">Username</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend bg-transparent">
                                         <span class="input-group-text bg-transparent border-right-0">
@@ -21,11 +27,15 @@
                                         </span>
                                     </div>
                                     <input type="text" class="form-control form-control-lg border-left-0"
-                                        id="exampleInputEmail" placeholder="Username">
+                                        id="inputUsername" placeholder="Username" name="username"
+                                        value="{{ old('username') }}">
                                 </div>
+                                @error('username')
+                                    <div class="text text-danger mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="form-group">
-                                <label for="exampleInputPassword">Password</label>
+                                <label for="inputPassword">Password</label>
                                 <div class="input-group">
                                     <div class="input-group-prepend bg-transparent">
                                         <span class="input-group-text bg-transparent border-right-0">
@@ -33,29 +43,19 @@
                                         </span>
                                     </div>
                                     <input type="password" class="form-control form-control-lg border-left-0"
-                                        id="exampleInputPassword" placeholder="Password">
+                                        id="inputPassword" placeholder="Password" name="password">
                                 </div>
+                                @error('password')
+                                    <div class="text text-danger mt-2">{{ $message }}</div>
+                                @enderror
                             </div>
                             <div class="my-2 d-flex justify-content-between align-items-center">
-                                <div class="form-check">
-                                    <label class="form-check-label text-muted">
-                                        <input type="checkbox" class="form-check-input">
-                                        Keep me signed in
-                                    </label>
-                                </div>
                                 <a href="#" class="auth-link text-black">Forgot password?</a>
                             </div>
                             <div class="my-3">
-                                <a class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
-                                    href="#">LOGIN</a>
-                            </div>
-                            <div class="mb-2 d-flex">
-                                <button type="button" class="btn btn-facebook auth-form-btn flex-grow me-1">
-                                    <i class="ti-facebook me-2"></i>Facebook
-                                </button>
-                                <button type="button" class="btn btn-google auth-form-btn flex-grow ms-1">
-                                    <i class="ti-google me-2"></i>Google
-                                </button>
+                                <button type="submit"
+                                    class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn"
+                                    href="#">LOGIN</button>
                             </div>
                         </form>
                     </div>

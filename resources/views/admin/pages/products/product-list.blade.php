@@ -22,7 +22,7 @@
                             @foreach ($pro as $prol)
                                 <tr>
                                     <td>{{ $prol->productID }}</td>
-                                    <td>{{ $prol->name }}</td>
+                                    <td>{{ $prol->name}}</td>
                                     <td>{{ $prol->price }}</td>
                                     <td>{{ $prol->details }}</td>
                                     <td>{{ $prol->image }}</td>

@@ -57,8 +57,7 @@
                                 </div>
                                 <div class="mt-3">
                                     <button type="submit"
-                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">
-                                        SIGN IN</button>
+                                        class="btn btn-block btn-primary btn-lg font-weight-medium auth-form-btn">SIGN IN</button>
                                 </div>
                                 <div class="my-2 d-flex justify-content-between align-items-center">
                                     <div class="form-check">

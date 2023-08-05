@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+use App\Models\Customer;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Session;
 
@@ -55,7 +57,19 @@ class AdminController extends Controller
             Session::put('adminName', $data->firstName . " " . $data->lastName);
             Session::put('adminPhoto', $data->photo);
         }
-        return view('admin.dashboard', compact('data'));
+
+        $orders = DB::table('customers')
+            ->join('orders', 'customers.customerID', '=', 'orders.customerID')
+            ->select('orders.*', 'customers.firstName', 'customers.lastName')
+            ->orderBy('orders.updated_at', 'desc')
+            ->take(5)
+            ->get();
+
+        $customers = Customer::orderBy('created_at', 'desc')
+            ->take(5)
+            ->get();
+
+        return view('admin.dashboard', compact('data', 'orders', 'customers'));
     }
 
     public function adminList()

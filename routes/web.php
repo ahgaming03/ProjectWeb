@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 // admin login/logout
-Route::get('/admin', [AdminController::class, 'login'])->name('admin-login')->middleware('alreadyLoggedIn');
+Route::get('/admin', [AdminController::class, 'login'])->name('admin-login');
 
 Route::post('admin/login-process', [AdminController::class, 'loginProcess'])->name('admin-login-process');
 // admin logiut

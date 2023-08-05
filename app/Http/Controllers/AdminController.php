@@ -48,16 +48,15 @@ class AdminController extends Controller
     }
 
     public function dashboard()
-{
-    if (session()->has("adminID")) {
-        $data = Admin::where('adminID', '=', session('adminID'))->first();
-        // store to session array
-        session()->put('adminName', $data->firstName . " " . $data->lastName);
-        session()->put('adminPhoto', $data->photo);
+    {
+        if (Session()->has("adminID")) {
+            $data = Admin::where('adminID', '=', Session('adminID'))->first();
+            // store to array session
+            Session::put('adminName', $data->firstName . " " . $data->lastName);
+            Session::put('adminPhoto', $data->photo);
+        }
+        return view('admin.dashboard', compact('data'));
     }
-    return view('admin.dashboard')->with('data', $data ?? null); // Pass $data to the view or null if it's not set
-}
-
 
     public function adminList()
     {

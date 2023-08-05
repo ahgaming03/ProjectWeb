@@ -9,7 +9,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Gaming Gear</title>
+<title>Gamepad</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">	
@@ -62,10 +62,10 @@
                   <a class="nav-link" href="#"><img src="images/search-icon.png"></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="{{url('customer/page/LoginUser')}}">SIGN IN</a>
+                  <a class="nav-link" href="{{ route('login') }}">SIGN IN</a>
                 </li>
                 <li class="nav-item">
-                  <a class="nav-link" href="{{url('customer/page/register')}}">REGISTER</a>
+                  <a class="nav-link" href="{{ route('register') }}">REGISTER</a>
                 </li>
               </ul>
             </div>

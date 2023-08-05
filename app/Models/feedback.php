@@ -8,7 +8,7 @@ class Feedback extends Model
 {
     // Define any relationships or additional methods as needed
     protected $table = 'feedbacks';
-    protected $primaryKey = 'feedbackID';
+    protected $primaryKey = 'fb_id';
     protected $fillable = [
         'user_id',
         'feedback_message',

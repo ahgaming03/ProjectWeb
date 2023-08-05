@@ -1,45 +1,30 @@
-<div class="box">
-  <span class="borderLine"></span>
-  <form>
-    <h2>Sign up</h2>
-    <div class="inputBox">
-      <input type="text" required="required">
-      <span>Username</span>
-      <i></i>
-    </div>
-    <div class="inputBox">
-      <input type="password" required="required">
-      <span>Password</span>
-      <i></i>
-    </div>
-    <div class="inputBox">
-      <input type="password" required="required">
-      <span>Confirm Password</span>
-      <i></i>
-    </div>
-    <div class="inputBox">
-      <input type="email" required="required">
-      <span>Email</span>
-      <i></i>
-    </div>
-    <div class="inputBox">
-      <input type="date" required="required">
-      <span>Date of Birth</span>
-      <i></i>
-    </div>
-    <div class="links">
-    
-      <a href="{{ route('login') }}">Login</a>
-    </div>
-    <input type="submit" value="Sign up">
-  </form>
-</div>
 
+<div class="box">
+    <span class="borderLine"></span>
+    <form>
+      <h2>Sign in</h2>
+      <div class="inputBox">
+        <input type="text" required="required">
+        <span>Username</span>
+        <i></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" required="required">
+        <span>Password</span>
+        <i></i>
+      </div>
+      <div class="links">
+        <a href="#">Forgot Password</a>
+        <a href="{{ route('register') }}">Sign up</a>
+      </div>
+      <input type="submit" value="Login">
+    </form>
+  </div>
 
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
+    @import url('s://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
-  * {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -51,23 +36,17 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #48505c;
-  /* Add your image url here */
-  background-image: url('codengu.jpg');
-  background-size: cover;
-  background-repeat: no-repeat;
+  background: #23242a;
 }
 
-    .box {
-      /* Existing styles */
-      position: relative;
-      width: 380px;
-      height: 650px; /* Increased the height to accommodate all fields */
-      background: #1c1c1c;
-      border-radius: 8px;
-      overflow: hidden;
-    }
-
+.box {
+  position: relative;
+  width: 380px;
+  height: 420px;
+  background: #1c1c1c;
+  border-radius: 8px;
+  overflow: hidden;
+}
 
 .box:before {
   content: '';
@@ -75,8 +54,9 @@ body {
   top: -50%;
   left: -50%;
   width: 380px;
-  height: 480px; /* Increased the height */
-  background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+  height: 420px;
+  background: linear-gradient(0deg,transparent,transparent,
+  #45f3ff, #45f3ff, #45f3ff);
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -88,8 +68,9 @@ body {
   top: -50%;
   left: -50%;
   width: 380px;
-  height: 480px; /* Increased the height */
-  background: linear-gradient(0deg, transparent, transparent, #45f3ff, #45f3ff, #45f3ff);
+  height: 420px;
+  background: linear-gradient(0deg,transparent,transparent,
+  #45f3ff, #45f3ff, #45f3ff);
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -108,8 +89,9 @@ body {
   top: -50%;
   left: -50%;
   width: 380px;
-  height: 480px; /* Increased the height */
-  background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+  height: 420px;
+  background: linear-gradient(0deg,transparent,transparent,
+  #ff2770, #ff2770, #ff2770);
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -122,8 +104,9 @@ body {
   top: -50%;
   left: -50%;
   width: 380px;
-  height: 480px; /* Increased the height */
-  background: linear-gradient(0deg, transparent, transparent, #ff2770, #ff2770, #ff2770);
+  height: 420px;
+  background: linear-gradient(0deg,transparent,transparent,
+  #ff2770, #ff2770, #ff2770);
   z-index: 1;
   transform-origin: bottom right;
   animation: animate 6s linear infinite;
@@ -223,13 +206,13 @@ body {
 .box form .links a {
   margin: 10px 0;
   font-size: 0.75em;
-  color: white;
+  color: #8f8f8f;
   text-decoration: none;
 }
 
 .box form .links a:hover,
 .box form .links a:nth-child(2) {
-  color: grey;
+  color: #fff;
 }
 
 .box form input[type="submit"] {
@@ -248,5 +231,4 @@ body {
 .box form input[type="submit"]:active {
   opacity: 0.8;
 }
-
 </style>

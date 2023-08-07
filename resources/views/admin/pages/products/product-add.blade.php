@@ -39,26 +39,41 @@
                                     <label for="category">Category:</label>
                                     <select name="category" id="category" class="form-control">
                                         @foreach ($cat as $cat)
-                                            <option value="{{ $cat->catID }}">{{ $cat->catName }}</option>
+                                            <option value="{{ $cat->categoryID }}">{{ $cat->catName }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             </div>
-                            <div class="mb-3">
-                                <label for="image">Image:</label>
-                                <input type="file" class="form-control" id="image" placeholder="Enter Product Image"
-                                    name="image">
+                            <div class="aManu">
+                                <div class="mb-3">
+                                    <label for="Manufacturer">Manufacturer:</label>
+                                    <input type="text" class="form-control" id="Manufacturer" placeholder="Enter Product Manufacturer"
+                                        name="Manufacturer">
+                                </div>
                             </div>
-                            <div class="aDetail">
-                                <div class="mb-3 mt-3">
-                                    <label for="details">Details:</label>
-                                    <textarea class="form-control" rows="5" id="details" placeholder="Enter Product Details" name="details"></textarea>
+                            <div class="aImg">
+                                <div class="mb-3">
+                                    <label for="image">Image:</label>
+                                    <input type="file" class="form-control" id="image" placeholder="Enter Product Image"
+                                        name="image">
+                                </div>
+                            </div>
+                            <div class="aDe">
+                                <div class="aDetail">
+                                    <div class="mb-3 mt-3">
+                                        <label for="details">Details:</label>
+                                        <textarea class="form-control" rows="5" id="details" placeholder="Enter Product Details" name="details"></textarea>
+                                    </div>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
                             <a href="{{ url('product-list') }}" class="btn btn-primary">Back</a>
                         </form>
                         <style>
+                            .form-control{
+                                    color: #4169E1;
+                                    font-size: 20px;
+                                }
                             .aID{
                                 width:35%;
                             }
@@ -73,6 +88,26 @@
                             }
                             .aCat{
                                 width:35%;
+                            }
+                            .aManu{
+                                width:55%;
+                                position: absolute;
+                                margin: -369px 400px;
+                            }
+                            .aImg{
+                                width:55%;
+                                position: absolute;
+                                margin: -276.5px 400px;
+                            }
+                            .aDe{
+                                width:55%;
+                                height:50%;
+                                position: absolute;
+                                margin: -200.5px 400px;
+                                .form-control{
+                                    color: tomato;
+                                    font-size: 20px;
+                                }
                             }
                         </style>
                     </div>

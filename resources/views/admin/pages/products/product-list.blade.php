@@ -9,29 +9,33 @@
                         <thead>
                             <tr>
                                 <th>ID</th>
+                                <th>Category</th>
+                                <th>Manufacturer</th>
                                 <th>Name</th>
                                 <th>Price</th>
+                                <th>Stock</th>
                                 <th>Details</th>
                                 <th>Image</th>
-                                <th>Category</th>
                                 <th>Last Update</th>
                                 <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($pro as $prol)
+                            @foreach ($pro as $npro)
                                 <tr>
-                                    <td>{{ $prol->productID }}</td>
-                                    <td>{{ $prol->name}}</td>
-                                    <td>{{ $prol->price }}</td>
-                                    <td>{{ $prol->details }}</td>
-                                    <td>{{ $prol->image }}</td>
-                                    <th>{{ $prol->categoryID }}</th>
-                                    <td>{{ $prol->updated_at }}</td>
+                                    <td>{{ $npro->productID }}</td>
+                                    <th>{{ $npro->categoryID }}</th>
+                                    <th>{{ $npro->manufacturerID }}</th>
+                                    <td>{{ $npro->name}}</td>
+                                    <td>{{ $npro->price }}</td>
+                                    <th>{{ $npro->stock }}</th>
+                                    <td>{{ $npro->details }}</td>
+                                    <td>{{ $npro->image }}</td>
+                                    <td>{{ $npro->updated_at }}</td>
                                     <td>
-                                        <a href="{{ url('productEdit') }}\{{ $prol->productID }}" title="Edit this product"><i
+                                        <a href="{{ url('productEdit') }}\{{ $npro->productID }}" title="Edit this product"><i
                                                 class="bi bi-pencil-fill"></i></a> &nbsp;
-                                        <a href="{{ url('productDelete') }}\{{ $prol->productID }}"
+                                        <a href="{{ url('productDelete') }}\{{ $npro->productID }}"
                                             title="Delete this product"
                                             onclick="return confirm('Are you sure delete this product?');"><i
                                                 class="bi bi-trash-fill"></i></a> &nbsp;

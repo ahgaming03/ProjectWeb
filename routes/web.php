@@ -47,6 +47,10 @@ Route::middleware(['isLoggedIn'])->group(function () {
     // admin products management
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');
     Route::get('admin/products/product-add', [ProductController::class, 'productAdd'])->name('product-add');
+    Route::post('admin/products/product-save', [ProductController::class, 'ProductSave'] )->name('product-save');
+    Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit']);
+    Route::post('admin/products/product-update', [ProductController::class, 'productUpdate'] )->name('product-update');
+    Route::get('admin/products/product-delete/{id}', [ProductController::class, 'productDelete'])->name('product-delete');
 
     // admin category management
     Route::get('admin/categories/category-list', [ProductController::class, 'categoryList'])->name('category-list');

@@ -9,46 +9,71 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 grid-margin">
-            <div class="card">
-                <div class="card-body">
-                    <div class="d-flex justify-content-between align-items-center">
-                        <div>
-                            <h4 class="font-weight-bold mb-0">Hello, {{ session('adminName') }}</h4>
-                        </div>
-                        <div>
-                            <button type="button" class="btn btn-primary btn-icon-text btn-rounded">
-                                <i class="ti-clipboard btn-icon-prepend"></i>Report
-                            </button>
+            <h3 class="font-weight-bold mb-0">Hello, {{ session('adminName') }}</h3>
+        </div>
+    </div>
+    <div class="row">
+        {{-- left --}}
+        <div class="col-md-12 col-lg-6">
+            <div class="row">
+                {{-- Order status --}}
+                <div class="col-md-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>Order status</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Order ID</th>
+                                            <th>Customer name</th>
+                                            <th>Total price</th>
+                                            <th>Status</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($orders as $order)
+                                            <tr>
+                                                <td>{{ $order->orderID }}</td>
+                                                <td>{{ $order->firstName . ' ' . $order->lastName }}</td>
+                                                <td>{{ $order->totalPrice }}</td>
+                                                <td>{{ $order->orderStatus }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
                     </div>
-                    <div>
-                        Your profile:
-                        <ul>
-                            <li>
-                                <span>
-                                    <b>
-                                        ID:
-                                    </b>
-                                    {{ $data->adminID }}
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <b>
-                                        Email:
-                                    </b>
-                                    {{ $data->email }}
-                                </span>
-                            </li>
-                            <li>
-                                <span>
-                                    <b>
-                                        Address:
-                                    </b>
-                                    {{ $data->address }}
-                                </span>
-                            </li>
-                        </ul>
+                </div>
+                {{-- End order status --}}
+                <div class="col-md-12 mt-4">
+                    <div class="card">
+                        <div class="card-body">
+                            <h3>New customers</h3>
+                            <div class="table-responsive">
+                                <table class="table table-hover table-striped">
+                                    <thead class="thead-light">
+                                        <tr>
+                                            <th>Customer ID</th>
+                                            <th>Customer name</th>
+                                            <th>Phone</th>
+                                            <th>Email</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        @foreach ($customers as $customer)
+                                            <tr>
+                                                <td>{{ $customer->customerID }}</td>
+                                                <td>{{ $customer->firstName . ' ' . $customer->lastName }}</td>
+                                                <td>{{ $customer->birthday }}</td>
+                                                <td>{{ $customer->phoneNumber }}</td>
+                                            </tr>
+                                        @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

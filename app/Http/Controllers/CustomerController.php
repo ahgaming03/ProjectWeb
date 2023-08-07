@@ -32,4 +32,17 @@ class CustomerController extends Controller
         
         return view('admin.pages.Customers.feedback-list', compact('feedbacks'));
     }
+    public function index()
+    {
+        return view('customer.index');
+    }
+    public function login()
+    {
+        return view('customer.page.login');
+    }
+    public function register()
+    {
+        return view('customer.page.register');
+    }
+
 }

@@ -56,6 +56,9 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
     Route::get('admin/customers/order-list', [CustomerController::class, 'orderList'])->name('customer-order');
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
-    
-
 });
+
+//customer template 
+Route::get('customer/index', [CustomerController::class, 'index'])->name('index');
+Route::get('customer/page/login', [CustomerController::class, 'login'])->name('login');
+Route::get('customer/page/register', [CustomerController::class, 'register'])->name('register');

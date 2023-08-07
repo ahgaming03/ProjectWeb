@@ -3,13 +3,21 @@
 namespace App\Http\Controllers;
 
 use App\Models\Admin;
+<<<<<<< Updated upstream
 use App\Models\Customer;
 use App\Models\Role;
 use Carbon\Carbon;
+=======
+use Illuminate\Contracts\Session\Session as SessionSession;
+>>>>>>> Stashed changes
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+<<<<<<< Updated upstream
 use Illuminate\Validation\Rule;
+=======
+use Illuminate\Support\Facades\Session as FacadesSession;
+>>>>>>> Stashed changes
 use Session;
 
 class AdminController extends Controller

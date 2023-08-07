@@ -23,7 +23,7 @@
                             <h3>Order status</h3>
                             <div class="table-responsive">
                                 <table class="table table-hover table-striped">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>Order ID</th>
                                             <th>Customer name</th>
@@ -53,7 +53,7 @@
                             <h3>New customers</h3>
                             <div class="table-responsive">
                                 <table class="table table-hover table-striped">
-                                    <thead>
+                                    <thead class="thead-light">
                                         <tr>
                                             <th>Customer ID</th>
                                             <th>Customer name</th>

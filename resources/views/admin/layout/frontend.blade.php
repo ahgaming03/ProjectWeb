@@ -29,9 +29,6 @@
         @include('admin.partials._navbar')
         {{-- partial end --}}
         <div class="container-fluid page-body-wrapper">
-            {{-- partial: settings-panel --}}
-            @include('admin.partials._settings-panel')
-            {{-- partial end --}}
             {{-- partial: sidebar --}}
             @include('admin.partials._sidebar')
             {{-- partial end --}}

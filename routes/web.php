@@ -21,7 +21,7 @@ Route::get('/', function () {
 });
 
 // admin login/logout
-Route::get('/admin', [AdminController::class, 'login'])->name('admin-login')->middleware('alreadyLoggedIn');
+Route::get('/admin', [AdminController::class, 'login'])->name('admin-login');
 
 Route::post('admin/login-process', [AdminController::class, 'loginProcess'])->name('admin-login-process');
 // admin logiut
@@ -36,9 +36,13 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/admin-list', [AdminController::class, 'adminList'])->name('admin-list');
     Route::get('admin/admin-add', [AdminController::class, 'adminAdd'])->name('admin-add');
     Route::post('admin/admin-save', [AdminController::class, 'adminSave'])->name('admin-save');
-    Route::get('admin/admin-edit/{id}', [AdminController::class, 'adminEdit'])->name('admin-edit');
+    Route::get('admin/admin-edit/{id}', [AdminController::class, 'adminEdit']);
     Route::post('admin/admin-update', [AdminController::class, 'adminUpdate'])->name('admin-update');
     Route::get('admin/admin-delete/{id}', [AdminController::class, 'adminDelete'])->name('admin-delete');
+
+    // admin upload image
+    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image'); 
+
 
     // admin products management
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');

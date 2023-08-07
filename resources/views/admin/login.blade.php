@@ -35,22 +35,21 @@
                             @if (session('error'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     {{ session('error') }}
-                                    <button type="button" class="btn-close" data-bs-dismiss="alert"
-                                        aria-label="Close"></button>
+                                    
                                 </div>
                             @endif
                             <form class="pt-3" action="{{ route('admin-login-process') }}" method="POST">
                                 @csrf
                                 <div class="form-group">
                                     <input type="text" class="form-control form-control-lg" id="inputUsername"
-                                        placeholder="Username" name="username">
+                                        placeholder="Username" name="username" value="{{old('username')}}">
                                     @error('username')
                                         <div class="text text-danger mt-2">{{ $message }}</div>
                                     @enderror
                                 </div>
                                 <div class="form-group">
                                     <input type="password" class="form-control form-control-lg" id="inputePassword"
-                                        placeholder="Password" name="password">
+                                        placeholder="Password" name="password" value="{{old('password')}}">
                                     @error('password')
                                         <div class="text text-danger mt-2">{{ $message }}</div>
                                     @enderror

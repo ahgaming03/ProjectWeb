@@ -17,8 +17,10 @@
     <!-- inject:css -->
     <link rel="stylesheet" href="{{ asset('admjn/css/vertical-layout-light/style.css') }}">
     <!-- endinject -->
+    {{-- icon --}}
     <link rel="shortcut icon" href="{{ asset('admjn/images/favicon.png') }}" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    {{-- icon end --}}
 </head>
 
 <body>
@@ -27,9 +29,6 @@
         @include('admin.partials._navbar')
         {{-- partial end --}}
         <div class="container-fluid page-body-wrapper">
-            {{-- partial: settings-panel --}}
-            @include('admin.partials._settings-panel')
-            {{-- partial end --}}
             {{-- partial: sidebar --}}
             @include('admin.partials._sidebar')
             {{-- partial end --}}

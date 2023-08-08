@@ -5,5 +5,5 @@ Dang Hung Cuong
 Phuong Chi Cuong
 Nguyen Phuc Thinh
 
-Project Name: 
+Project Name: Gaming gear
 

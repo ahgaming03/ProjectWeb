@@ -21,9 +21,9 @@
                                     <th>{{ $catl->name }}</th>
                                     <th>{{ $catl->descriptions }}</th>
                                     <td>
-                                        <a href="{{ url('productEdit') }}\{{ $catl->categoryID }}" title="Edit this product"><i
+                                        <a href="{{ url('admin/category/category-edit/') }}\{{ $catl->categoryID }}" title="Edit this product"><i
                                                 class="bi bi-pencil-fill"></i></a> &nbsp;
-                                        <a href="{{ url('productDelete') }}\{{ $catl->categoryID }}"
+                                        <a href="{{ url('admin/category/category-delete') }}\{{ $catl->categoryID }}"
                                             title="Delete this product"
                                             onclick="return confirm('Are you sure delete this product?');"><i
                                                 class="bi bi-trash-fill"></i></a> &nbsp;

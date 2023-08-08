@@ -48,13 +48,16 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');
     Route::get('admin/products/product-add', [ProductController::class, 'productAdd'])->name('product-add');
     Route::post('admin/products/product-save', [ProductController::class, 'ProductSave'] )->name('product-save');
-    Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit']);
+    Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit'])->name('product-edit');
     Route::post('admin/products/product-update', [ProductController::class, 'productUpdate'] )->name('product-update');
     Route::get('admin/products/product-delete/{id}', [ProductController::class, 'productDelete'])->name('product-delete');
 
     // admin category management
-    Route::get('admin/categories/category-list', [ProductController::class, 'categoryList'])->name('category-list');
-    Route::get('admin/categories/category-add', [ProductController::class, 'categoryAdd'])->name('category-add');
+    Route::get('admin/categories/category-list', [categoryController::class, 'categoryList'])->name('category-list');
+    Route::get('admin/categories/category-add', [categoryController::class, 'categoryAdd'])->name('category-add');
+    Route::get('admin//categories/category-edit/{id}', [categoryController::class, 'categoryEdit'])->name('category-edit');
+    Route::post('admin//categories/category-update', [categoryController::class, 'categoryUpdate'] )->name('category-update');
+    Route::get('admin//categories/category-delete/{id}', [categoryController::class, 'categoryDelete'])->name('category-delete');
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');

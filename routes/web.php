@@ -43,8 +43,13 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/admin-delete/{id}', [AdminController::class, 'adminDelete'])->name('admin-delete');
 
     // admin upload image
-    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image'); 
+    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image');
 
+    // admin profile
+    Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin-profile');
+
+    // admin change password
+    Route::post('admin/change-password', [AdminController::class, 'changePassword'])->name('change-password');
 
     // admin products management
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');

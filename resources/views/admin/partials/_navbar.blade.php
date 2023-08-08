@@ -77,9 +77,9 @@
                     <img src="{{ asset('admjn/images/uploads/faces/'. session('adminPhoto')) }}" alt="profile" />
                 </a>
                 <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-                    <a class="dropdown-item">
+                    <a class="dropdown-item" href="{{route('admin-profile')}}">
                         <i class="ti-settings text-primary"></i>
-                        Settings
+                        Profile
                     </a>
                     <a class="dropdown-item" href="{{route('admin-logout')}}">
                         <i class="ti-power-off text-primary"></i>

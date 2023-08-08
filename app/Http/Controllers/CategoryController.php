@@ -3,9 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Product;
 use Illuminate\Http\Request;
-
 
 class CategoryController extends Controller
 {
@@ -16,6 +14,37 @@ class CategoryController extends Controller
 
     public function categoryAdd(){
         $cat = Category::get();
-        return view('admin.pages.categories.category-add');
+        return view('admin.pages.categories.category-add', compact('cat'));
+    }
+
+    public function categorySave(Request $request)
+    {
+        $ncat = new Category();
+        $ncat->categoryID = $request->id;
+        $ncat->categoryName = $request->name;
+        $ncat->categoryDescritions = $request->descritions;
+        $ncat->categorysave();
+        return redirect()->back()->with('success', 'Category added successfully!');
+    }
+
+    public function categoryEdit($id){
+        $cat = Category::where('categoryID', '=', $id)->first();
+        return view('admin.pages.categories.category-edit', compact('cat'));
+    }
+
+    public function categoryDelete($id){
+        Category::where('categoryID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'category deleted successfully');
+    }
+
+    public function categoryupdate(Request $request)
+    {
+        Category::where('categoryID', '=', $request->id)
+        -> oroductupdate([
+            'categoryName'=>$request->name,
+            'categoryDetails'=>$request->details,
+            'categoryID'=>$request->id
+        ]);
+        return redirect()->back()->with('success', 'category updated successfully!');
     }
 }

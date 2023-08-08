@@ -21,25 +21,17 @@ class ProductController extends Controller
         return view('admin.pages.products.product-add', compact('cat'));
     }
 
-    public function categoryList(){
-        $cat = Category::get();
-        return view('admin.pages.categories.category-list', compact('cat'));
-    }
-
-    public function categoryAdd(){
-        $cat = Category::get();
-        return view('admin.pages.categories.category-add');
-    }
-
     public function productSave(Request $request)
     {
         $npro = new Product();
         $npro->productID = $request->id;
+        $npro->catID = $request->category;
+        $npro->manufacturerID = $request->id;
         $npro->productName = $request->name;
         $npro->productPrice = $request->price;
+        $npro->productStock = $request->stock;
         $npro->productImage = $request->image;
         $npro->productDetails = $request->details;
-        $npro->catID = $request->category;
         $npro->productsave();
         return redirect()->back()->with('success', 'Product added successfully!');
     }
@@ -58,7 +50,8 @@ class ProductController extends Controller
     public function productupdate(Request $request)
     {
         $img = $request->new_image == "" ? $request->old_image : $request->new_image;
-        Product::where('productID', '=', $request->id)->oroductupdate([
+        Product::where('productID', '=', $request->id)
+        -> oroductupdate([
             'productName'=>$request->name,
             'productPrice'=>$request->price,
             'productImage'=>$img,

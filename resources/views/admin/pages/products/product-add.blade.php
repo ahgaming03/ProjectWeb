@@ -38,8 +38,8 @@
                                 <div class="mb-3">
                                     <label for="category">Category:</label>
                                     <select name="category" id="category" class="form-control">
-                                        @foreach ($cat as $cat)
-                                            <option value="{{ $cat->categoryID }}">{{ $cat->catName }}</option>
+                                        @foreach ($cat as $ncat)
+                                            <option value="{{ $ncat->categoryID}}">{{ $ncat->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -67,8 +67,8 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ url('product-list') }}" class="btn btn-primary">Back</a>
-                        </form>
+                            <a href="{{ url('admin/products/product-list/') }}" class="btn btn-primary">Back</a>
+                        </form> 
                         <style>
                             .form-control{
                                     color: #4169E1;

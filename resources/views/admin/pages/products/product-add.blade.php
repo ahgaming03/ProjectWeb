@@ -11,7 +11,7 @@
                                 {{ Session::get('success') }}
                             </div>
                         @endif
-                        <form action="{{ url('productsave') }}" method="POST">
+                        <form action="{{ url('productSave') }}" method="POST">
                             @csrf
                             <div class="aID">
                                 <div class="mb-3">

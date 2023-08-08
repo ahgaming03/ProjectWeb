@@ -21,8 +21,8 @@
                                     <th>{{ $ncat->name }}</th>
                                     <th>{{ $ncat->descriptions }}</th>
                                     <td>
-                                        <a href="{{ url('admin/category/category-edit/') }}\{{ $ncat->categoryID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
-                                        <a href="{{ url('admin/category/category-delete') }}\{{ $ncat->categoryID }}" title="Delete this product" onclick="return confirm('Are you sure delete this product?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/categories/category-edit/') }}\{{ $ncat->categoryID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/categories/category-delete') }}\{{ $ncat->categoryID }}" title="Delete this product" onclick="return confirm('Are you sure delete this product?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
                                     </td>
                                 </tr>
                             @endforeach

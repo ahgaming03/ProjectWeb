@@ -2,6 +2,8 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ManufacturerController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -59,6 +61,14 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/categories/category-edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category-edit');
     Route::post('admin/categories/category-update', [CategoryController::class, 'categoryUpdate'] )->name('category-update');
     Route::get('admin/categories/category-delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category-delete');
+
+    // admin manufacturer management
+    Route::get('admin/manufacturers/manufacturer-list', [manufacturerController::class, 'manufacturerList'])->name('manufacturer-list');
+    Route::get('admin/manufacturers/manufacturer-add', [manufacturerController::class, 'manufacturerAdd'])->name('manufacturer-add');
+    Route::post('admin/manufacturers/manufacturer-save', [manufacturerController::class, 'manufacturerSave'])->name('manufacturer-save');
+    Route::get('admin/manufacturers/manufacturer-edit/{id}', [manufacturerController::class, 'manufacturerEdit'])->name('manufacturer-edit');
+    Route::post('admin/manufacturers/manufacturer-update', [manufacturerController::class, 'manufacturerUpdate'])->name('manufacturer-update');
+    Route::get('admin/manufacturers/manufacturer-delete/{id}', [manufacturerController::class, 'manufacturerDelete'])->name('manufacturer-delete');
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');

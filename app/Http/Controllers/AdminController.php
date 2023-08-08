@@ -6,12 +6,10 @@ use App\Models\Admin;
 use App\Models\Customer;
 use App\Models\Role;
 use Carbon\Carbon;
-use Illuminate\Contracts\Session\Session as SessionSession;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
-use Illuminate\Support\Facades\Session as FacadesSession;
 use Session;
 
 class AdminController extends Controller

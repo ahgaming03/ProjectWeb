@@ -1,3 +1,6 @@
+<pre>
+  {{ print_r(session()->all()) }}
+  </pre>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +12,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="viewport" content="initial-scale=1, maximum-scale=1">
 <!-- site metas -->
-<title>Gamepad</title>
+<title>Game pad</title>
+
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">	
@@ -20,7 +24,7 @@
 <!-- Responsive-->
 <link rel="stylesheet" href="css/responsive.css">
 <!-- fevicon -->
-<link rel="icon" href="images/fevicon.png" type="image/gif" />
+<link rel="icon" href="images/logosvg.svg" type="image/gif/" />
 <!-- Scrollbar Custom CSS -->
 <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
 <!-- Tweaks for older IEs-->
@@ -34,7 +38,7 @@
 	<!-- header section start -->
 	<div class="header_section">
 		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-            <div class="logo"><a href="index.html"><img src="images/logo.png"></a></div>
+            <div class="logo"><a href="index.html"><img style="width: 50px" src="images/logoGGb.png"></a></div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
               <span class="navbar-toggler-icon"></span>
             </button>
@@ -61,12 +65,21 @@
                 <li class="nav-item">
                   <a class="nav-link" href="#"><img src="images/search-icon.png"></a>
                 </li>
+                @if (Session:: has('customersUserName'))         
+                <li class="nav-item active">
+               <a class="nav-link" href="{{ route('customer-profile') }}">HELLO: {{Session:: get('customersUserName')}}</a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" href="{{ route('register') }}">LOGOUT</a>
+                </li>
+                @else
                 <li class="nav-item active">
                   <a class="nav-link" href="{{ route('login') }}">SIGN IN</a>
                 </li>
                 <li class="nav-item">
                   <a class="nav-link" href="{{ route('register') }}">REGISTER</a>
                 </li>
+                @endif
               </ul>
             </div>
         </nav>

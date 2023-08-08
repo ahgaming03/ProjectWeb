@@ -1,27 +1,10 @@
-
-<div class="box">
-    <span class="borderLine"></span>
-    <form>
-      <h2>Sign in</h2>
-      <div class="inputBox">
-        <input type="text" required="required">
-        <span>Username</span>
-        <i></i>
-      </div>
-      <div class="inputBox">
-        <input type="password" required="required">
-        <span>Password</span>
-        <i></i>
-      </div>
-      <div class="links">
-        <a href="#">Forgot Password</a>
-        <a href="{{ route('register') }}">Sign up</a>
-      </div>
-      <input type="submit" value="Login">
-    </form>
-  </div>
-
-<style>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <style>
     @import url('s://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
 * {
@@ -36,7 +19,9 @@ body {
   justify-content: center;
   align-items: center;
   min-height: 100vh;
-  background: #23242a;
+  background-image: url('{{ asset('customer/images/bgbu2.png') }}');
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 
 .box {
@@ -46,6 +31,7 @@ body {
   background: #1c1c1c;
   border-radius: 8px;
   overflow: hidden;
+  margin-left: 10%;
 }
 
 .box:before {
@@ -232,3 +218,42 @@ body {
   opacity: 0.8;
 }
 </style>
+  <title>Login</title>
+</head>
+<body>
+  <link rel="icon" href="images/logoMU.jpg" type="image/gif/" />
+<div class="box">
+    <span class="borderLine"></span>
+    <form action="{{ route('customer-login') }}" method="POST">
+      <div class="links">
+        <a href="{{ route('index') }}"> ⬅ Back</a>
+         </div>
+      <h2>Sign in</h2>
+      <div class="inputBox">
+        <input type="text" name="username" required="required">
+        <span>Username</span>
+        <i></i>
+      </div>
+      <div class="inputBox">
+        <input type="password" name="password" required="required">
+        <span>Password</span>
+        <i></i>
+      </div>
+      <div class="links">
+        <a href="#">Forgot Password</a>
+        <a href="{{ route('register') }}">Sign up</a>
+      </div>
+      <input type="submit" value="Login" >
+      @if(Session::has('Fail'))
+      <div class="alert alert-danger" role="alert" style="coler: red">
+          {{ Session::get('Fail') }}
+      </div>
+  @endif
+      @csrf
+    </form>
+  </div>
+ 
+
+</body>
+
+</html>

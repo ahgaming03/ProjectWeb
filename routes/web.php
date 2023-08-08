@@ -81,7 +81,26 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
 });
 
-//customer template 
+        //customer template 
 Route::get('customer/index', [CustomerController::class, 'index'])->name('index');
-Route::get('customer/page/login', [CustomerController::class, 'login'])->name('login');
 Route::get('customer/page/register', [CustomerController::class, 'register'])->name('register');
+Route::post('customer/page/register', [CustomerController::class, 'RegisterCustomer']);
+Route::get('customer/page/login', [CustomerController::class, 'login'])->name('login');
+Route::post('customer/page/login', [CustomerController::class, 'loginProcessCustomer'])->name('customer-login');
+
+//profilde customer
+Route::get('customer/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
+// Route::get('customer/profiles/edit', [CustomerController::class, 'editProfile'])->name('editProfile');
+// Route::post('customer/profiles/update', [CustomerController::class, 'updateProfile'])->name('updateProfile');
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,41 +1,54 @@
 <div class="box">
   <span class="borderLine"></span>
-  <form>
+  <title>Register</title>
+  <form action="{{ route('register') }}" method="POST">
+    @csrf
+    <link rel="icon" href="images/logoGG.png" type="image/gif/" />
+    <div class="links">
+      <a href="{{ route('index') }}">⬅ Back</a>
+    </div>
     <h2>Sign up</h2>
     <div class="inputBox">
-      <input type="text" required="required">
+      <input type="text" name="username" required="required">
       <span>Username</span>
       <i></i>
     </div>
     <div class="inputBox">
-      <input type="password" required="required">
+      <input type="password" name="password" required="required">
       <span>Password</span>
       <i></i>
     </div>
     <div class="inputBox">
-      <input type="password" required="required">
+      <input type="password" name="password_confirmation" required="required">
       <span>Confirm Password</span>
       <i></i>
     </div>
     <div class="inputBox">
-      <input type="email" required="required">
+      <input type="email" name="email" required="required">
       <span>Email</span>
       <i></i>
     </div>
     <div class="inputBox">
-      <input type="date" required="required">
+      <input type="text" name="address" required="required">
+      <span>Address</span>
+      <i></i>
+    </div>
+    <div class="inputBox">
+      <input type="date" name="dob" required="required">
       <span>Date of Birth</span>
       <i></i>
     </div>
     <div class="links">
-    
       <a href="{{ route('login') }}">Login</a>
+      <input type="submit" value="Sign up">
     </div>
-    <input type="submit" value="Sign up">
   </form>
+  @if(session('success'))
+  <div class="alert alert-success">
+      {{ session('success') }}
+  </div>
+@endif
 </div>
-
-
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap');
 
@@ -53,21 +66,27 @@ body {
   min-height: 100vh;
   background: #48505c;
   /* Add your image url here */
-  background-image: url('codengu.jpg');
+  background-image: url('{{ asset('customer/images/bgbu2.png') }}');
   background-size: cover;
   background-repeat: no-repeat;
+  margin-left: 10%;
 }
 
     .box {
       /* Existing styles */
       position: relative;
-      width: 380px;
-      height: 650px; /* Increased the height to accommodate all fields */
+      width: 400px;
+      height: 730px; /* Increased the height to accommodate all fields */
       background: #1c1c1c;
       border-radius: 8px;
       overflow: hidden;
     }
-
+    .container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100vh; /* Set the height of the container to fill the viewport */
+}
 
 .box:before {
   content: '';

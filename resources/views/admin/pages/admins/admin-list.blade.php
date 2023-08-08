@@ -44,12 +44,13 @@
                                                 alt="photo">
                                         </td>
                                         <td>{{ $admin->adminID }}</td>
-                                        <td>{{ $admin->firstName . ' ' . $admin->lastName }}</td>
-                                        <td>{{ $admin->address }}</td>
+                                        <td title="{{ $admin->firstName . ' ' . $admin->lastName }}">
+                                            {{ Str::limit($admin->firstName . ' ' . $admin->lastName, 15, '...') }}</td>
+                                        <td title="{{ $admin->address }}">{{ Str::limit($admin->address, 15, '...') }}</td>
                                         <td>{{ $admin->birthday }}</td>
                                         <td>{{ $admin->gender == 1 ? 'Male' : 'Female' }}</td>
                                         <td>{{ $admin->phoneNumber }}</td>
-                                        <td>{{ $admin->email }}</td>
+                                        <td>{{ Str::limit($admin->email, 10, '...') }}</td>
                                         <td>{{ $admin->roleName }}</td>
                                         <td>{{ $admin->updated_at }}</td>
                                         <td>{{ $admin->created_at }}</td>

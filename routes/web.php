@@ -41,7 +41,7 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/admin-delete/{id}', [AdminController::class, 'adminDelete'])->name('admin-delete');
 
     // admin upload image
-    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image'); 
+    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image');
 
 
     // admin products management
@@ -58,11 +58,15 @@ Route::middleware(['isLoggedIn'])->group(function () {
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
-    Route::get('admin/customers/order-list', [CustomerController::class, 'orderList'])->name('customer-order');
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
+
+    //order
+    Route::get('admin/customers/order-list', [CustomerController::class, 'orderList'])->name('customer-order');
+    Route::get('admin/customers/order-delete/{id}', [CustomerController::class, 'orderDelete'])->name('order-delete');
+    Route::get('admin/customers/order-detail/{id}', [CustomerController::class, 'orderDetail'])->name('order-detail');
 });
 
-//customer template 
+//customer template
 Route::get('customer/index', [CustomerController::class, 'index'])->name('index');
 Route::get('customer/page/login', [CustomerController::class, 'login'])->name('login');
 Route::get('customer/page/register', [CustomerController::class, 'register'])->name('register');

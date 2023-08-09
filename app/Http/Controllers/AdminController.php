@@ -50,6 +50,7 @@ class AdminController extends Controller
             session()->pull('adminID');
             session()->pull('adminName');
             session()->pull('adminPhoto');
+            session()->pull('adminRole');
             return redirect()->route('admin-login');
         }
     }
@@ -78,6 +79,12 @@ class AdminController extends Controller
         return view('admin.dashboard', compact('data', 'orders', 'customers'));
     }
 
+    public function profile()
+    {
+        $admin = Admin::where('adminID', '=', Session('adminID'))->first();
+        $roles = Role::get();
+        return view('admin.pages.admins.profile', compact('admin', 'roles'));
+    }
     public function adminList()
     {
         $admins = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
@@ -185,8 +192,9 @@ class AdminController extends Controller
 
         $admin = Admin::where('adminID', '=', Session('adminID'))->first();
         if (Hash::check($request->old_password, $admin->password)) {
-            $admin->password = Hash::make($request->new_password);
-            $admin->save();
+            Admin::where('adminID', '=', Session('adminID'))->update([
+                'password' => Hash::make($request->new_password),
+            ]);
             return redirect()->back()->with('success', 'Password changed successfully');
         } else {
             return redirect()->back()->with('error', 'Invalid password');

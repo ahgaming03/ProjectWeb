@@ -15,18 +15,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($cat as $catl)
+                            @foreach ($cat as $ncat)
                                 <tr>
-                                    <td>{{ $catl->categoryID }}</td>
-                                    <th>{{ $catl->name }}</th>
-                                    <th>{{ $catl->descriptions }}</th>
+                                    <td>{{ $ncat->categoryID }}</td>
+                                    <th>{{ $ncat->name }}</th>
+                                    <th>{{ $ncat->descriptions }}</th>
                                     <td>
-                                        <a href="{{ url('productEdit') }}\{{ $catl->categoryID }}" title="Edit this product"><i
-                                                class="bi bi-pencil-fill"></i></a> &nbsp;
-                                        <a href="{{ url('productDelete') }}\{{ $catl->categoryID }}"
-                                            title="Delete this product"
-                                            onclick="return confirm('Are you sure delete this product?');"><i
-                                                class="bi bi-trash-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/categories/category-edit/') }}\{{ $ncat->categoryID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/categories/category-delete') }}\{{ $ncat->categoryID }}" title="Delete this product" onclick="return confirm('Are you sure delete this product?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
                                     </td>
                                 </tr>
                             @endforeach

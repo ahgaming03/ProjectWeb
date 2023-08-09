@@ -25,21 +25,8 @@
             </a>
             <div class="collapse" id="product">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('product-list') }}">Show all</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('product-add') }}">Add new</a></li>
-                </ul>
-            </div>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" data-toggle="collapse" href="#category" aria-expanded="false" aria-controls="category">
-                <i class="icon-layout menu-icon"></i>
-                <span class="menu-title">Category</span>
-                <i class="menu-arrow"></i>
-            </a>
-            <div class="collapse" id="category">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('category-list') }}">Show all</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('category-add') }}">Add new</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('product-list') }}">Product list</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('category-list') }}">Category list</a></li>
                 </ul>
             </div>
         </li>

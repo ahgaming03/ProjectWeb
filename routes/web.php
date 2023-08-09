@@ -2,6 +2,8 @@
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ManufacturerController;
 
 use Illuminate\Support\Facades\Route;
 
@@ -43,18 +45,35 @@ Route::middleware(['isLoggedIn'])->group(function () {
     // admin upload image
     Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image');
 
+    // admin profile
+    Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin-profile');
+
+    // admin change password
+    Route::post('admin/change-password', [AdminController::class, 'changePassword'])->name('change-password');
 
     // admin products management
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');
     Route::get('admin/products/product-add', [ProductController::class, 'productAdd'])->name('product-add');
     Route::post('admin/products/product-save', [ProductController::class, 'ProductSave'] )->name('product-save');
-    Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit']);
+    Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit'])->name('product-edit');
     Route::post('admin/products/product-update', [ProductController::class, 'productUpdate'] )->name('product-update');
     Route::get('admin/products/product-delete/{id}', [ProductController::class, 'productDelete'])->name('product-delete');
 
     // admin category management
-    Route::get('admin/categories/category-list', [ProductController::class, 'categoryList'])->name('category-list');
-    Route::get('admin/categories/category-add', [ProductController::class, 'categoryAdd'])->name('category-add');
+    Route::get('admin/categories/category-list', [CategoryController::class, 'categoryList'])->name('category-list');
+    Route::get('admin/categories/category-add', [CategoryController::class, 'categoryAdd'])->name('category-add');
+    Route::post('admin/categories/category-save', [CategoryController::class, 'categorySave'] )->name('category-save');
+    Route::get('admin/categories/category-edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category-edit');
+    Route::post('admin/categories/category-update', [CategoryController::class, 'categoryUpdate'] )->name('category-update');
+    Route::get('admin/categories/category-delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category-delete');
+
+    // admin manufacturer management
+    Route::get('admin/manufacturers/manufacturer-list', [manufacturerController::class, 'manufacturerList'])->name('manufacturer-list');
+    Route::get('admin/manufacturers/manufacturer-add', [manufacturerController::class, 'manufacturerAdd'])->name('manufacturer-add');
+    Route::post('admin/manufacturers/manufacturer-save', [manufacturerController::class, 'manufacturerSave'])->name('manufacturer-save');
+    Route::get('admin/manufacturers/manufacturer-edit/{id}', [manufacturerController::class, 'manufacturerEdit'])->name('manufacturer-edit');
+    Route::post('admin/manufacturers/manufacturer-update', [manufacturerController::class, 'manufacturerUpdate'])->name('manufacturer-update');
+    Route::get('admin/manufacturers/manufacturer-delete/{id}', [manufacturerController::class, 'manufacturerDelete'])->name('manufacturer-delete');
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');

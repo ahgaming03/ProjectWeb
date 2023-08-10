@@ -65,9 +65,9 @@
                                 <div class="form-group col-md-8">
                                     <label for="details">Details:</label>
                                     <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" placeholder="Enter Product Details" name="details"></textarea>
-                                <div class="form-group col-md-4">
-                                    <button type="submit" class="btn btn-outline-danger">Submit</button>
-                                    <a href="{{ url('admin/products/product-list/') }}" class="btn btn-outline-primary">Back</a>
+                                </div>
+                                <button type="submit" class="btn btn-outline-danger">Submit</button>
+                                <a href="{{ url('admin/products/product-list/') }}" class="btn btn-outline-primary">Back</a>
                             </div>
                             <style>
                                 .form-control{

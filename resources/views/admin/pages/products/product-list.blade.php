@@ -42,10 +42,13 @@
                                         <th>{{ $npro->categoryID }}</th>
                                         <th>{{ $npro->manufacturerID }}</th>
                                         <td>{{ $npro->name}}</td>
-                                        <td>{{ $npro->price }}</td>
+                                        <td>{{ number_format($npro->price) }}</td>
                                         <th>{{ $npro->stock }}</th>
                                         <td>{{ $npro->details }}</td>
-                                        <td>{{ $npro->image }}</td>
+                                        <td>
+                                            <img src="img\{{$npro->productImage}}" alt="" 
+                                            height="120px" width="120px">
+                                        </td>
                                         <td>{{ $npro->updated_at }}</td>
                                         <td>
                                             <a href="{{ url('admin/products/product-edit/') }}\{{ $npro->productID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;

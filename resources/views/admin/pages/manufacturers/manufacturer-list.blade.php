@@ -26,7 +26,7 @@
                                 <tr>
                                     <td>{{ $nmanu->manufacturerID }}</td>
                                     <th>{{ $nmanu->name }}</th>
-                                    <th>{{ $nmanu->logo }}</th>
+                                    <th><img src="m_logo\{{ $nmanu->logo }}" alt="" height="50px" width="50px"></th>
                                     <td>
                                         <a href="{{ url('admin/mamufacturers/mamufacturer-edit/') }}\{{ $nmanu->mamufacturerID }}" title="Edit this mamufacturer"><i class="bi bi-pencil-fill"></i></a> &nbsp;
                                         <a href="{{ url('admin/mamufacturers/mamufacturer-delete/') }}\{{ $nmanu->mamufacturerID }}" title="Delete this mamufacturer" onclick="return confirm('Are you sure delete this mamufacturer?');"><i class="bi bi-trash-fill"></i></a> &nbsp;

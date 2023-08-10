@@ -17,12 +17,12 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="firstName">Product ID:</label>
+                                    <label for="id">Product ID:</label>
                                     <input type="text" class="form-control form-control-sm" id="id" name="id"placeholder="Enter Product ID"
                                         name="id">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="firstName">Name:</label>
+                                    <label for="mame">Name:</label>
                                     <input type="text" class="form-control form-control-sm" id="name" placeholder="Enter Product Name" 
                                         name="name">
                                 </div>
@@ -44,7 +44,6 @@
                                 <div class="form-group col-md-4">
                                     <label for="manufacturer">Manufacturer:</label>
                                     <select name="manufacturer" id="manufacturer" class="form-control">
-                                    
                                     </select>
                                 </div>
                             </div>
@@ -55,7 +54,8 @@
                                 </div>
                                 <div class="form-group col-md-6">
                                     <label for="stock">stock:</label>
-                                    <select name="stock" id="stockr" class="form-control"></select>
+                                    <input type="text" class="form-control form-control-sm" id="stock" placeholder="Enter Product stock" 
+                                        name="stock">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="image">Image:</label>
@@ -64,12 +64,10 @@
                                 </div>
                                 <div class="form-group col-md-8">
                                     <label for="details">Details:</label>
-                                    <textarea class="form-control" rows="8 12" id="details" placeholder="Enter Product Details" name="details"></textarea>
-                                </div>
+                                    <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" placeholder="Enter Product Details" name="details"></textarea>
                                 <div class="form-group col-md-4">
                                     <button type="submit" class="btn btn-outline-danger">Submit</button>
                                     <a href="{{ url('admin/products/product-list/') }}" class="btn btn-outline-primary">Back</a>
-                                </div>
                             </div>
                             <style>
                                 .form-control{

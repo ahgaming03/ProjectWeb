@@ -18,6 +18,7 @@
                                 <th>ID</th>
                                 <th>Name</th>
                                 <th>Logo</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -9,55 +9,39 @@
                         @if (Session::has('success'))
                             <div class="alert alert-success" role="alert">
                                 {{ Session::get('success') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
                             </div>
                         @endif
                         <form action="{{ url('categorysave') }}" method="POST">
                             @csrf
-                            <div class="aID">
-                                <div class="mb-3">
+                            <div class="row">
+                                <div class="form-group col-md-12">
                                     <label for="id">Category ID:</label>
-                                    <input type="text" class="form-control" id="id" placeholder="Enter Category ID"
+                                    <input type="text" class="form-control form-control-sm" id="id" name="id"placeholder="Enter Category ID"
                                         name="id">
                                 </div>
                             </div>
-                            <div class="aName">
-                                <div class="mb-3">
-                                    <label for="name">Name:</label>
-                                    <input type="text" class="form-control" id="name" placeholder="Enter Category Name"
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="mame">Name:</label>
+                                    <input type="text" class="form-control form-control-sm" id="name" placeholder="Enter Category Name" 
                                         name="name">
                                 </div>
                             </div>
-                            <div class="aDe">
-                                <div class="aDetail">
-                                    <div class="mb-3 mt-3">
-                                        <label for="details">Descriptions:</label>
-                                        <textarea class="form-control" rows="5" id="descriptions" placeholder="Enter Category descriptions" name="descriptions"></textarea>
-                                    </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-12">
+                                    <label for="details">Descriptions:</label>
+                                    <textarea class="form-control" rows="5" id="descriptions" placeholder="Enter Category descriptions" name="descriptions"></textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ url('admin/categories/category-list/') }}" class="btn btn-primary">Back</a>
+                                <button type="submit" class="btn btn-outline-danger">Submit</button>
+                                <a href="{{ url('admin/categories/category-list/') }}" class="btn btn-outline-primary">Back</a>
                         </form>
                         <style>
                             .form-control{
-                                    color: #4169E1;
-                                    font-size: 20px;
-                            }
-                            .aID{
-                                width:35%;
-                            }
-                            .aName{
-                                width:35%;
-                            }
-                            .aDe{
-                                width:55%;
-                                height:50%;
-                                position: absolute;
-                                margin: -200.5px 400px;
-                                .form-control{
-                                    color: tomato;
-                                    font-size: 20px;
-                                }
+                                font-size: 20px;
                             }
                         </style>
                     </div>

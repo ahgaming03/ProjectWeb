@@ -39,7 +39,7 @@
             <div class="collapse" id="customer">
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('customer-list') }}">Customer list</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('customer-order') }}">Order list</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('order-list') }}">Order list</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('customer-feedback') }}">Feedback list</a>
                     </li>
                 </ul>

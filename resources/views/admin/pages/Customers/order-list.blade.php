@@ -33,7 +33,7 @@
                                         <td>{{ $order->orderStatus }}</td>
                                         <td>{{ $order->created_at }}</td>
                                         <td>
-                                            <a href="{{ url('admin/customers/order-detail/' . $order->orderID) }}"
+                                            <a href="{{ url('admin/orders/order-detail/' . $order->orderID) }}"
                                                 title="View order detail" class="btn btn-inverse-primary btn-sm">Detail</a>
                                             &nbsp;
                                         </td>

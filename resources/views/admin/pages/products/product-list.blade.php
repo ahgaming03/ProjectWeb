@@ -5,6 +5,13 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Product list</h4>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <a class="btn btn-inverse-success" href="{{ route('product-add') }}">
+                                <i class="bi bi-plus-circle"></i> Add new product
+                            </a>
+                        </div>
+                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>

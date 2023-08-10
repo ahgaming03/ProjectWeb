@@ -68,12 +68,12 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/categories/category-delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category-delete');
 
     // admin manufacturer management
-    Route::get('admin/manufacturers/manufacturer-list', [manufacturerController::class, 'manufacturerList'])->name('manufacturer-list');
-    Route::get('admin/manufacturers/manufacturer-add', [manufacturerController::class, 'manufacturerAdd'])->name('manufacturer-add');
-    Route::post('admin/manufacturers/manufacturer-save', [manufacturerController::class, 'manufacturerSave'])->name('manufacturer-save');
-    Route::get('admin/manufacturers/manufacturer-edit/{id}', [manufacturerController::class, 'manufacturerEdit'])->name('manufacturer-edit');
-    Route::post('admin/manufacturers/manufacturer-update', [manufacturerController::class, 'manufacturerUpdate'])->name('manufacturer-update');
-    Route::get('admin/manufacturers/manufacturer-delete/{id}', [manufacturerController::class, 'manufacturerDelete'])->name('manufacturer-delete');
+    Route::get('admin/manufacturers/manufacturer-list', [ManufacturerController::class, 'manufacturerList'])->name('manufacturer-list');
+    Route::get('admin/manufacturers/manufacturer-add', [ManufacturerController::class, 'manufacturerAdd'])->name('manufacturer-add');
+    Route::post('admin/manufacturers/manufacturer-save', [ManufacturerController::class, 'manufacturerSave'])->name('manufacturer-save');
+    Route::get('admin/manufacturers/manufacturer-edit/{id}', [ManufacturerController::class, 'manufacturerEdit'])->name('manufacturer-edit');
+    Route::post('admin/manufacturers/manufacturer-update', [ManufacturerController::class, 'manufacturerUpdate'])->name('manufacturer-update');
+    Route::get('admin/manufacturers/manufacturer-delete/{id}', [ManufacturerController::class, 'manufacturerDelete'])->name('manufacturer-delete');
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');

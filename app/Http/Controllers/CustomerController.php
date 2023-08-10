@@ -2,52 +2,64 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use App\Models\Manufacturer;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Feedback; // Add the import for the Feedback model
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 
 class CustomerController extends Controller
 {
+    /**
+     * admin role 
+     */
+
+    // admin customer management
     public function customerList()
     {
         // Fetch all customers
         $customers = Customer::all();
-        
         return view('admin.pages.Customers.customer-list', compact('customers'));
-    }
-
-    public function orderList()
-    {
-        // Fetch all orders
-        $orders = Order::all();
-        
-        return view('admin.pages.Customers.order-list', compact('orders'));
     }
 
     public function feedbackList()
     {
         // Fetch all feedbacks for the currently logged-in customer
         $feedbacks = Feedback::all();
-        
         return view('admin.pages.Customers.feedback-list', compact('feedbacks'));
     }
+
+    /**
+     * customer role
+     */
+    // dashboard
     public function index()
     {
-        return view('customer.index');
+        $products = Product::join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')
+            ->select('products.*', 'manufacturers.name as manufacturerName')
+            ->get();
+        $categories = Category::get();
+        $manufacturers = Manufacturer::get();
+        return view('customer.index', compact('products', 'categories', 'manufacturers'));
     }
-    
-    // function register
+    //function login
+    public function login()
+    {
+        return view('customer.pages.login');
+    }
+    // register
     public function register()
     {
-        return view('customer.page.register');
+        return view('customer.pages.register');
     }
 
-    public function RegisterCustomer(Request $request)
+    public function registerProcess(Request $request)
     {
         // Validate the received data
         $validatedData = $request->validate([
@@ -56,119 +68,70 @@ class CustomerController extends Controller
             'email' => 'required|email',
             'address' => 'required'
         ]);
-    
-      
-            // Create a new customer record
-            $customers = new Customer;
-            $customers->username = $validatedData['username'];
-            $customers->password = Hash::make($validatedData['password']);
-            $customers->email = $validatedData['email'];
-            $customers->address = $validatedData['address'];
-            $customers->save();
-    
-            // Check whether customer has been saved
-            if ($customers) {
-                return redirect()->route('login')->with('Success', 'Registration successful. You may now login.');
-            } else {
-                return back()->with('Fail', 'Registration unsuccessful. Please try again.');
-            }
-            
-    }
-    //function login
-    public function login()
-    {
-        
-        return view('customer.page.login');
-    }
-    
 
-    public function loginProcessCustomer(Request $request)
+
+        // Create a new customer record
+        $customers = new Customer;
+        $customers->username = $validatedData['username'];
+        $customers->password = Hash::make($validatedData['password']);
+        $customers->email = $validatedData['email'];
+        $customers->address = $validatedData['address'];
+        $customers->save();
+
+        // Check whether customer has been saved
+        if ($customers) {
+            return redirect()->route('login')->with('Success', 'Registration successful. You may now login.');
+        } else {
+            return back()->with('Fail', 'Registration unsuccessful. Please try again.');
+        }
+    }
+
+
+    public function loginProcess(Request $request)
     {
         $request->validate([
             'username' => 'required|min:5',
             'password' => 'required|min:8|max:32',
         ]);
-    
+
         $username = $request->username;
         $password = $request->password;
-    
+
         $customer = Customer::where('username', '=', $username)->first();
         if ($customer) {
             if (Hash::check($password, $customer->password)) {
-                $request->session()->put('customersID', $customer->customerID);
-                $request->session()->put('customersUserName', $customer->username);
-                $request->session()->put('customersEmail', $customer->email); // Update with your column name
-                $request->session()->put('customersGender', $customer->gender); // Update with your column name
-                return redirect()->route('index'); // Update with your desired route
+                $customer = [
+                    'ID' => $customer->customerID,
+                    'firstName' => $customer->firstName,
+                    'lastName' => $customer->lastName,
+                    'photo' => $customer->photo,
+                ];
+                session(['customer' => $customer]);
+                return redirect()->route('customer-index'); // Update with your desired route
             } else {
-                return redirect()->back()->with('error', 'Invalid password');
+                return redirect()->back()->with('error', 'Username or password is incorrect');
             }
         } else {
-            return redirect()->back()->with('error', 'Invalid username');
+            return redirect()->back()->with('error', 'Username or password is incorrect');
         }
     }
-    
+
     public function logout()
     {
-        if (session()->has('customersID')) {
-            session()->pull('customersID');
-            session()->pull('customersName');
-            session()->pull('customersPhoto');
-            return redirect()->route('customer.page.login'); // Update with your desired route
+        if (session()->has('customer')) {
+            session()->pull('customer');
+            return redirect()->route('customer-index'); // Update with your desired route
         }
     }
 
-    //customer profile
+    // profile
     public function profile()
     {
-        
-        $customer = Customer::where('customerID', '=', Session()->get('customerID'))->first();
-        return view('customer.profiles.profile', compact('customer'));
-    }
 
-
-//     public function editProfile()
-// {
-//     $customerID = session('customer');
-//     $customer = Customer::find($customerID);
-    
-//     return view('customer.edit_profile', compact('customer'));
-// }
-
-// public function updateProfile(Request $request)
-// {
-//     $customerID = session('customer');
-//     $customer = Customer::find($customerID);
-
-//     $request->validate([
-//         'firstName' => 'required',
-//         'lastName' => 'required',
-//         'birthday' => 'required|date',
-//         'gender' => 'required|in:1,0',
-//         'phoneNumber' => 'required',
-//         'address' => 'required',
-//     ]);
-
-//     $customer->firstName = $request->firstName;
-//     $customer->lastName = $request->lastName;
-//     $customer->birthday = $request->birthday;
-//     $customer->gender = $request->gender;
-//     $customer->phoneNumber = $request->phoneNumber;
-//     $customer->address = $request->address;
-
-//     $customer->save();
-
-//     return redirect()->route('editProfile')->with('success', 'Profile updated successfully');
-// }
-
-
+        $customer = Customer::where('customerID', '=', session('customersID'))->first();
+        return view('customer.pages.profiles.profile', compact('customer'));
     }
 
 
 
-
-
-    
- 
-    
-
+}

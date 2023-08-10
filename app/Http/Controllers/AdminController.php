@@ -9,8 +9,7 @@ use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\Rule;
-use Session;
+use Illuminate\Support\Facades\Session;
 
 class AdminController extends Controller
 {
@@ -33,7 +32,14 @@ class AdminController extends Controller
         $admin = Admin::where('username', '=', $username)->first();
         if ($admin) {
             if (Hash::check($password, $admin->password)) {
-                $request->session()->put('adminID', $admin->adminID);
+                $admin = [
+                    'adminID' => $admin->adminID,
+                    'firstName' => $admin->firstName,
+                    'lastName' => $admin->lastName,
+                    'photo' => $admin->photo,
+                    'roleID' => $admin->roleID,
+                ];
+                session(['admin' => $admin]);
                 return redirect()->route('admin-dashboard');
             } else {
                 return redirect()->back()->with('error', 'Invalid password');
@@ -44,25 +50,14 @@ class AdminController extends Controller
     }
     public function logout()
     {
-        if (session()->has('adminID')) {
-            session()->pull('adminID');
-            session()->pull('adminName');
-            session()->pull('adminPhoto');
-            session()->pull('adminRole');
+        if (session()->has('admin')) {
+            session()->pull('admin');
             return redirect()->route('admin-login');
         }
     }
 
     public function dashboard()
     {
-        if (Session()->has("adminID")) {
-            $data = Admin::where('adminID', '=', Session('adminID'))->first();
-            // store to array session
-            Session::put('adminName', $data->firstName . " " . $data->lastName);
-            Session::put('adminPhoto', $data->photo);
-            session()->put('adminRole', $data->roleID);
-        }
-
         $orders = DB::table('customers')
             ->join('orders', 'customers.customerID', '=', 'orders.customerID')
             ->select('orders.*', 'customers.firstName', 'customers.lastName')
@@ -74,12 +69,12 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
-        return view('admin.dashboard', compact('data', 'orders', 'customers'));
+        return view('admin.dashboard', compact( 'orders', 'customers'));
     }
 
     public function profile()
     {
-        $admin = Admin::where('adminID', '=', Session('adminID'))->first();
+        $admin = Admin::where('adminID', '=', Session('admin.adminID'))->first();
         $roles = Role::get();
         return view('admin.pages.admins.profile', compact('admin', 'roles'));
     }
@@ -188,9 +183,9 @@ class AdminController extends Controller
             'new_password' => 'required|confirmed|min:8|max:32',
         ]);
 
-        $admin = Admin::where('adminID', '=', Session('adminID'))->first();
+        $admin = Admin::where('adminID', '=', Session('admin.adminID'))->first();
         if (Hash::check($request->old_password, $admin->password)) {
-            Admin::where('adminID', '=', Session('adminID'))->update([
+            Admin::where('adminID', '=', Session('admin.adminID'))->update([
                 'password' => Hash::make($request->new_password),
             ]);
             return redirect()->back()->with('success', 'Password changed successfully');
@@ -231,8 +226,8 @@ class AdminController extends Controller
             Admin::where('adminID', '=', $request->adminID)->update([
                 'photo' => $photo,
             ]);
-            if (session('adminID') == $adminID) {
-                Session::put('adminPhoto', $photo);
+            if (session('admin.adminID') == $adminID) {
+                Session::put('admin.photo', $photo);
             }
             return redirect()->back()->with('success', 'Photo changed successfully.');
         }

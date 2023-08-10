@@ -15,7 +15,7 @@ class AuthCheck
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (!session()->has('adminID')) {
+        if (!session()->has('admin.adminID')) {
             return redirect()->route('admin-login')->with('error', 'You have to login first.');
         }
         return $next($request);

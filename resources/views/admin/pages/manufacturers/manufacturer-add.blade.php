@@ -37,7 +37,7 @@
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-primary">Submit</button>
-                            <a href="{{ url('admin/categories/category-list/') }}" class="btn btn-primary">Back</a>
+                            <a href="{{ url('admin/manufacturers/manufacturer-list/') }}" class="btn btn-primary">Back</a>
                         </form>
                         <style>
                             .form-control{

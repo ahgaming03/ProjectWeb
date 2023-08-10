@@ -5,6 +5,7 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,9 +82,9 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
 
     //order
-    Route::get('admin/customers/order-list', [CustomerController::class, 'orderList'])->name('customer-order');
-    Route::get('admin/customers/order-delete/{id}', [CustomerController::class, 'orderDelete'])->name('order-delete');
-    Route::get('admin/customers/order-detail/{id}', [CustomerController::class, 'orderDetail'])->name('order-detail');
+    Route::get('admin/orders/order-list', [OrderController::class, 'orderList'])->name('order-list');
+    Route::get('admin/orders/order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order-delete');
+    Route::get('admin/orders/order-detail/{id}', [OrderController::class, 'orderDetail'])->name('order-detail');
 });
 
 

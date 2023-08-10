@@ -7,11 +7,12 @@ use App\Models\Order;
 use Illuminate\Support\Facades\DB;
 use App\Models\OrderDetail;
 
+
 class OrderController extends Controller
 {
     public function orderList()
     {
-        // Fetch all orders
+
         $orders = Order::all();
 
         return view('admin.pages.Customers.order-list', compact('orders'));
@@ -52,5 +53,6 @@ class OrderController extends Controller
             ->get();
 
         return view('admin.pages.customers.order-detail', compact('orderDetails', 'information'));
+
     }
 }

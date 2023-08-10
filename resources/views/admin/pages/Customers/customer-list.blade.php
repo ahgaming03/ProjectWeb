@@ -6,7 +6,7 @@
                 <div class="card-body">
                     <h4 class="card-title">Customer List</h4>
                     <div class="table-responsive">
-                        <table class="table table-hover">
+                        <table class="table table-hover table-striped table-bordered table-info">
                             <thead>
                                 <tr>
                                     <th>CustomerID</th>

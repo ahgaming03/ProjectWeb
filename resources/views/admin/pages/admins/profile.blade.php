@@ -164,15 +164,15 @@
 
         <div class="col-md-6 grid-margin stretch-card">
             <div class="card">
-                <div class="card-header">
-                    <h4 class="card-body">Change password</h4>
+                <h4 class="card-header">Change password</h4>
+                <div class="card-body">
                     <form action="{{ route('change-password') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="old-passord">Old password</label>
                             <input type="password" class="form-control form-control-sm" id="old_password"
                                 name="old_password" placeholder="Old password" value="{{ old('old_password') }}">
-                                <span toggle="#old_password" class="fa fa-eye toggle-password"></span>
+                            <span toggle="#old_password" class="fa fa-eye toggle-password"></span>
                             @error('old_password')
                                 <div class="text-danger mt-2">
                                     {{ $message }}
@@ -205,5 +205,5 @@
 
 @section('custom-js')
     <script src="{{ asset('admjn/js/file-upload.js') }}"></script>
-    <script src="{{asset('admjn/js/show-password.js')}}"></script>
+    <script src="{{ asset('admjn/js/show-password.js') }}"></script>
 @endsection

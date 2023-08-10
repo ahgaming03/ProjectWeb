@@ -27,7 +27,7 @@
                                         name="name">
                                 </div>
                             </div>
-                            <div class="aDe">
+                            <div class="logo">
                                 <div class="aDetail">
                                     <div class="mb-3 mt-3">
                                         <label for="details">Logo:</label>
@@ -41,8 +41,8 @@
                         </form>
                         <style>
                             .form-control{
-                                    color: #4169E1;
-                                    font-size: 20px;
+                                color: #4169E1;
+                                font-size: 20px;
                             }
                             .aID{
                                 width:35%;
@@ -50,7 +50,7 @@
                             .aName{
                                 width:35%;
                             }
-                            .aDe{
+                            .logo{
                                 width:55%;
                                 height:50%;
                                 position: absolute;

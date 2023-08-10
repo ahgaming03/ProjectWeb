@@ -19,7 +19,7 @@
         @endif
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#product" aria-expanded="false" aria-controls="product">
-                <i class="icon-layout menu-icon"></i>
+                <i class="bi bi-box2-heart menu-icon"></i>
                 <span class="menu-title">Product</span>
                 <i class="menu-arrow"></i>
             </a>
@@ -27,12 +27,13 @@
                 <ul class="nav flex-column sub-menu">
                     <li class="nav-item"> <a class="nav-link" href="{{ route('product-list') }}">Product list</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('category-list') }}">Category list</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('manufacturer-list') }}">Manufacturer list</a></li>
                 </ul>
             </div>
         </li>
         <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#customer" aria-expanded="false" aria-controls="customer">
-                <i class="icon-layout menu-icon"></i>
+                <i class="bi bi-people menu-icon"></i>
                 <span class="menu-title">Customer</span>
                 <i class="menu-arrow"></i>
             </a>

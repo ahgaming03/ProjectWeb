@@ -75,9 +75,17 @@ Route::middleware(['isLoggedIn'])->group(function () {
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
+
     Route::get('admin/customers/order-list', [OrderController::class, 'orderList'])->name('customer-order');
+
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
+
+    //order
+    Route::get('admin/customers/order-list', [CustomerController::class, 'orderList'])->name('customer-order');
+    Route::get('admin/customers/order-delete/{id}', [CustomerController::class, 'orderDelete'])->name('order-delete');
+    Route::get('admin/customers/order-detail/{id}', [CustomerController::class, 'orderDetail'])->name('order-detail');
 });
+
 
 // customer template 
 Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
@@ -91,3 +99,4 @@ Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-log
 Route::get('profile', [CustomerController::class, 'profile'])->name('customer-profile');
 // Route::get('customer/profiles/edit', [CustomerController::class, 'editProfile'])->name('editProfile');
 // Route::post('customer/profiles/update', [CustomerController::class, 'updateProfile'])->name('updateProfile');
+

@@ -9,10 +9,12 @@ use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Order;
 use App\Models\Feedback; // Add the import for the Feedback model
+
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
+use Illuminate\Support\Facades\DB;
 
 class CustomerController extends Controller
 {
@@ -135,3 +137,4 @@ class CustomerController extends Controller
 
 
 }
+

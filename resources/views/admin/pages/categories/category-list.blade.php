@@ -5,6 +5,13 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Category List</h4>
+                    <div class="row">
+                        <div class="col-md-12 mb-3">
+                            <a class="btn btn-inverse-success" href="{{ route('category-add') }}">
+                                <i class="bi bi-plus-circle"></i> Add new category
+                            </a>
+                        </div>
+                    </div>
                     <table class="table table-hover">
                         <thead>
                             <tr>

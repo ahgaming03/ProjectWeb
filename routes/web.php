@@ -1,10 +1,10 @@
 <?php
-use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ManufacturerController;
-
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\ProductController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,18 +18,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/**
+ * admin role
+ */
 
 // admin login/logout
-Route::get('/admin', [AdminController::class, 'login'])->name('admin-login');
-
+Route::get('admin', [AdminController::class, 'login'])->name('admin-login');
 Route::post('admin/login-process', [AdminController::class, 'loginProcess'])->name('admin-login-process');
-// admin logiut
 Route::get('admin/logout', [AdminController::class, 'logout'])->name('admin-logout');
 
-// admin routes
+// admin logged in
 Route::middleware(['isLoggedIn'])->group(function () {
     // admin dashboard
     Route::get('admin/dashboard', [AdminController::class, 'dashboard'])->name('admin-dashboard');
@@ -54,17 +52,17 @@ Route::middleware(['isLoggedIn'])->group(function () {
     // admin products management
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');
     Route::get('admin/products/product-add', [ProductController::class, 'productAdd'])->name('product-add');
-    Route::post('admin/products/product-save', [ProductController::class, 'ProductSave'] )->name('product-save');
+    Route::post('admin/products/product-save', [ProductController::class, 'ProductSave'])->name('product-save');
     Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit'])->name('product-edit');
-    Route::post('admin/products/product-update', [ProductController::class, 'productUpdate'] )->name('product-update');
+    Route::post('admin/products/product-update', [ProductController::class, 'productUpdate'])->name('product-update');
     Route::get('admin/products/product-delete/{id}', [ProductController::class, 'productDelete'])->name('product-delete');
 
     // admin category management
     Route::get('admin/categories/category-list', [CategoryController::class, 'categoryList'])->name('category-list');
     Route::get('admin/categories/category-add', [CategoryController::class, 'categoryAdd'])->name('category-add');
-    Route::post('admin/categories/category-save', [CategoryController::class, 'categorySave'] )->name('category-save');
+    Route::post('admin/categories/category-save', [CategoryController::class, 'categorySave'])->name('category-save');
     Route::get('admin/categories/category-edit/{id}', [CategoryController::class, 'categoryEdit'])->name('category-edit');
-    Route::post('admin/categories/category-update', [CategoryController::class, 'categoryUpdate'] )->name('category-update');
+    Route::post('admin/categories/category-update', [CategoryController::class, 'categoryUpdate'])->name('category-update');
     Route::get('admin/categories/category-delete/{id}', [CategoryController::class, 'categoryDelete'])->name('category-delete');
 
     // admin manufacturer management
@@ -77,6 +75,9 @@ Route::middleware(['isLoggedIn'])->group(function () {
 
     // admin customers
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
+
+    Route::get('admin/customers/order-list', [OrderController::class, 'orderList'])->name('customer-order');
+
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
 
     //order
@@ -85,7 +86,17 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/customers/order-detail/{id}', [CustomerController::class, 'orderDetail'])->name('order-detail');
 });
 
-//customer template
-Route::get('customer/index', [CustomerController::class, 'index'])->name('index');
-Route::get('customer/page/login', [CustomerController::class, 'login'])->name('login');
-Route::get('customer/page/register', [CustomerController::class, 'register'])->name('register');
+
+// customer template 
+Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
+Route::get('/login', [CustomerController::class, 'login'])->name('customer-login');
+Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('customer-login-process');
+Route::get('/register', [CustomerController::class, 'register'])->name('customer-register');
+Route::post('/register-process', [CustomerController::class, 'registerProcess'])->name('customer-register-process');
+Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-logout');
+
+// customer profile
+Route::get('profile', [CustomerController::class, 'profile'])->name('customer-profile');
+// Route::get('customer/profiles/edit', [CustomerController::class, 'editProfile'])->name('editProfile');
+// Route::post('customer/profiles/update', [CustomerController::class, 'updateProfile'])->name('updateProfile');
+

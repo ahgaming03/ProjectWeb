@@ -9,7 +9,7 @@
 @section('content')
     <div class="row">
         <div class="col-md-12 grid-margin">
-            <h3 class="font-weight-bold mb-0">Hello, {{ session('adminName') }}</h3>
+            <h3 class="font-weight-bold mb-0">Hello, {{ session('admin.firstName') . ' ' . session('admin.lastName') }}</h3>
         </div>
     </div>
     <div class="row">

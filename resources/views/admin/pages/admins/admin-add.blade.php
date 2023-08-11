@@ -6,7 +6,7 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add new admin account</h4>
-                    @if (Session::has('success'))
+                    @if (Session::has('success')) 
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span

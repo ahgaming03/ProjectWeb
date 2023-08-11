@@ -46,7 +46,7 @@
                                         <th>{{ $npro->stock }}</th>
                                         <td>{{ $npro->details }}</td>
                                         <td>
-                                            <img src="img\{{$npro->productImage}}" alt="" 
+                                            <img src="images\{{$npro->productImage}}" alt="" 
                                             height="120px" width="120px">
                                         </td>
                                         <td>{{ $npro->updated_at }}</td>

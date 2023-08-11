@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    public $timestamps = true;
     use HasFactory; // Use the HasFactory trait
 }
 

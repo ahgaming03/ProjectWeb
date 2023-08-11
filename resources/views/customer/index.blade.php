@@ -2,6 +2,7 @@
 
 @section('content')
     <!-- Begin Slider With Category Menu Area -->
+    <link rel="stylesheet" href="{{ asset('customer/vendors/ti-icons/css/themify-icons.css') }}">
     <div class="slider-with-banner">
         <div class="container">
             <div class="row">

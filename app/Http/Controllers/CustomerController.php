@@ -265,4 +265,14 @@ class CustomerController extends Controller
 
         return redirect()->back()->with('error', 'Invalid photo.');
     }
+    public function customerDelete($ID)
+    {
+        Customer::where('customerID', '=', $ID)->delete();
+        return redirect()->back()->with('success', 'An account deleted successfully');
+    }
+    public function customerEdit($ID)
+    {
+        $customer = Customer::where('customerID', '=', $ID)->first();
+        return view('customer-edit', compact('customer'));
+    }
 }

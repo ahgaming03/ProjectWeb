@@ -172,7 +172,6 @@
                             <label for="old-passord">Old password</label>
                             <input type="password" class="form-control form-control-sm" id="old_password"
                                 name="old_password" placeholder="Old password" value="{{ old('old_password') }}">
-                            <span toggle="#old_password" class="fa fa-eye toggle-password"></span>
                             @error('old_password')
                                 <div class="text-danger mt-2">
                                     {{ $message }}
@@ -205,5 +204,4 @@
 
 @section('custom-js')
     <script src="{{ asset('admjn/js/file-upload.js') }}"></script>
-    <script src="{{ asset('admjn/js/show-password.js') }}"></script>
 @endsection

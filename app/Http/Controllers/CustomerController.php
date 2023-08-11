@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Image;
 use App\Models\Manufacturer;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -40,16 +41,7 @@ class CustomerController extends Controller
     /**
      * customer role
      */
-    // dashboard
-    public function index()
-    {
-        $products = Product::join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')
-            ->select('products.*', 'manufacturers.name as manufacturerName')
-            ->get();
-        $categories = Category::get();
-        $manufacturers = Manufacturer::get();
-        return view('customer.index', compact('products', 'categories', 'manufacturers'));
-    }
+    
     //function login
     public function login()
     {
@@ -112,7 +104,7 @@ class CustomerController extends Controller
                     'photo' => $customer->photo,
                 ];
                 session(['customer' => $customer]);
-                return redirect()->route('customer-index'); // Update with your desired route
+                return redirect()->route('product-index'); // Update with your desired route
             } else {
                 return redirect()->back()->with('error', 'Username or password is incorrect');
             }
@@ -125,7 +117,7 @@ class CustomerController extends Controller
     {
         if (session()->has('customer')) {
             session()->pull('customer');
-            return redirect()->route('customer-index'); // Update with your desired route
+            return redirect()->route('product-index'); // Update with your desired route
         }
     }
 
@@ -137,7 +129,7 @@ class CustomerController extends Controller
             if ($customer) {
                 return view('customer.pages.profiles.profile', compact('customer'));
             } else {
-                return redirect()->route('customer-index')->with('error', 'Customer not found.');
+                return redirect()->route('product-index')->with('error', 'Customer not found.');
             }
         }
     }
@@ -223,18 +215,17 @@ public function customerSave(Request $request)
             ],
         ]);
 
-        $customer = $request->customer;
+        $customerID = $request->customer;
         // photo
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $photo = 'admin_' . $customer . '.' . $extension;
+            $photo = 'admin_' . $customerID . '.png';
             $file->move(public_path('customer/images/uploads/faces'), $photo);
 
             customer::where('customer', '=', $request->customerID)->update([
                 'photo' => $photo,
             ]);
-            if (session('customer.customerID') -> customerID) {
+            if (session('customer.customerID') == $customerID) {
                 Session::put('customerID.photo', $photo);
             }
             return redirect()->back()->with('success', 'Photo changed successfully.');

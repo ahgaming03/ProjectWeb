@@ -74,14 +74,12 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::post('admin/manufacturers/manufacturer-update', [ManufacturerController::class, 'manufacturerUpdate'])->name('manufacturer-update');
     Route::get('admin/manufacturers/manufacturer-delete/{id}', [ManufacturerController::class, 'manufacturerDelete'])->name('manufacturer-delete');
 
-    // admin customers
+    // admin customers management
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
-
     Route::get('admin/customers/order-list', [OrderController::class, 'orderList'])->name('customer-order');
-
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
 
-    //order
+    // admin orders management
     Route::get('admin/orders/order-list', [OrderController::class, 'orderList'])->name('order-list');
     Route::get('admin/orders/order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order-delete');
     Route::get('admin/orders/order-detail/{id}', [OrderController::class, 'orderDetail'])->name('order-detail');
@@ -89,7 +87,6 @@ Route::middleware(['isLoggedIn'])->group(function () {
 
 
 // customer template 
-Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
 Route::get('/login', [CustomerController::class, 'login'])->name('customer-login');
 Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('customer-login-process');
 Route::get('/register', [CustomerController::class, 'register'])->name('customer-register');
@@ -97,7 +94,14 @@ Route::post('/register-process', [CustomerController::class, 'registerProcess'])
 Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-logout');
 
 // customer profile
-Route::get('customer/pages/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
+Route::get('profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
 Route::post('customer/pages/profiles/customer-edit', [CustomerController::class, 'customerEdit'])-> name('customer-edit');
 Route::post('customer/pages/profiles/customer-save', [CustomerController::class, 'customerSave'])->name('customer-save');
+
+// customer view product
+Route::get('/', [ProductController::class, 'index'])->name('product-index');
+Route::get('products/{id}', [ProductController::class, 'productDetails'])->name('product-detail');
+
+
+
 

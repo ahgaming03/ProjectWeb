@@ -2,9 +2,9 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
+use App\Http\Controllers\ManufacturerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
-
 use Illuminate\Support\Facades\Route;
 
 /*

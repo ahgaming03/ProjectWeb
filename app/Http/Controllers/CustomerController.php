@@ -65,27 +65,29 @@ class CustomerController extends Controller
 
     {
         // Validate the received data
-        $validatedData = $request->validate([
-            'username' => 'required|max:255',
-            'password' => 'required|min:8|max:32',
+        $request->validate([
+            'username' => 'required|min:5|max:32|unique:customers',
+            'firstName'=> 'required|min:3|max:32',
+            'password' => 'required|min:8|max:32|confirmed',
             'email' => 'required|email',
-            'address' => 'required'
+ 
         ]);
 
 
         // Create a new customer record
-        $customers = new Customer;
-        $customers->username = $validatedData['username'];
-        $customers->password = Hash::make($validatedData['password']);
-        $customers->email = $validatedData['email'];
-        $customers->address = $validatedData['address'];
-        $customers->save();
+        $customer = new Customer;
+        $customer->username = $request->username;
+        $customer->firstName= $request->firstName;
+        $customer->lastName =$request->lastName;
+        $customer->password = Hash::make($request->password);
+        $customer->email= $request-> email;
+        $customer->save();
 
         // Check whether customer has been saved
-        if ($customers) {
-            return redirect()->route('login')->with('Success', 'Registration successful. You may now login.');
+        if ($customer) {
+            return redirect()->route('customer-login')->with('success', 'Registration successful. You may now login.');
         } else {
-            return back()->with('Fail', 'Registration unsuccessful. Please try again.');
+            return back()->with('error', 'Registration unsuccessful. Please try again.');
         }
     }
 
@@ -130,12 +132,115 @@ class CustomerController extends Controller
     // profile
     public function profile()
     {
-
-        $customer = Customer::where('customerID', '=', session('customersID'))->first();
-        return view('customer.pages.profiles.profile', compact('customer'));
+        if (session()->has('customer')) {
+            $customer = Customer::where('customerID', '=', session('customer.ID'))->first();
+            if ($customer) {
+                return view('customer.pages.profiles.profile', compact('customer'));
+            } else {
+                return redirect()->route('customer-index')->with('error', 'Customer not found.');
+            }
+        }
     }
+   //customer edit
+public function customerEdit()
+{
+    $customer = Customer::where('ID', '=', session('customer.ID'))->first();
+    return view('customer.pages.profiles.customer-edit', compact('customer'));
+}
+
+// customer save 
+public function customerSave(Request $request)
+    {
+        $request->validate([
+            'firstName' => 'required|min:3',
+            'lastName' => 'min:4',
+            'username' => 'required|min:5|unique:admins',
+            'birthday' => 'required|date|before:' ,now()->subYears(18)->toDateString(),
+            'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
+            'email' => 'required|email',
+            'role' => 'required',
+        ]);
+
+        $photo = "default_profile_photo.jpg"; // Default photo
+        $firstName = $request->firstName;
+        $lastName = $request->lastName;
+        $username = $request->username;
+        $password = 'Abc@2023'; // Default password
+        $birthday = $request->birthday;
+        $phoneNumber = $request->phoneNumber;
+        $email = $request->email;
+        $gender = $request->gender;
+        $address = $request->address;
+
+        $customer = new Customer();
+        $customer->firstName = $firstName;
+        $customer->lastName = $lastName;
+        $customer->username = $username;
+        $customer->password = Hash::make($password);
+        $customer->birthday = $birthday;
+        $customer->phoneNumber = $phoneNumber;
+        $customer->email = $email;
+        $customer->gender = $gender;
+        $customer->photo = $photo;
+        $customer->address = $address;
+        $customer->save();
+
+        return redirect()->back()->with('success', 'Customer account added successfully');
+    }
+    // changePassword
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required|min:8|max:32',
+            'new_password' => 'required|confirmed|min:8|max:32',
+        ]);
+
+        $customer = Customer::where('customerID', '=', Session('customer.customerID'))->first();
+        if (Hash::check($request->old_password, $customer->password)) {
+            customer::where('customerID', '=', Session('customer.customerID'))->update([
+                'password' => Hash::make($request->new_password),
+            ]);
+            return redirect()->back()->with('success', 'Password changed successfully');
+        } else {
+            return redirect()->back()->with('error', 'Invalid password');
+        }
+    }
+   
 
 
+    // upload image
+    public function uploadImage(Request $request)
+    {
+        $request->validate([
+            'photo' => [
+                'image',
+                'max:2048',
+            ],
+            [
+                'photo.required' => 'A photo is required',
+                'photo.image' => 'The file must be an image',
+                'photo.max' => 'The image size must not exceed 5MB',
+            ],
+        ]);
 
+        $customer = $request->customer;
+        // photo
+        if ($request->hasFile('photo')) {
+            $file = $request->file('photo');
+            $extension = $file->getClientOriginalExtension();
+            $photo = 'admin_' . $customer . '.' . $extension;
+            $file->move(public_path('customer/images/uploads/faces'), $photo);
+
+            customer::where('customer', '=', $request->customerID)->update([
+                'photo' => $photo,
+            ]);
+            if (session('customer.customerID') -> customerID) {
+                Session::put('customerID.photo', $photo);
+            }
+            return redirect()->back()->with('success', 'Photo changed successfully.');
+        }
+
+        return redirect()->back()->with('error', 'Invalid photo.');
+    }
 }
 

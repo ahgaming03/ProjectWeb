@@ -26,7 +26,7 @@
                                     </div>
                                     <div class="setting ht-setting">
                                         <ul class="ht-setting-list">
-                                            <li><a href="#">My Account</a></li>
+                                            <li><a href="{{ route('customer-profile') }}">My Account</a></li>
                                             <li><a href="{{ route('customer-logout') }}">Logout</a></li>
                                         </ul>
                                     </div>

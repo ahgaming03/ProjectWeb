@@ -14,6 +14,11 @@
                                 @if (session()->has('error'))
                                     <div class="text-danger">{{ session()->get('error') }}</div>
                                 @endif
+                                @if(session('success'))
+                                <div class="alert alert-success">
+                                    {{ session('success') }}
+                                </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-20">
                                         <label>Email Address*</label>

@@ -52,13 +52,16 @@
 </head>
 
 <body>
+    <div class="header-wrapper">
+        @include('customer.layouts.header')
+    </div>
     <!--[if lt IE 8]>
   <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
  <![endif]-->
     <!-- Begin Body Wrapper -->
     <div class="body-wrapper">
 
-        @include('customer.layouts.header')
+        
 
         {{-- Begin content --}}
         @yield('content')
@@ -111,6 +114,8 @@
     <script src="{{ asset('customer/js/scrollUp.min.js') }}"></script>
     <!-- Main/Activator js -->
     <script src="{{ asset('customer/js/main.js') }}"></script>
+    <!-- custom js -->
+    @yield('custom-js')
 </body>
 
 <!-- index-331:41-->

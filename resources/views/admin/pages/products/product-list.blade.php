@@ -31,28 +31,32 @@
                                     <th>Stock</th>
                                     <th>Details</th>
                                     <th>Image</th>
+                                    <th>Creation Time</th>
                                     <th>Last Update</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($pro as $npro)
+                                @foreach ($pro as $pros)
                                     <tr>
-                                        <td>{{ $npro->productID }}</td>
-                                        <th>{{ $npro->categoryID }}</th>
-                                        <th>{{ $npro->manufacturerID }}</th>
-                                        <td>{{ $npro->name}}</td>
-                                        <td>{{ number_format($npro->price) }}</td>
-                                        <th>{{ $npro->stock }}</th>
-                                        <td>{{ $npro->details }}</td>
+                                        <td>{{ $pros->productID }}</td>
+                                        <th>{{ $pros->categoryID }}</th>
+                                        <th>{{ $pros->manufacturerID }}</th>
+                                        <td>{{ $pros->name}}</td>
+                                        <td>{{ number_format($pros->price) }}</td>
+                                        <th>{{ $pros->stock }}</th>
+                                        <td>{{ $pros->details }}</td>
                                         <td>
-                                            <img src="img\{{$npro->productImage}}" alt="" 
+                                            <img src="images\{{$pros->productImage}}" alt="" 
                                             height="120px" width="120px">
                                         </td>
-                                        <td>{{ $npro->updated_at }}</td>
+                                        <td>{{ $pros->created_at }}</td>
+                                        <td>{{ $pros->updated_at }}</td>
                                         <td>
-                                            <a href="{{ url('admin/products/product-edit/') }}\{{ $npro->productID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
-                                            <a href="{{ url('admin/products/product-delete/') }}\{{ $npro->productID }}" title="Delete this product" onclick="return confirm('Are you sure delete this product?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
+                                            <a href="{{ url('admin/products/product-edit/') }}\{{ $pros->productID }}" title="Edit this product" 
+                                                class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a> &nbsp;
+                                            <a href="{{ url('admin/products/product-delete/') }}\{{ $pros->productID }}" title="Delete this product" 
+                                            onclick="return confirm('Are you sure delete this product?');"class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3-fill"></i></a> &nbsp;
                                         </td>
                                     </tr>
                                 @endforeach

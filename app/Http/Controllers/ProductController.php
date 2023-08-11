@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
+use App\Models\Manufacturer;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -18,28 +19,31 @@ class ProductController extends Controller
     public function productAdd()
     {
         $cat = Category::get();
-        return view('admin.pages.products.product-add', compact('cat'));
+        $manufacturers = Manufacturer::get();
+        return view('admin.pages.products.product-add', compact('cat', 'manufacturers'));
     }
 
     public function productSave(Request $request)
     {
-        $npro = new Product();
-        $npro->productID = $request->id;
-        $npro->catID = $request->category;
-        $npro->manufacturerID = $request->id;
-        $npro->productName = $request->name;
-        $npro->productPrice = $request->price;
-        $npro->productStock = $request->stock;
-        $npro->productImage = $request->image;
-        $npro->productDetails = $request->details;
-        $npro->productsave();
+        $pros = new Product();
+        $pros->productID = $request->id;
+        $pros->categoryID = $request->category;
+        $pros->manufacturerID = $request->id;
+        $pros->name = $request->name;
+        $pros->price = $request->price;
+        $pros->stock = $request->stock;
+        $pros->details = $request->details;
+        $pros->updated_at = $request->updated_at;
+        $pros->created_at = $request->created_at;
+        $pros->save();
         return redirect()->back()->with('success', 'Product added successfully!');
     }
 
     public function productEdit($id){
         $cat = Category::get();
+        $manufacturers = Manufacturer::get();
         $pro = Product::where('productID', '=', $id)->first();
-        return view('admin.pages.products.product-edit', compact('pro', 'cat'));
+        return view('admin.pages.products.product-edit', compact('pro', 'cat', 'manufacturers'));
     }
 
     public function productDelete($id){

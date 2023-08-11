@@ -9,39 +9,39 @@ class ManufacturerController extends Controller
 {
     public function manufacturerList()
     {
-        $manu = manufacturer::get();
-        return view('admin.pages.manufacturers.manufacturer-list', compact('manu'));
+        $manufacturer = Manufacturer::get();
+        return view('admin.pages.manufacturers.manufacturer-list', compact('manufacturer'));
     }
 
     public function manufacturerAdd()
     {
-        $manu = manufacturer::all();
-        return view('admin.pages.manufacturers.manufacturer-add', compact('manu'));
+        $manufacturer = Manufacturer::all();
+        return view('admin.pages.manufacturers.manufacturer-add', compact('manufacturer'));
     }
 
     public function manufacturerSave(Request $request)
     {
-        $nmanu = new manufacturer();
-        $nmanu->manufacturerID = $request->id;
-        $nmanu->manufacturerName = $request->name;
-        $nmanu->manufacturerlogo = $request->logo;
-        $nmanu->manufacturersave();
+        $manufacturers = new Manufacturer();
+        $manufacturers->manufacturerID = $request->id;
+        $manufacturers->manufacturerName = $request->name;
+        $manufacturers->manufacturerlogo = $request->logo;
+        $manufacturers->save();
         return redirect()->back()->with('success', 'Manufacturer added successfully!');
     }
 
     public function manufacturerEdit($id){
-        $manu = manufacturer::where('manufacturerID', '=', $id)->first();
-        return view('admin.pages.manuefacturers.manufacturer-edit', compact('manu'));
+        $manufacturers = Manufacturer::where('manufacturerID', '=', $id)->first();
+        return view('admin.pages.manufacturers.manufacturer-edit', compact('manufacturers'));
     }
 
     public function manufacturerDelete($id){
-        manufacturer::where('manufacturerID', '=', $id)->delete();
+        Manufacturer::where('manufacturerID', '=', $id)->delete();
         return redirect()->back()->with('success', 'm=Manufacturer deleted successfully');
     }
 
     public function manufacturerupdate(Request $request)
     {
-        manufacturer::where('manufacturerID', '=', $request->id)
+        Manufacturer::where('manufacturerID', '=', $request->id)
         -> oroductupdate([
             'manufacturerID'=>$request->id,
             'manufacturerName'=>$request->name,

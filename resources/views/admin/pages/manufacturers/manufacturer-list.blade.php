@@ -12,7 +12,7 @@
                             </a>
                         </div>
                     </div>
-                    <table class="table table-hover table-striped">
+                    <table class="table table-hover">
                         <thead>
                             <tr>
                                 <th>ID</th>
@@ -22,14 +22,14 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach ($manu as $nmanu)
+                            @foreach ($manufacturer as $manufacturers)
                                 <tr>
-                                    <td>{{ $nmanu->manufacturerID }}</td>
-                                    <th>{{ $nmanu->name }}</th>
-                                    <th><img src="m_logo\{{ $nmanu->logo }}" alt="" height="50px" width="50px"></th>
+                                    <td>{{ $manufacturers->manufacturerID }}</td>
+                                    <th>{{ $manufacturers->name }}</th>
+                                    <th><img src="m_logo\{{ $manufacturers->logo }}" alt="" height="50px" width="50px"></th>
                                     <td>
-                                        <a href="{{ url('admin/mamufacturers/mamufacturer-edit/') }}\{{ $nmanu->mamufacturerID }}" title="Edit this mamufacturer"><i class="bi bi-pencil-fill"></i></a> &nbsp;
-                                        <a href="{{ url('admin/mamufacturers/mamufacturer-delete/') }}\{{ $nmanu->mamufacturerID }}" title="Delete this mamufacturer" onclick="return confirm('Are you sure delete this mamufacturer?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/manufacturers/manufacturer-edit/') }}\{{ $manufacturers->manufacturerID }}" title="Edit this manufacturer"><i class="bi bi-pencil-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/manufacturers/manufacturer-delete/') }}\{{ $manufacturers->manufacturerID }}" title="Delete this manufacturer" onclick="return confirm('Are you sure delete this manufacturer?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
                                     </td>
                                 </tr>
                             @endforeach

@@ -8,7 +8,7 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Feedback; // Add the import for the Feedback model
-
+use Carbon\Carbon;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
@@ -67,20 +67,20 @@ class CustomerController extends Controller
         // Validate the received data
         $request->validate([
             'username' => 'required|min:5|max:32|unique:customers',
-            'firstName'=> 'required|min:3|max:32',
+            'firstName' => 'required|min:3|max:32',
             'password' => 'required|min:8|max:32|confirmed',
             'email' => 'required|email',
- 
+
         ]);
 
 
         // Create a new customer record
         $customer = new Customer;
         $customer->username = $request->username;
-        $customer->firstName= $request->firstName;
-        $customer->lastName =$request->lastName;
+        $customer->firstName = $request->firstName;
+        $customer->lastName = $request->lastName;
         $customer->password = Hash::make($request->password);
-        $customer->email= $request-> email;
+        $customer->email = $request->email;
         $customer->save();
 
         // Check whether customer has been saved
@@ -116,8 +116,6 @@ class CustomerController extends Controller
             } else {
                 return redirect()->back()->with('error', 'Username or password is incorrect');
             }
-        } else {
-            return redirect()->back()->with('error', 'Username or password is incorrect');
         }
     }
 
@@ -141,24 +139,18 @@ class CustomerController extends Controller
             }
         }
     }
-   //customer edit
-public function customerEdit()
-{
-    $customer = Customer::where('ID', '=', session('customer.ID'))->first();
-    return view('customer.pages.profiles.customer-edit', compact('customer'));
-}
 
-// customer save 
-public function customerSave(Request $request)
+
+    // customer save
+    public function customerSave(Request $request)
     {
         $request->validate([
             'firstName' => 'required|min:3',
             'lastName' => 'min:4',
-            'username' => 'required|min:5|unique:admins',
-            'birthday' => 'required|date|before:' ,now()->subYears(18)->toDateString(),
+            'username' => 'required|min:5|unique:customers',
+            'birthday' => 'required|date|before:' . Carbon::now()->subYears(18)->toDateString(),
             'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
             'email' => 'required|email',
-            'role' => 'required',
         ]);
 
         $photo = "default_profile_photo.jpg"; // Default photo
@@ -185,7 +177,38 @@ public function customerSave(Request $request)
         $customer->address = $address;
         $customer->save();
 
-        return redirect()->back()->with('success', 'Customer account added successfully');
+        return redirect()->back()->with('success', 'Customer account saved successfully');
+    }
+
+    public function customerUpdate(Request $request)
+    {
+        $request->validate([
+            'firstName' => 'required|min:3',
+            'lastName' => 'min:4',
+            // 'birthday' => 'date|before:' . Carbon::now()->subYears(18)->toDateString(),
+            'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
+            'email' => 'required|email',
+        ]);
+
+        $firstName = $request->firstName;
+        $lastName = $request->lastName;
+        $birthday = $request->birthday;
+        $phoneNumber = $request->phoneNumber;
+        $email = $request->email;
+        $gender = $request->gender;
+        $address = $request->address;
+
+        Customer::where('customerID', $request->customerID)->update([
+            "firstName" => $firstName,
+            "lastName" => $lastName,
+            "birthday" => $birthday,
+            "phoneNumber" => $phoneNumber,
+            "email" => $email,
+            "gender" => $gender,
+            "address" => $address,
+        ]);
+
+        return redirect()->back()->with('success', 'Account updated successfully');
     }
     // changePassword
     public function changePassword(Request $request)
@@ -195,9 +218,9 @@ public function customerSave(Request $request)
             'new_password' => 'required|confirmed|min:8|max:32',
         ]);
 
-        $customer = Customer::where('customerID', '=', Session('customer.customerID'))->first();
+        $customer = Customer::where('customerID', '=', Session('customer.ID'))->first();
         if (Hash::check($request->old_password, $customer->password)) {
-            customer::where('customerID', '=', Session('customer.customerID'))->update([
+            Customer::where('customerID', '=', Session('customer.ID'))->update([
                 'password' => Hash::make($request->new_password),
             ]);
             return redirect()->back()->with('success', 'Password changed successfully');
@@ -205,7 +228,7 @@ public function customerSave(Request $request)
             return redirect()->back()->with('error', 'Invalid password');
         }
     }
-   
+
 
 
     // upload image
@@ -223,18 +246,18 @@ public function customerSave(Request $request)
             ],
         ]);
 
-        $customer = $request->customer;
+        $customerID = $request->customerID;
         // photo
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
             $extension = $file->getClientOriginalExtension();
-            $photo = 'admin_' . $customer . '.' . $extension;
+            $photo = 'customer_' . $customerID . '.' . $extension;
             $file->move(public_path('customer/images/uploads/faces'), $photo);
 
-            customer::where('customer', '=', $request->customerID)->update([
+            Customer::where('customerID', '=', $request->customerID)->update([
                 'photo' => $photo,
             ]);
-            if (session('customer.customerID') -> customerID) {
+            if (session('customer.ID') == $customerID) {
                 Session::put('customerID.photo', $photo);
             }
             return redirect()->back()->with('success', 'Photo changed successfully.');
@@ -243,4 +266,3 @@ public function customerSave(Request $request)
         return redirect()->back()->with('error', 'Invalid photo.');
     }
 }
-

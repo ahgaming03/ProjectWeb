@@ -22,15 +22,11 @@
                 <h4 class="card-header">Edit account</h4>
                 <div class="card-body">
                     <div class="form-group">
-                        <span>
-                            <b>ID: </b>
-                            {{ $customer->customerID }}
-                        </span>
                     </div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center align-items-center">
-                            <img src="https://th.bing.com/th/id/OIP.9QvLTDAIEDSgjDSbFAIYqQHaF7?w=208&h=180&c=7&r=0&o=5&dpr=1.4&pid=1.7" alt="avatar"
-                                class="img-avatar rounded-circle" style="width: 200px; height: 200px;">
+                            <img src="{{asset('customer/images/uploads/faces/'. $customer->photo)}}"
+                                alt="avatar" class="img-avatar rounded-circle" style="width: 200px; height: 200px;">
                         </div>
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             @error('photo')
@@ -61,12 +57,12 @@
                             </form>
                         </div>
                     </div>
-                    {{-- <form class="forms-sample" method="POST" action="{{ route('customer-update') }}"> --}}
+                    <form class="forms-sample" method="POST" action="{{ route('customer-update') }}">
                         @csrf
-                        <div class="form-group" hidden>
+                        <div class="form-group">
                             <label for="customerID">ID</label>
                             <input type="text" class="form-control form-control-sm" id="customerID" name="customerID"
-                                placeholder="ID" value="{{ $customer->customer }}" readonly>
+                                placeholder="ID" value="{{ $customer->customerID }}" readonly>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-6">
@@ -82,7 +78,13 @@
                             <div class="form-group col-md-6">
                                 <label for="lastName">Last name</label>
                                 <input type="text" class="form-control form-control-sm" id="lastName" name="lastName"
-                                    placeholder="Last name" value="{{ $customer->lastName }}">
+                                    placeholder="Last name"
+                                    value="{{ old('lastName') == '' ? $customer->lastName : old('lastName') }}">
+                                @error('lastName')
+                                    <div class="text-danger mt-1">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
                             </div>
                         </div>
                         <div class="row">
@@ -133,21 +135,7 @@
                                     <option value="0" {{ $customer->gender == 0 ? 'selected' : '' }}>Female</option>
                                 </select>
                             </div>
-                            {{-- <div class="form-group col-md-4">
-                                <label for="role">Role<span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" id="role" name="role">
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->roleID }}"
-                                            {{ $role->roleID == $admin->roleID ? 'selected' : '' }}>{{ $role->name }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                @error('role')
-                                    <div class="text-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
-                            </div> --}}
+
                         </div>
 
                         <div class="form-group">
@@ -156,7 +144,7 @@
                                 placeholder="Enter location" value="{{ $customer->address }}">
                         </div>
                         <button type="submit" class="btn btn-inverse-success">Save</button>
-                        <a href="{{ route('admin-list') }}" class="btn btn-inverse-danger">Cancel</a>
+                        <a href="{{ route('customer-profile') }}" class="btn btn-inverse-danger">Cancel</a>
                     </form>
                 </div>
             </div>
@@ -169,10 +157,10 @@
                     <form action="{{ route('change-password') }}" method="POST">
                         @csrf
                         <div class="form-group">
-                            <label for="old-passord">Old password</label>
+                            <label for="old_passord">Old password</label>
                             <input type="password" class="form-control form-control-sm" id="old_password"
                                 name="old_password" placeholder="Old password" value="{{ old('old_password') }}">
-                            <span toggle="#old_password" class="fa fa-eye toggle-password"></span>
+                            <span toggle="old_password"></span>
                             @error('old_password')
                                 <div class="text-danger mt-2">
                                     {{ $message }}
@@ -194,12 +182,14 @@
                             <input type="password" class="form-control form-control-sm" id="new_password_confirmation"
                                 name="new_password_confirmation" placeholder="Confirm password">
                         </div>
-                        {{-- <button type="submit" class="btn btn-inverse-success">Update</button>
-                        <a href="{{ route('admin-list') }}" class="btn btn-inverse-danger">Cancel</a> --}}
+                        <button type="submit" class="btn btn-inverse-success">Update</button>
+                        <a href="{{ route('customer-profile') }}" class="btn btn-inverse-danger">Cancel</a>
                     </form>
                 </div>
             </div>
         </div>
     </div>
-    @endsection
-
+@endsection
+@section('custom-js')
+<script src="{{asset('customer/js/file-upload.js')}}"></script>
+@endsection

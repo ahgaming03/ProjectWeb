@@ -97,7 +97,11 @@ Route::post('/register-process', [CustomerController::class, 'registerProcess'])
 Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-logout');
 
 // customer profile
-Route::get('customer/pages/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
-Route::post('customer/pages/profiles/customer-edit', [CustomerController::class, 'customerEdit'])-> name('customer-edit');
-Route::post('customer/pages/profiles/customer-save', [CustomerController::class, 'customerSave'])->name('customer-save');
-
+Route::get('/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
+Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])-> name('customer-update');
+// customer profile
+Route::post('/customer-save', [CustomerController::class, 'customerSave'])->name('customer-save');
+// admin upload image
+Route::post('/customer-upload-image', [CustomerController::class, 'uploadImage'])->name('upload-image');
+// admin change password
+Route::post('/change-password', [CustomerController::class, 'changePassword'])->name('change-password');

@@ -7,7 +7,8 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
-    public function categoryList(){
+    public function categoryList()
+    {
         $cat = Category::get();
         return view('admin.pages.categories.category-list', compact('cat'));
     }
@@ -19,11 +20,11 @@ class CategoryController extends Controller
 
     public function categorySave(Request $request)
     {
-        $ncat = new Category();
-        $ncat->categoryID = $request->id;
-        $ncat->categoryName = $request->name;
-        $ncat->categoryDescritions = $request->descritions;
-        $ncat->categorysave();
+        $cats = new Category();
+        $cats->categoryID = $request->id;
+        $cats->categoryName = $request->name;
+        $cats->categoryDescritions = $request->descritions;
+        $cats->save(); 
         return redirect()->back()->with('success', 'Category added successfully!');
     }
 

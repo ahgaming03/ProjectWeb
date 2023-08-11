@@ -51,8 +51,10 @@
                                         </td>
                                         <td>{{ $npro->updated_at }}</td>
                                         <td>
-                                            <a href="{{ url('admin/products/product-edit/') }}\{{ $npro->productID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
-                                            <a href="{{ url('admin/products/product-delete/') }}\{{ $npro->productID }}" title="Delete this product" onclick="return confirm('Are you sure delete this product?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
+                                            <a href="{{ url('admin/products/product-edit/') }}\{{ $npro->productID }}" title="Edit this product" 
+                                                class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a> &nbsp;
+                                            <a href="{{ url('admin/products/product-delete/') }}\{{ $npro->productID }}" title="Delete this product" 
+                                            onclick="return confirm('Are you sure delete this product?');"class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3-fill"></i></a> &nbsp;
                                         </td>
                                     </tr>
                                 @endforeach

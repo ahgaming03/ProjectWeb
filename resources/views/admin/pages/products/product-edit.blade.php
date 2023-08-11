@@ -44,19 +44,17 @@
                                 <div class="form-group col-md-4">
                                     <label for="manufacturer">Manufacturer:</label>
                                     <select name="manufacturer" id="manufacturer" class="form-control">
-                                        @foreach ($manu as $nmanu)
-                                            <option value="{{ $nmanu->manufacturerID}}">{{ $nmanu->name }}</option>
+                                        @foreach ($manufacturers as $manufacturer)
+                                            <option value="{{ $manufacturer->manufacturerID}}">{{ $manufacturer->name }}</option>
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
-                            <div class="row">
-                                <div class="form-group col-md-6">
+                                <div class="form-group col-md-4">
                                     <label for="last_update">Last Update:</label>
                                     <input type="date" class="form-control" id="last_update" name="last_update">
                                 </div>
-                                <div class="form-group col-md-6">
-                                    <label for="stock">stock:</label>
+                                <div class="form-group col-md-4">
+                                    <label for="stock">Stock:</label>
                                     <input type="text" class="form-control form-control-sm" id="stock" placeholder="Enter Product stock" 
                                         name="stock">
                                 </div>
@@ -65,15 +63,13 @@
                                     <input type="file" class="form-control" id="image" placeholder="Enter Product Image"
                                         name="image">
                                 </div>
-                                <div class="form-group col-md-8">
+                                <div class="form-group col-md-12">
                                     <label for="details">Details:</label>
                                     <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" placeholder="Enter Product Details" name="details"></textarea>
                                 </div>
-                                <div class="form-group col-md-4">
+                            </div>
                                     <button type="submit" class="btn btn-outline-danger">Submit</button>
                                     <a href="{{ url('admin/products/product-list/') }}" class="btn btn-outline-primary">Back</a>
-                                </div>
-                            </div>
                             <style>
                                 .form-control{
                                     font-size:20px;

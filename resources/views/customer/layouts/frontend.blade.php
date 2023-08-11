@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-    
+
 {{-- show all session --}}
 {{-- {{ dd(session()->all()) }} --}}
 
@@ -69,7 +69,95 @@
 
         @include('customer.layouts.footer')
 
+        @if (isset($products))
+            <!-- Begin Quick View | Modal Area -->
+            @foreach ($products as $product)
+                <div class="modal fade modal-wrapper" id="modalCenter-{{ $product->productID }}">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                                <div class="modal-inner-area row">
+                                    <div class="col-lg-5 col-md-6 col-sm-6">
+                                        <!-- Product Details Left -->
+                                        <div class="product-details-left">
+                                            <div class="product-details-images slider-navigation-1">
+                                                @php
+                                                    $imgs = DB::table('images')
+                                                        ->where('productID', $product->productID)
+                                                        ->get();
+                                                @endphp
+                                                @foreach ($imgs as $img)
+                                                    <div class="lg-image">
+                                                        <img src="{{ asset('customer/images/uploads/products/' . $img->imageName) }}"
+                                                            alt="product image">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                            <div class="product-details-thumbs slider-thumbs-1">
+                                                @foreach ($imgs as $img)
+                                                    <div class="sm-image"><img
+                                                            src="{{ asset('customer/images/uploads/products/' . $img->imageName) }}"
+                                                            alt="product image thumb">
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                        <!--// Product Details Left -->
+                                    </div>
 
+                                    <div class="col-lg-7 col-md-6 col-sm-6">
+                                        <div class="product-details-view-content pt-60">
+                                            <div class="product-info">
+                                                <h2>{{ $product->name }}</h2>
+                                                <span class="product-details-ref">Manufacturer:
+                                                    {{ DB::table('manufacturers')->where('manufacturerID', $product->manufacturerID)->value('name') }}</span>
+                                                <div class="rating-box pt-20">
+                                                    <ul class="rating rating-with-review-item">
+                                                        <li><i class="fa fa-star-o"></i></li>
+                                                        <li><i class="fa fa-star-o"></i></li>
+                                                        <li><i class="fa fa-star-o"></i></li>
+                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                        <li class="no-star"><i class="fa fa-star-o"></i></li>
+                                                    </ul>
+                                                </div>
+                                                <div class="price-box pt-20">
+                                                    <span class="new-price new-price-2">${{ $product->price }}</span>
+                                                </div>
+                                                <div class="single-add-to-cart">
+                                                    <form action="#" class="cart-quantity">
+                                                        <div class="quantity">
+                                                            <label>Quantity</label>
+                                                            <div class="cart-plus-minus">
+                                                                <input class="cart-plus-minus-box" value="1"
+                                                                    type="text">
+                                                                <div class="dec qtybutton"><i
+                                                                        class="fa fa-angle-down"></i></div>
+                                                                <div class="inc qtybutton"><i
+                                                                        class="fa fa-angle-up"></i></div>
+                                                            </div>
+                                                        </div>
+                                                        <button class="add-to-cart" type="submit">Add to cart</button>
+                                                    </form>
+                                                </div>
+                                                <div class="product-additional-info pt-25">
+                                                    <a class="wishlist-btn" href="#"><i
+                                                            class="fa fa-heart-o"></i>Add to
+                                                        wishlist</a>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endforeach
+            <!-- Quick View | Modal Area End Here -->
+        @endif
     </div>
     <!-- Body Wrapper End Here -->
     <!-- jQuery-V1.12.4 -->

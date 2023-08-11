@@ -28,14 +28,14 @@
                                                         </li>
                                                     @endforeach
                                                 </ul>
-                                                <li class="right-menu cat-mega-title">
-                                                    <a href="#">Price</a>
-                                                    <ul>
-                                                        <li><a href="#">Under $1000</a></li>
-                                                        <li><a href="#">$1000 to $1500</a></li>
-                                                        <li><a href="#">$1500 & above</a></li>
-                                                    </ul>
-                                                </li>
+                                            </li>
+                                            <li class="right-menu cat-mega-title">
+                                                <a href="#">Price</a>
+                                                <ul>
+                                                    <li><a href="#">Under $1000</a></li>
+                                                    <li><a href="#">$1000 to $1500</a></li>
+                                                    <li><a href="#">$1500 & above</a></li>
+                                                </ul>
                                             </li>
                                         </ul>
                                     </li>
@@ -46,53 +46,34 @@
                     <!--Category Menu End-->
                 </div>
                 <!-- Category Menu Area End Here -->
-                <!-- Begin Slider Area -->
-                <div class="col-lg-6 col-md-8">
-                    <div class="slider-area slider-area-3 pt-sm-30 pt-xs-30 pb-xs-30">
-                        <div class="slider-active owl-carousel">
-                            <!-- Begin Single Slide Area -->
-                            <div class="single-slide align-center-left animation-style-01 bg-7">
-                                <div class="slider-progress"></div>
-                                <div class="slider-content">
-                                    <h5>Sale Offer <span>-20% Off</span> This Week</h5>
-                                    <h2>Chamcham Galaxy S9 | S9+</h2>
-                                    <h3>Starting at <span>$589.00</span></h3>
-                                    <div class="default-btn slide-btn">
-                                        <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Slide Area End Here -->
-                            <!-- Begin Single Slide Area -->
-                            <div class="single-slide align-center-left animation-style-02 bg-8">
-                                <div class="slider-progress"></div>
-                                <div class="slider-content">
-                                    <h5>Sale Offer <span>Black Friday</span> This Week</h5>
-                                    <h2>Work Desk Surface Studio 2018</h2>
-                                    <h3>Starting at <span>$1599.00</span></h3>
-                                    <div class="default-btn slide-btn">
-                                        <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Slide Area End Here -->
-                            <!-- Begin Single Slide Area -->
-                            <div class="single-slide align-center-left animation-style-01 bg-9">
-                                <div class="slider-progress"></div>
-                                <div class="slider-content">
-                                    <h5>Sale Offer <span>-10% Off</span> This Week</h5>
-                                    <h2>Phantom 4 Pro+ Obsidian</h2>
-                                    <h3>Starting at <span>$809.00</span></h3>
-                                    <div class="default-btn slide-btn">
-                                        <a class="links" href="shop-left-sidebar.html">Shopping Now</a>
-                                    </div>
-                                </div>
-                            </div>
-                            <!-- Single Slide Area End Here -->
-                        </div>
+                <!-- Begin Li Banner Area -->
+                <div class="col-lg-3 col-md-4 text-center pt-sm-30">
+                    <div class="li-banner">
+                        <a href="#">
+                            <img src="{{ asset('customer/images/banner/3_1.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="li-banner mt-15 mt-sm-30 mt-xs-25 mb-xs-5">
+                        <a href="#">
+                            <img src="{{ asset('customer/images/banner/3_2.jpg') }}" alt="">
+                        </a>
                     </div>
                 </div>
-                <!-- Slider Area End Here -->
+                <!-- Li Banner Area End Here -->
+                <!-- Begin Li Banner Area -->
+                <div class="col-lg-3 col-md-4 text-center pt-sm-30">
+                    <div class="li-banner">
+                        <a href="#">
+                            <img src="{{ asset('customer/images/banner/3_1.jpg') }}" alt="">
+                        </a>
+                    </div>
+                    <div class="li-banner mt-15 mt-sm-30 mt-xs-25 mb-xs-5">
+                        <a href="#">
+                            <img src="{{ asset('customer/images/banner/3_2.jpg') }}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!-- Li Banner Area End Here -->
                 <!-- Begin Li Banner Area -->
                 <div class="col-lg-3 col-md-4 text-center pt-sm-30">
                     <div class="li-banner">
@@ -138,7 +119,7 @@
                                             <!-- single-product-wrap start -->
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
-                                                    <a href="#">
+                                                    <a href="{{ route('product-detail', [$product->productID]) }}">
                                                         <img src="{{ asset('customer/images/uploads/products/' . $product->productID . '_0.png') }}"
                                                             alt="Product Image">
                                                     </a>
@@ -160,7 +141,9 @@
                                                             </div>
                                                         </div>
                                                         <h4><a class="product_name"
-                                                                href="#">{{ Str::limit($product->name, 40, '...') }}</a>
+                                                                href="{{ route('product-detail', [$product->productID]) }}">
+                                                                {{ Str::limit($product->name, 40, '...') }}
+                                                            </a>
                                                         </h4>
                                                         <div class="price-box">
                                                             <span class="new-price">${{ $product->price }}</span>
@@ -172,9 +155,10 @@
                                                             </li>
                                                             <li><a class="links-details" href="#"><i
                                                                         class="fa fa-heart-o"></i></a></li>
+
                                                             <li><a class="quick-view" data-toggle="modal"
-                                                                    data-target="#exampleModalCenter" href="#"><i
-                                                                        class="fa fa-eye"></i></a></li>
+                                                                    data-target="#modalCenter-{{ $product->productID }}"
+                                                                    href="#"><i class="fa fa-eye"></i></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -182,7 +166,6 @@
                                             <!-- single-product-wrap end -->
                                         </div>
                                     @endif
-
                                     @break($count == 8)
                                 @endforeach
                             </div>

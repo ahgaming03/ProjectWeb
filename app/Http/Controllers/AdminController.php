@@ -58,8 +58,7 @@ class AdminController extends Controller
 
     public function dashboard()
     {
-        $orders = DB::table('customers')
-            ->join('orders', 'customers.customerID', '=', 'orders.customerID')
+        $orders = Customer::join('orders', 'customers.customerID', '=', 'orders.customerID')
             ->select('orders.*', 'customers.firstName', 'customers.lastName')
             ->orderBy('orders.updated_at', 'desc')
             ->take(5)
@@ -219,8 +218,7 @@ class AdminController extends Controller
         // photo
         if ($request->hasFile('photo')) {
             $file = $request->file('photo');
-            $extension = $file->getClientOriginalExtension();
-            $photo = 'admin_' . $adminID . '.' . $extension;
+            $photo = 'admin_' . $adminID . '.png';
             $file->move(public_path('admjn/images/uploads/faces'), $photo);
 
             Admin::where('adminID', '=', $request->adminID)->update([

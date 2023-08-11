@@ -73,10 +73,12 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::post('admin/manufacturers/manufacturer-update', [ManufacturerController::class, 'manufacturerUpdate'])->name('manufacturer-update');
     Route::get('admin/manufacturers/manufacturer-delete/{id}', [ManufacturerController::class, 'manufacturerDelete'])->name('manufacturer-delete');
 
-    // admin manamange acount list customers
+    // admin customers management
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
     Route::get('admin/customers/order-list', [OrderController::class, 'orderList'])->name('customer-order');
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
+
+    // admin orders management
     // customer delete
     Route::get('admin/customer-delete/{id}', [CustomerController::class, 'customerDelete'])->name('customer-delete');
     //customer edit
@@ -90,7 +92,6 @@ Route::middleware(['isLoggedIn'])->group(function () {
 
 
 // customer template 
-Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
 Route::get('/login', [CustomerController::class, 'login'])->name('customer-login');
 Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('customer-login-process');
 Route::get('/register', [CustomerController::class, 'register'])->name('customer-register');
@@ -106,3 +107,11 @@ Route::post('/customer-save', [CustomerController::class, 'customerSave'])->name
 Route::post('/customer-upload-image', [CustomerController::class, 'uploadImage'])->name('upload-image');
 // customer change password
 Route::post('/change-password', [CustomerController::class, 'changePassword'])->name('change-password');
+
+// customer view product
+Route::get('/', [ProductController::class, 'index'])->name('product-index');
+Route::get('products/{id}', [ProductController::class, 'productDetails'])->name('product-detail');
+
+
+
+

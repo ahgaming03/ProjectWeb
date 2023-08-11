@@ -19,7 +19,7 @@
                             </form>
                         </div>
                         <div class="error-button">
-                            <a href="{{route('customer-index')}}">Back to home page</a>
+                            <a href="{{route('product-index')}}">Back to home page</a>
                         </div>
                     </div>
                 </div>

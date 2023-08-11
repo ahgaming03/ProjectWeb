@@ -12,7 +12,7 @@
                                     aria-hidden="true">&times;</span></button>
                             </div>
                         @endif
-                        <form action="{{ url('categorysave') }}" method="POST">
+                        <form action="{{ route('category-save') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-4">

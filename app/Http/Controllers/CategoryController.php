@@ -22,8 +22,8 @@ class CategoryController extends Controller
     {
         $cats = new Category();
         $cats->categoryID = $request->id;
-        $cats->categoryName = $request->name;
-        $cats->categoryDescritions = $request->descritions;
+        $cats->name = $request->name;
+        $cats->descriptions = $request->descriptions;
         $cats->save(); 
         return redirect()->back()->with('success', 'Category added successfully!');
     }
@@ -41,9 +41,9 @@ class CategoryController extends Controller
     public function categoryupdate(Request $request)
     {
         Category::where('categoryID', '=', $request->id)
-        -> oroductupdate([
-            'categoryName'=>$request->name,
-            'categoryDetails'=>$request->details,
+        -> update([
+            'name'=>$request->name,
+            'descriptions'=>$request->descriptions,
             'categoryID'=>$request->id
         ]);
         return redirect()->back()->with('success', 'category updated successfully!');

@@ -25,16 +25,17 @@ class ProductController extends Controller
 
     public function productSave(Request $request)
     {
-        $npro = new Product();
-        $npro->productID = $request->id;
-        $npro->catID = $request->category;
-        $npro->manufacturerID = $request->id;
-        $npro->productName = $request->name;
-        $npro->productPrice = $request->price;
-        $npro->productStock = $request->stock;
-        $npro->productImage = $request->image;
-        $npro->productDetails = $request->details;
-        $npro->save();
+        $pros = new Product();
+        $pros->productID = $request->id;
+        $pros->categoryID = $request->category;
+        $pros->manufacturerID = $request->id;
+        $pros->name = $request->name;
+        $pros->price = $request->price;
+        $pros->stock = $request->stock;
+        $pros->details = $request->details;
+        $pros->updated_at = $request->updated_at;
+        $pros->created_at = $request->created_at;
+        $pros->save();
         return redirect()->back()->with('success', 'Product added successfully!');
     }
 

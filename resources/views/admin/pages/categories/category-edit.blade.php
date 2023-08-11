@@ -12,7 +12,7 @@
                                     aria-hidden="true">&times;</span></button>
                             </div>
                         @endif
-                        <form action="{{ url('categorysave') }}" method="POST">
+                        <form action="{{ route('category-update') }}" method="POST">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-4">
@@ -23,17 +23,17 @@
                                 <div class="form-group col-md-8">
                                     <label for="name">Name:</label>
                                     <input type="text" class="form-control" id="name" 
-                                   value="{{$cat->categoryName}}" name="name">
+                                   value="{{$cat->name}}" name="name">
                                 </div>
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-12">
                                     <label for="details">Descriptions:</label>
-                                    <textarea class="form-control" rows="5" id="descriptions" placeholder="Enter Category descriptions" name="descriptions"></textarea>
+                                    <textarea class="form-control" rows="5" id="descriptions" placeholder="Enter Category descriptions" value="{{$cat->decriptions}}" name="descriptions"></textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-outline-danger">Submit</button>
-                            <a href="{{ url('admin/products/product-list/') }}" class="btn btn-outline-primary">Back</a>
+                            <a href="{{ url('admin/categories/category-list/') }}" class="btn btn-outline-primary">Back</a>
                             <style>
                                 .form-control{
                                     font-size: 20px;

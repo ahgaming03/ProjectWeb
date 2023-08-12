@@ -66,8 +66,8 @@
                                             <tr>
                                                 <td>{{ $customer->customerID }}</td>
                                                 <td>{{ $customer->firstName . ' ' . $customer->lastName }}</td>
-                                                <td>{{ $customer->birthday }}</td>
                                                 <td>{{ $customer->phoneNumber }}</td>
+                                                <td>{{ $customer->email }}</td>
                                             </tr>
                                         @endforeach
                                     </tbody>

@@ -12,7 +12,7 @@
                                     aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
-                    <div class="table-responsive">
+                    <div class="table-responsive text-center">
                         <table class="table table-hover table-striped table-bordered ">
                             <thead>
                                 <tr class="table-info">
@@ -34,7 +34,7 @@
                                         <td>{{ $order->created_at }}</td>
                                         <td>
                                             <a href="{{ url('admin/orders/order-detail/' . $order->orderID) }}"
-                                                title="View order detail" class="btn btn-inverse-primary btn-sm">Detail</a>
+                                                title="View order detail" class="btn btn-inverse-primary btn-sm ">Detail</a>
                                             &nbsp;
                                         </td>
                                     </tr>

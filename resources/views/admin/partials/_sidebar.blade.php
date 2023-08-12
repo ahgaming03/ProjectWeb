@@ -8,13 +8,17 @@
         </li>
         @if (session('admin.roleID') == 1)
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('admin-list') }}">
+                <a class="nav-link" data-toggle="collapse" href="#admin" aria-expanded="false" aria-controls="admin">
                     <i class="bi bi-person-vcard menu-icon"></i>
                     <span class="menu-title">Admin</span>
+                    <i class="menu-arrow"></i>
                 </a>
-                <ul class="nav flex-column sub-menu" hidden>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin-add') }}">Add new</a></li>
+                <div class="collapse" id="admin">
+                <ul class="nav flex-column sub-menu">
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin-list') }}">Admin List</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('role-list') }}">Role List</a></li>
                 </ul>
+                </div>
             </li>
         @endif
         <li class="nav-item">

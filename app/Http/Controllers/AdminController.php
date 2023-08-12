@@ -42,10 +42,10 @@ class AdminController extends Controller
                 session(['admin' => $admin]);
                 return redirect()->route('admin-dashboard');
             } else {
-                return redirect()->back()->with('error', 'Invalid password');
+                return redirect()->back()->with('error', 'Username or password is incorrect');
             }
         } else {
-            return redirect()->back()->with('error', 'Invalid username');
+            return redirect()->back()->with('error', 'Username or password is incorrect');
         }
     }
     public function logout()
@@ -73,17 +73,18 @@ class AdminController extends Controller
 
     public function profile()
     {
-        $admin = Admin::where('adminID', '=', Session('admin.adminID'))->first();
-        $roles = Role::get();
-        return view('admin.pages.admins.profile', compact('admin', 'roles'));
+        $admin = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
+        ->where('adminID', '=', Session('admin.adminID'))
+        ->select('admins.*', 'roles.name as roleName')
+        ->first();
+        return view('admin.pages.admins.profile', compact('admin'));
     }
     public function adminList()
     {
         $admins = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
             ->select('admins.*', 'roles.name as roleName')
             ->get();
-        $roles = Role::get();
-        return view('admin.pages.admins.admin-list', compact('admins', 'roles'));
+        return view('admin.pages.admins.admin-list', compact('admins'));
     }
 
     public function adminAdd()
@@ -96,7 +97,6 @@ class AdminController extends Controller
     {
         $request->validate([
             'firstName' => 'required|min:3',
-            'lastName' => 'min:4',
             'username' => 'required|min:5|unique:admins',
             'birthday' => 'required|date|before:' . Carbon::now()->subYears(18)->toDateString(),
             'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
@@ -158,7 +158,6 @@ class AdminController extends Controller
         $phoneNumber = $request->phoneNumber;
         $email = $request->email;
         $gender = $request->gender;
-        $role = $request->role;
         $address = $request->address;
 
         Admin::where('adminID', '=', $request->adminID)->update([
@@ -168,7 +167,6 @@ class AdminController extends Controller
             "phoneNumber" => $phoneNumber,
             "email" => $email,
             "gender" => $gender,
-            "roleID" => $role,
             "address" => $address,
         ]);
         return redirect()->back()->with('success', 'An account updated successfully');

@@ -120,7 +120,7 @@
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
                                                     <a href="{{ route('product-detail', [$product->productID]) }}">
-                                                        <img src="{{ asset('customer/images/uploads/products/' . $product->productID . '_0.png') }}"
+                                                        <img src="{{ asset('admjn/images/uploads/products/' . $product->productID . '_0.png') }}"
                                                             alt="Product Image">
                                                     </a>
                                                 </div>

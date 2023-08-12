@@ -11,7 +11,7 @@
                             @foreach ($images as $image)
                                 @if ($image->productID == $product->productID)
                                     <div class="lg-image">
-                                        <img src="{{ asset('customer/images/uploads/products/' . $image->imageName) }}"
+                                        <img src="{{ asset('admjn/images/uploads/products/' . $image->imageName) }}"
                                             alt="product image">
                                     </div>
                                 @endif
@@ -21,7 +21,7 @@
                             @foreach ($images as $image)
                                 @if ($image->productID == $product->productID)
                                     <div class="sm-image"><img
-                                            src="{{ asset('customer/images/uploads/products/' . $image->imageName) }}"
+                                            src="{{ asset('admjn/images/uploads/products/' . $image->imageName) }}"
                                             alt="product image thumb">
                                     </div>
                                 @endif
@@ -125,7 +125,7 @@
                                                     <div class="li-review-product">
                                                         @foreach ($images as $image)
                                                             @if ($image->productID == $product->productID)
-                                                                <img src="{{ asset('customer/images/uploads/products/' . $image->imageName) }}"
+                                                                <img src="{{ asset('admjn/images/uploads/products/' . $image->imageName) }}"
                                                                     alt="Product" height="300px" width="300px">
                                                                 @break($image->productID == $product->productID)
                                                             @endif
@@ -223,7 +223,7 @@
                                     <div class="single-product-wrap">
                                         <div class="product-image">
                                             <a href="{{ route('product-detail', [$product->productID]) }}">
-                                                <img src="{{ asset('customer/images/uploads/products/' . $product->productID . '_0.png') }}"
+                                                <img src="{{ asset('admjn/images/uploads/products/' . $product->productID . '_0.png') }}"
                                                     alt="Product Image">
                                             </a>
                                         </div>

@@ -15,14 +15,13 @@ class ManufacturerController extends Controller
 
     public function manufacturerAdd()
     {
-        $manufacturer = Manufacturer::all();
+        $manufacturer = Manufacturer::get();
         return view('admin.pages.manufacturers.manufacturer-add', compact('manufacturer'));
     }
 
     public function manufacturerSave(Request $request)
     {
         $manufacturers = new Manufacturer();
-        $manufacturers->manufacturerID = $request->id;
         $manufacturers->name = $request->name;
         $manufacturers->logo = $request->logo;
         $manufacturers->save();

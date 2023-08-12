@@ -24,13 +24,11 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th>ID</th>
+                                    <th>Name</th>
                                     <th>Category</th>
                                     <th>Manufacturer</th>
-                                    <th>Name</th>
                                     <th>Price</th>
                                     <th>Stock</th>
-                                    <th>Details</th>
-                                    <th>Image</th>
                                     <th>Creation Time</th>
                                     <th>Last Update</th>
                                     <th>Actions</th>
@@ -40,23 +38,21 @@
                                 @foreach ($pro as $pros)
                                     <tr>
                                         <td>{{ $pros->productID }}</td>
-                                        <th>{{ $pros->categoryID }}</th>
-                                        <th>{{ $pros->manufacturerID }}</th>
-                                        <td>{{ $pros->name}}</td>
-                                        <td>{{ number_format($pros->price) }}</td>
+                                        <td>{{ $pros->name }}</td>
+                                        <th>{{ $pros->categoryName }}</th>
+                                        <th>{{ $pros->manufacturerName }}</th>
+                                        <td>{{ number_format($pros->price, 2) }}</td>
                                         <th>{{ $pros->stock }}</th>
-                                        <td>{{ $pros->details }}</td>
-                                        <td>
-                                            <img src="images\{{$pros->productImage}}" alt="" 
-                                            height="120px" width="120px">
-                                        </td>
                                         <td>{{ $pros->created_at }}</td>
                                         <td>{{ $pros->updated_at }}</td>
                                         <td>
-                                            <a href="{{ url('admin/products/product-edit/') }}\{{ $pros->productID }}" title="Edit this product" 
-                                                class="btn btn-outline-primary btn-sm"><i class="bi bi-pencil-square"></i></a> &nbsp;
-                                            <a href="{{ url('admin/products/product-delete/') }}\{{ $pros->productID }}" title="Delete this product" 
-                                            onclick="return confirm('Are you sure delete this product?');"class="btn btn-outline-danger btn-sm"><i class="bi bi-trash3-fill"></i></a> &nbsp;
+                                            <a href="{{ url('admin/products/product-edit/') }}\{{ $pros->productID }}"
+                                                title="Edit this product" class="btn btn-outline-primary btn-sm"><i
+                                                    class="bi bi-pencil-square"></i></a> &nbsp;
+                                            <a href="{{ url('admin/products/product-delete/') }}\{{ $pros->productID }}"
+                                                title="Delete this product"
+                                                onclick="return confirm('Are you sure delete this product?');"class="btn btn-outline-danger btn-sm"><i
+                                                    class="bi bi-trash3-fill"></i></a> &nbsp;
                                         </td>
                                     </tr>
                                 @endforeach

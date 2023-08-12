@@ -91,7 +91,7 @@
                                                 @endphp
                                                 @foreach ($imgs as $img)
                                                     <div class="lg-image">
-                                                        <img src="{{ asset('customer/images/uploads/products/' . $img->imageName) }}"
+                                                        <img src="{{ asset('admjn/images/uploads/products/' . $img->imageName) }}"
                                                             alt="product image">
                                                     </div>
                                                 @endforeach
@@ -99,7 +99,7 @@
                                             <div class="product-details-thumbs slider-thumbs-1">
                                                 @foreach ($imgs as $img)
                                                     <div class="sm-image"><img
-                                                            src="{{ asset('customer/images/uploads/products/' . $img->imageName) }}"
+                                                            src="{{ asset('admjn/images/uploads/products/' . $img->imageName) }}"
                                                             alt="product image thumb">
                                                     </div>
                                                 @endforeach

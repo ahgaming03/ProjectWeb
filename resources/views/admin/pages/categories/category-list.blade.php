@@ -13,7 +13,7 @@
                         </div>
                     </div>
                     <table class="table table-hover">
-                        <thead>
+                        <thead class="thead-light">
                             <tr>
                                 <th>ID</th>
                                 <th>Name</th>
@@ -26,10 +26,14 @@
                                 <tr>
                                     <td>{{ $ncat->categoryID }}</td>
                                     <th>{{ $ncat->name }}</th>
-                                    <th>{{ $ncat->descriptions }}</th>
+                                    <th>{{ Str::limit($ncat->descriptions, 50, '...')  }}</th>
                                     <td>
-                                        <a href="{{ url('admin/categories/category-edit/') }}\{{ $ncat->categoryID }}" title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
-                                        <a href="{{ url('admin/categories/category-delete') }}\{{ $ncat->categoryID }}" title="Delete this product" onclick="return confirm('Are you sure delete this product?');"><i class="bi bi-trash-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/categories/category-edit/') }}\{{ $ncat->categoryID }}"
+                                            title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;
+                                        <a href="{{ url('admin/categories/category-delete') }}\{{ $ncat->categoryID }}"
+                                            title="Delete this product"
+                                            onclick="return confirm('Are you sure delete this product?');"><i
+                                                class="bi bi-trash-fill"></i></a> &nbsp;
                                     </td>
                                 </tr>
                             @endforeach

@@ -12,9 +12,11 @@ class ProductController extends Controller
 {
     public function productList()
     {
-        $pro = Product::get();
-        $cat = Category::get();
-        return view('admin.pages.products.product-list', compact('pro', 'cat'));
+        $pro = Product::join('categories', 'products.categoryID', 'categories.categoryID')
+            ->join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')
+            ->select('products.*', 'categories.name as categoryName', 'manufacturers.name as manufacturerName')
+            ->get();
+        return view('admin.pages.products.product-list', compact('pro'));
     }
 
     public function productAdd()
@@ -70,7 +72,7 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product updated successfully!');
     }
 
-    // dashboard
+    // customer dashboard
     public function index()
     {
         $products = Product::join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')

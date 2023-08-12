@@ -96,11 +96,6 @@
                                     <label for="username">Username</label>
                                     <input type="text" class="form-control form-control-sm" id="username"
                                         name="username" placeholder="Username"value="{{ $customer->username }}" disabled>
-                                    @error('username')
-                                        <div class="text-danger mt-2">
-                                            {{ $message }}
-                                        </div>
-                                    @enderror
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="email">Email<span class="text-danger">*</span></label>
@@ -124,7 +119,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="birthday">Birthday<span class="text-danger">*</span></label>
+                                    <label for="birthday">Birthday</label>
                                     <input type="date" class="form-control form-control-sm" id="birthday"
                                         name="birthday" value="{{ $customer->birthday }}">
                                     @error('birthday')

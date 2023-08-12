@@ -5,7 +5,8 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\ManufacturerController;
-
+use App\Http\Controllers\RoleController;
+use App\Models\Role;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -40,6 +41,14 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/admin-edit/{id}', [AdminController::class, 'adminEdit']);
     Route::post('admin/admin-update', [AdminController::class, 'adminUpdate'])->name('admin-update');
     Route::get('admin/admin-delete/{id}', [AdminController::class, 'adminDelete'])->name('admin-delete');
+
+    //Roles
+    Route::get('admin/roles/role-list',[RoleController::class,'roleList'])->name('role-list');
+    Route::get('admin/roles/role-add',[RoleController::class,'roleAdd'])->name('role-add');
+    Route::post('admin/roles/role-save', [RoleController::class, 'roleSave'])->name('role-save');
+    Route::get('admin/roles/role-edit/{id}',[RoleController::class,'roleEdit'])->name('role-edit');
+    Route::post('admin/role-update',[RoleController::class,'roleUpdate'])->name('role-update');
+    Route::get('admin/roles/role-delete/{id}', [RoleController::class, 'roleDelete'])->name('role-delete');
 
     // admin upload image
     Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image');
@@ -88,7 +97,7 @@ Route::middleware(['isLoggedIn'])->group(function () {
 });
 
 
-// customer template 
+// customer template
 Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
 Route::get('/login', [CustomerController::class, 'login'])->name('customer-login');
 Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('customer-login-process');

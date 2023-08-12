@@ -43,8 +43,7 @@ class CategoryController extends Controller
         Category::where('categoryID', '=', $request->id)
         -> update([
             'name'=>$request->name,
-            'descriptions'=>$request->descriptions,
-            'categoryID'=>$request->id
+            'descriptions'=>$request->descriptions
         ]);
         return redirect()->back()->with('success', 'category updated successfully!');
     }

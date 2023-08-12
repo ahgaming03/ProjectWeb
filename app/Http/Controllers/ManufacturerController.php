@@ -23,8 +23,8 @@ class ManufacturerController extends Controller
     {
         $manufacturers = new Manufacturer();
         $manufacturers->manufacturerID = $request->id;
-        $manufacturers->manufacturerName = $request->name;
-        $manufacturers->manufacturerlogo = $request->logo;
+        $manufacturers->name = $request->name;
+        $manufacturers->logo = $request->logo;
         $manufacturers->save();
         return redirect()->back()->with('success', 'Manufacturer added successfully!');
     }
@@ -36,16 +36,15 @@ class ManufacturerController extends Controller
 
     public function manufacturerDelete($id){
         Manufacturer::where('manufacturerID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'm=Manufacturer deleted successfully');
+        return redirect()->back()->with('success', 'Manufacturer deleted successfully');
     }
 
     public function manufacturerupdate(Request $request)
     {
         Manufacturer::where('manufacturerID', '=', $request->id)
-        -> oroductupdate([
-            'manufacturerID'=>$request->id,
-            'manufacturerName'=>$request->name,
-            'manufacturerlogo'=>$request->logo
+        -> update([
+            'name'=>$request->name,
+            'logo'=>$request->logo
         ]);
         return redirect()->back()->with('success', 'Manufacturer updated successfully!');
     }

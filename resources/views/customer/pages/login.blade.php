@@ -21,7 +21,7 @@
                                 @endif
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-20">
-                                        <label>Email Address*</label>
+                                        <label>Username</label>
                                         <input class="mb-0" type="text" name="username" value="{{ old('username') }}"
                                             placeholder="Email Address">
                                         @error('username')

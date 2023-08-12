@@ -13,7 +13,7 @@
                                     aria-hidden="true">&times;</span></button>
                             </div>
                         @endif
-                        <form class="forms-sample" action="{{ url('productSave') }}" method="POST">
+                        <form class="forms-sample"  method="POST" action="{{route('product-update') }}">
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">

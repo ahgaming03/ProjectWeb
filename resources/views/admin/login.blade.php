@@ -35,7 +35,6 @@
                             @if (session('error'))
                                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                                     {{ session('error') }}
-                                    
                                 </div>
                             @endif
                             <form class="pt-3" action="{{ route('admin-login-process') }}" method="POST">
@@ -66,11 +65,6 @@
                                         </label>
                                     </div>
                                     <a href="#" class="auth-link text-black">Forgot password?</a>
-                                </div>
-                                <div class="mb-2">
-                                    <button type="button" class="btn btn-block btn-facebook auth-form-btn">
-                                        <i class="ti-facebook mr-2"></i>Connect using facebook
-                                    </button>
                                 </div>
                             </form>
                         </div>

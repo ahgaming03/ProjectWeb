@@ -19,28 +19,28 @@
                                 <div class="row">
                                     <div class="col-md-6 col-12 mb-20">
                                         <label>First Name</label>
-                                        <input class="mb-0" type="text" name="firstName" placeholder="First Name" >                                   
+                                        <input class="mb-0" type="text" name="firstName" placeholder="First Name" value="{{ old('firstName') }}" >                                   
                                         @error('firstName')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror
                                     </div>
                                     <div class="col-md-6 col-12 mb-20">
                                         <label>Last Name</label>
-                                        <input class="mb-0" type="text" name="lastName" placeholder="Last Name" >                         
+                                        <input class="mb-0" type="text" name="lastName" placeholder="Last Name" value="{{ old('lastName') }}" >                         
                                         @error('lastName')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror
                                     </div>
                                     <div class="col-md-12 mb-20">
                                         <label>Username</label>
-                                        <input class="mb-0" type="text" name="username" placeholder="Username">
+                                        <input class="mb-0" type="text" name="username" placeholder="Username" value="{{ old('username') }}" >
                                         @error('username')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror
                                     </div>
                                     <div class="col-md-12 mb-20">
                                         <label>Email Address*</label>
-                                        <input class="mb-0" type="email" name="email" placeholder="Email Address">
+                                        <input class="mb-0" type="email" name="email" placeholder="Email Address" value="{{ old('email') }}" >
                                         @error('email')
                                         <div class="text-danger mt-1">{{ $message }}</div>
                                     @enderror

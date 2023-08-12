@@ -6,11 +6,11 @@
             <div class="card">
                 <div class="card-body">
                     <h4 class="card-title">Add new admin account</h4>
-                    @if (Session::has('success')) 
+                    @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
-                                aria-hidden="true">&times;</span></button>
+                                    aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
                     <form class="forms-sample" method="POST" action="{{ route('admin-save') }}">
@@ -28,9 +28,14 @@
                             </div>
                             <div class="form-group col-md-6">
                                 <label for="lastName">Last name</label>
-                                <input type="text" class="form-control form-control-sm" id="lastName" name="lastName"
-                                    placeholder="Last name" value="{{ old('lastName') }}">
+                                <input type="text" class="form-control form-control-sm" minlength="4" id="lastName"
+                                    name="lastName" placeholder="Last name" value="{{ old('lastName') }}">
                             </div>
+                            @error('lastname')
+                                <div class="text-danger mt-1">
+                                    {{ $message }}
+                                </div>
+                            @enderror
                         </div>
                         <div class="row">
                             <div class="form-group col-md-4">

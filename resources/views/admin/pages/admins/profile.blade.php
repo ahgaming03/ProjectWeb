@@ -21,12 +21,6 @@
             <div class="card">
                 <h4 class="card-header">Edit account</h4>
                 <div class="card-body">
-                    <div class="form-group">
-                        <span>
-                            <b>ID: </b>
-                            {{ $admin->adminID }}
-                        </span>
-                    </div>
                     <div class="row">
                         <div class="col-12 d-flex justify-content-center align-items-center">
                             <img src="{{ asset('admjn/images/uploads/faces/' . $admin->photo) }}" alt="avatar"
@@ -63,7 +57,7 @@
                     </div>
                     <form class="forms-sample" method="POST" action="{{ route('admin-update') }}">
                         @csrf
-                        <div class="form-group" hidden>
+                        <div class="form-group">
                             <label for="adminID">ID</label>
                             <input type="text" class="form-control form-control-sm" id="adminID" name="adminID"
                                 placeholder="ID" value="{{ $admin->adminID }}" readonly>
@@ -72,7 +66,8 @@
                             <div class="form-group col-md-6">
                                 <label for="firstName">First name<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-sm" id="firstName" name="firstName"
-                                    placeholder="First name" value="{{ $admin->firstName }}">
+                                    placeholder="First name"
+                                    value="{{ old('firstName') == '' ? $admin->firstName : old('firstName') }}">
                                 @error('firstName')
                                     <div class="text-danger mt-1">
                                         {{ $message }}
@@ -82,24 +77,22 @@
                             <div class="form-group col-md-6">
                                 <label for="lastName">Last name</label>
                                 <input type="text" class="form-control form-control-sm" id="lastName" name="lastName"
-                                    placeholder="Last name" value="{{ $admin->lastName }}">
+                                    placeholder="Last name"
+                                    value="{{ old('lastName') == '' ? $admin->lastName : old('lastName') }}">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="username">Username</label>
                                 <input type="text" class="form-control form-control-sm" id="username" name="username"
-                                    placeholder="Username"value="{{ $admin->username }}" disabled>
-                                @error('username')
-                                    <div class="text-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
+                                    placeholder="Username"value="{{ $admin->username }}"
+                                    disabled>
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="email">Email<span class="text-danger">*</span></label>
                                 <input type="text" class="form-control form-control-sm" id="email" name="email"
-                                    placeholder="example@gmail.com" value="{{ $admin->email }}">
+                                    placeholder="example@gmail.com"
+                                    value="{{ old('email') == '' ? $admin->email : old('email') }}">
                                 @error('email')
                                     <div class="text-danger mt-2">
                                         {{ $message }}
@@ -109,7 +102,8 @@
                             <div class="form-group col-md-4">
                                 <label for="phoneNumber">Phone number<span class="text-danger">*</span></label>
                                 <input type="tel" class="form-control form-control-sm" id="phoneNumber"
-                                    name="phoneNumber" placeholder="Phone number" value="{{ $admin->phoneNumber }}">
+                                    name="phoneNumber" placeholder="Phone number"
+                                    value="{{ old('phoneNumber') == '' ? $admin->phoneNumber : old('phoneNumber') }}">
                                 @error('phoneNumber')
                                     <div class="text-danger mt-2">
                                         {{ $message }}
@@ -119,7 +113,8 @@
                             <div class="form-group col-md-4">
                                 <label for="birthday">Birthday<span class="text-danger">*</span></label>
                                 <input type="date" class="form-control form-control-sm" id="birthday"
-                                    name="birthday" value="{{ $admin->birthday }}">
+                                    name="birthday"
+                                    value="{{ old('birthday') == '' ? $admin->birthday : old('birthday') }}">
                                 @error('birthday')
                                     <div class="text-danger mt-2">
                                         {{ $message }}
@@ -135,18 +130,9 @@
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="role">Role<span class="text-danger">*</span></label>
-                                <select class="form-control form-control-sm" id="role" name="role">
-                                    @foreach ($roles as $role)
-                                        <option value="{{ $role->roleID }}"
-                                            {{ $role->roleID == $admin->roleID ? 'selected' : '' }}>{{ $role->name }}
-                                        </option>
-                                    @endforeach
+                                <input type="text" class="form-control form-control-sm" 
+                                    placeholder="role" value="{{ $admin->roleName }}" readonly>
                                 </select>
-                                @error('role')
-                                    <div class="text-danger mt-2">
-                                        {{ $message }}
-                                    </div>
-                                @enderror
                             </div>
                         </div>
 
@@ -172,7 +158,6 @@
                             <label for="old-passord">Old password</label>
                             <input type="password" class="form-control form-control-sm" id="old_password"
                                 name="old_password" placeholder="Old password" value="{{ old('old_password') }}">
-                            <span toggle="#old_password" class="fa fa-eye toggle-password"></span>
                             @error('old_password')
                                 <div class="text-danger mt-2">
                                     {{ $message }}
@@ -205,5 +190,4 @@
 
 @section('custom-js')
     <script src="{{ asset('admjn/js/file-upload.js') }}"></script>
-    <script src="{{ asset('admjn/js/show-password.js') }}"></script>
 @endsection

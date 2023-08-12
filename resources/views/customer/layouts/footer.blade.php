@@ -74,14 +74,15 @@
                         <div class="footer-logo">
                             <img src="{{ asset('customer/images/menu/logo/1.png') }}" alt="Footer Logo">
                             <p class="info">
-                                We are a team of designers and developers that create high quality HTML Template
-                                & Woocommerce, Shopify Theme.
+                                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Ab minus quis ratione alias
+                                ipsam, laudantium architecto distinctio nam quod officia necessitatibus molestiae quo
+                                eligendi aut officiis. Voluptatibus repellendus nostrum quis!
                             </p>
                         </div>
                         <ul class="des">
                             <li>
                                 <span>Address: </span>
-                                6688Princess Road, London, Greater London BAS 23JK, UK
+                                20 Cong Hoa, Tan Binh, Ho Chi Minh
                             </li>
                             <li>
                                 <span>Phone: </span>
@@ -89,7 +90,7 @@
                             </li>
                             <li>
                                 <span>Email: </span>
-                                <a href="mailto://info@yourdomain.com">info@yourdomain.com</a>
+                                <a href="mailto://support@gaminggear.com">support@gaminggear.com</a>
                             </li>
                         </ul>
                     </div>
@@ -131,19 +132,8 @@
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
-                                <li class="rss">
-                                    <a href="https://rss.com/" data-toggle="tooltip" target="_blank" title="RSS">
-                                        <i class="fa fa-rss"></i>
-                                    </a>
-                                </li>
-                                <li class="google-plus">
-                                    <a href="https://www.plus.google.com/discover" data-toggle="tooltip" target="_blank"
-                                        title="Google +">
-                                        <i class="fa fa-google-plus"></i>
-                                    </a>
-                                </li>
                                 <li class="facebook">
-                                    <a href="https://www.facebook.com/" data-toggle="tooltip" target="_blank"
+                                    <a href="https://www.facebook.com/NAH.12.06.2003" data-toggle="tooltip" target="_blank"
                                         title="Facebook">
                                         <i class="fa fa-facebook"></i>
                                     </a>
@@ -154,18 +144,12 @@
                                         <i class="fa fa-youtube"></i>
                                     </a>
                                 </li>
-                                <li class="instagram">
-                                    <a href="https://www.instagram.com/" data-toggle="tooltip" target="_blank"
-                                        title="Instagram">
-                                        <i class="fa fa-instagram"></i>
-                                    </a>
-                                </li>
                             </ul>
                         </div>
                         <!-- Begin Footer Newsletter Area -->
                         <div class="footer-newsletter">
                             <h4>Sign up to newsletter</h4>
-                            <form action="#" method="post" id="mc-embedded-subscribe-form"
+                            <form id="mc-embedded-subscribe-form"
                                 name="mc-embedded-subscribe-form" class="footer-subscribe-form validate"
                                 target="_blank" novalidate>
                                 <div id="mc_embed_signup_scroll">

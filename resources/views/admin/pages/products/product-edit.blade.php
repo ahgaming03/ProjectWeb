@@ -17,21 +17,22 @@
                             @csrf
                             <div class="row">
                                 <div class="form-group col-md-6">
-                                    <label for="firstName">Product ID:</label>
+                                    <label for="productID">Product ID:</label>
                                     <input type="text" class="form-control" id="id" 
                                    value="{{$pro->productID}}" readonly name="id">
                                 </div>
                                 <div class="form-group col-md-6">
-                                    <label for="firstName">Name:</label>
+                                    <label for="name">Name:</label>
                                     <input type="text" class="form-control" id="name" 
-                                   value="{{$pro->productName}}" name="name">
+                                   value="{{$pro->name}}" name="name">
+                                   
                                 </div>
-                            </div> 
+                            </div>
                             <div class="row">
                                 <div class="form-group col-md-4">
                                     <label for="price">Price:</label>
                                     <input type="number" class="form-control" id="price" 
-                                    value="{{$pro->productPrice}}" name="price">
+                                    value="{{$pro->price}}" name="price">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="category">Category:</label>
@@ -51,21 +52,25 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="last_update">Last Update:</label>
-                                    <input type="date" class="form-control" id="last_update" name="last_update">
+                                    <input type="date" class="form-control" id="last_update"
+                                    value="{{$pro->updated_at}}" name="last_update">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="stock">Stock:</label>
-                                    <input type="text" class="form-control form-control-sm" id="stock" placeholder="Enter Product stock" 
+                                    <input type="text" class="form-control form-control-sm" id="stock"
+                                    value="{{$pro->stock}}" placeholder="Enter Product stock" 
                                         name="stock">
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="image">Image:</label>
-                                    <input type="file" class="form-control" id="image" placeholder="Enter Product Image"
+                                    <input type="file" class="form-control" id="image"
+                                    value="{{$pro->images}}" placeholder="Enter Product Image"
                                         name="image">
                                 </div>
                                 <div class="form-group col-md-12">
                                     <label for="details">Details:</label>
-                                    <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" placeholder="Enter Product Details" name="details"></textarea>
+                                    <textarea class="form-control" style="color:Tomato" rows="8 12" id="details"
+                                    value="{{$pro->details}}" placeholder="Enter Product Details" name="details"></textarea>
                                 </div>
                             </div>
                                     <button type="submit" class="btn btn-outline-danger">Submit</button>

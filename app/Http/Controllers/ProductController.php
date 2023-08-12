@@ -62,7 +62,6 @@ class ProductController extends Controller
             ->update([
                 'name' => $request->name,
                 'price' => $request->price,
-
                 'details' => $request->details,
                 'categoryID' => $request->category,
                 'manufacturerID'=>  $request->manufacturer,

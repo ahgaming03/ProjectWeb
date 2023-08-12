@@ -20,18 +20,19 @@ class ProductController extends Controller
     public function productAdd()
     {
         $cat = Category::get();
+        $pro = Product::get();
         $manufacturers = Manufacturer::get();
-        return view('admin.pages.products.product-add', compact('cat', 'manufacturers'));
+        return view('admin.pages.products.product-add', compact('cat', 'manufacturers', 'pro'));
     }
 
     public function productSave(Request $request)
     {
         $pros = new Product();
         $pros->productID = $request->id;
-        $pros->categoryID = $request->category;
-        $pros->manufacturerID = $request->id;
         $pros->name = $request->name;
         $pros->price = $request->price;
+        $pros->categoryID = $request->category;
+        $pros->manufacturerID = $request->manufacturer;
         $pros->stock = $request->stock;
         $pros->details = $request->details;
         $pros->updated_at = $request->updated_at;
@@ -45,7 +46,7 @@ class ProductController extends Controller
         $cat = Category::get();
         $manufacturers = Manufacturer::get();
         $pro = Product::where('productID', '=', $id)->first();
-        return view('admin.pages.products.product-edit', compact('pro', 'cat', 'manufacturers'));
+        return view('admin.pages.products.product-edit', compact( 'cat', 'manufacturers', 'pro'));
     }
 
     public function productDelete($id)
@@ -58,12 +59,14 @@ class ProductController extends Controller
     {
         $img = $request->new_image == "" ? $request->old_image : $request->new_image;
         Product::where('productID', '=', $request->id)
-            ->oroductupdate([
-                'productName' => $request->name,
-                'productPrice' => $request->price,
-                'productImage' => $img,
-                'productDetails' => $request->details,
-                'catID' => $request->cat
+            ->update([
+                'name' => $request->name,
+                'price' => $request->price,
+
+                'details' => $request->details,
+                'categoryID' => $request->category,
+                'manufacturerID'=>  $request->manufacturer,
+                'stock' => $request->stock
             ]);
         return redirect()->back()->with('success', 'Product updated successfully!');
     }

@@ -60,17 +60,16 @@
                                 <input type="text" class="form-control form-control-sm" id="stock"
                                     value="{{ $pro->stock }}" placeholder="Enter Product stock" name="stock">
                             </div>
-                            <div class="form-group col-md-12">
-                                <label for="details">Details:</label>
-                                <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" value="{{ $pro->details }}"
-                                    placeholder="Enter Product Details" name="details"></textarea>
-                            </div>
                             <div class="form-group col-md-4">
                                 <label for="image">Image:</label>
                                 <input type="file" class="form-control" id="image" value="{{ $pro->images }}"
                                     placeholder="Enter Product Image" name="image">
                             </div>
-
+                            <div class="form-group col-md-12">
+                                <label for="details">Details:</label>
+                                <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" value="{{ $pro->details }}"
+                                    placeholder="Enter Product Details" name="details"></textarea>
+                            </div>
                         </div>
                         <button type="submit" class="btn btn-outline-danger">Submit</button>
                         <a href="{{ url('admin/products/product-list/') }}" class="btn btn-outline-primary">Back</a>

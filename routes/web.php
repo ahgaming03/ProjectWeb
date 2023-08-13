@@ -42,11 +42,11 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/admin-delete/{id}', [AdminController::class, 'adminDelete'])->name('admin-delete');
 
     //Roles
-    Route::get('admin/roles/role-list',[RoleController::class,'roleList'])->name('role-list');
-    Route::get('admin/roles/role-add',[RoleController::class,'roleAdd'])->name('role-add');
+    Route::get('admin/roles/role-list', [RoleController::class, 'roleList'])->name('role-list');
+    Route::get('admin/roles/role-add', [RoleController::class, 'roleAdd'])->name('role-add');
     Route::post('admin/roles/role-save', [RoleController::class, 'roleSave'])->name('role-save');
-    Route::get('admin/roles/role-edit/{id}',[RoleController::class,'roleEdit'])->name('role-edit');
-    Route::post('admin/role-update',[RoleController::class,'roleUpdate'])->name('role-update');
+    Route::get('admin/roles/role-edit/{id}', [RoleController::class, 'roleEdit'])->name('role-edit');
+    Route::post('admin/role-update', [RoleController::class, 'roleUpdate'])->name('role-update');
     Route::get('admin/roles/role-delete/{id}', [RoleController::class, 'roleDelete'])->name('role-delete');
 
     // admin upload image
@@ -65,6 +65,8 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/products/product-edit/{id}', [ProductController::class, 'productEdit'])->name('product-edit');
     Route::post('admin/products/product-update', [ProductController::class, 'productUpdate'])->name('product-update');
     Route::get('admin/products/product-delete/{id}', [ProductController::class, 'productDelete'])->name('product-delete');
+    Route::delete('admin/products/delete-delete-Image/{id}', [ProductController::class, 'deleteImage'])->name('delete-image');
+    Route::delete('admin/products/delete-delete-cover/{id}', [ProductController::class, 'deleteCover'])->name('delete-cover');
 
     // admin category management
     Route::get('admin/categories/category-list', [CategoryController::class, 'categoryList'])->name('category-list');
@@ -91,7 +93,7 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/customer-delete/{id}', [CustomerController::class, 'customerDelete'])->name('customer-delete');
     //customer edit
     Route::post('admin/customer-update', [CustomerController::class, 'customerUpdate'])->name('customer-update');
-    
+
     //order
     Route::get('admin/orders/order-list', [OrderController::class, 'orderList'])->name('order-list');
     Route::get('admin/orders/order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order-delete');
@@ -109,7 +111,7 @@ Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-log
 
 // customer profile
 Route::get('/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
-Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])-> name('customer-update');
+Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])->name('customer-update');
 // customer profile
 Route::post('/customer-save', [CustomerController::class, 'customerSave'])->name('customer-save');
 // customer upload image
@@ -120,7 +122,3 @@ Route::post('/change-password', [CustomerController::class, 'changePassword'])->
 // customer view product
 Route::get('/', [ProductController::class, 'index'])->name('product-index');
 Route::get('products/{id}', [ProductController::class, 'productDetails'])->name('product-detail');
-
-
-
-

@@ -7,6 +7,7 @@ use App\Models\Manufacturer;
 use App\Models\Product;
 use App\Models\Image;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\File;
 
 class ProductController extends Controller
 {
@@ -29,18 +30,48 @@ class ProductController extends Controller
 
     public function productSave(Request $request)
     {
-        $pros = new Product();
-        $pros->productID = $request->id;
-        $pros->name = $request->name;
-        $pros->price = $request->price;
-        $pros->categoryID = $request->category;
-        $pros->manufacturerID = $request->manufacturer;
-        $pros->stock = $request->stock;
-        $pros->details = $request->details;
-        $pros->updated_at = $request->updated_at;
-        $pros->created_at = $request->created_at;
-        $pros->save();
-        return redirect()->back()->with('success', 'Product added successfully!');
+        $request->validate([
+            'id' => 'required|unique:products,productID',
+            'name' => 'required',
+            'cover' => 'required|image|max:2048',
+            // 'images.*' => 'required|image|max:2048',
+        ]);
+
+
+
+        if ($request->hasFile('cover') && $request->id) {
+            $file = $request->file('cover');
+            $imageName = $request->id . '_C.png';
+            $destinationPath = public_path('admjn/images/uploads/products/');
+            $file->move($destinationPath, $imageName);
+
+            $pros = new Product([
+                'productID' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'categoryID' => $request->category,
+                'manufacturerID' => $request->manufacturer,
+                'details' => $request->details,
+                'cover' => $imageName,
+            ]);
+            $pros->save();
+
+            if ($request->hasFile('images')) {
+                $index = 0;
+                $files = $request->file('images');
+                foreach ($files as $file) {
+                    $imageName = $request->id . '_' . $index++ . '.png';
+                    $file->move($destinationPath, $imageName);
+                    $img = new Image([
+                        'productID' => $request->id,
+                        'imageName' => $imageName,
+                    ]);
+                    $img->save();
+                }
+            }
+
+            return redirect()->back()->with('success', 'Product added successfully!');
+        }
     }
 
     public function productEdit($id)
@@ -48,29 +79,103 @@ class ProductController extends Controller
         $cat = Category::get();
         $manufacturers = Manufacturer::get();
         $pro = Product::where('productID', '=', $id)->first();
-        return view('admin.pages.products.product-edit', compact( 'cat', 'manufacturers', 'pro'));
-    }
-
-    public function productDelete($id)
-    {
-        Product::where('productID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'Product deleted successfully');
+        $images = Image::where('productID', '=', $id)->get();
+        return view('admin.pages.products.product-edit', compact('cat', 'manufacturers', 'pro', 'images'));
     }
 
     public function productUpdate(Request $request)
     {
-        $img = $request->new_image == "" ? $request->old_image : $request->new_image;
-        Product::where('productID', '=', $request->id)
-            ->update([
-                'name' => $request->name,
-                'price' => $request->price,
-                'details' => $request->details,
-                'categoryID' => $request->category,
-                'manufacturerID'=>  $request->manufacturer,
-                'stock' => $request->stock
-            ]);
+        $request->validate([
+            'name' => 'required',
+            'cover' => 'image|max:2048',
+            'images.*' => 'image|max:2048',
+        ]);
+
+        if ($request->hasFile('cover')) {
+            $file = $request->file('cover');
+            $imageName = $request->id . '_C.png';
+            $destinationPath = public_path('admjn/images/uploads/products/');
+            $file->move($destinationPath, $imageName);
+
+            Product::where('productID', '=', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    'price' => $request->price,
+                    'categoryID' => $request->category,
+                    'manufacturerID' => $request->manufacturer,
+                    'details' => $request->details,
+                    'cover' => $imageName,
+                ]);
+        } else {
+            Product::where('productID', '=', $request->id)
+                ->update([
+                    'name' => $request->name,
+                    'price' => $request->price,
+                    'categoryID' => $request->category,
+                    'manufacturerID' => $request->manufacturer,
+                    'details' => $request->details,
+                ]);
+        }
+
+        if ($request->hasFile('images')) {
+            $index = 0;
+            $files = $request->file('images');
+            $destinationPath = public_path('admjn/images/uploads/products/');
+            foreach ($files as $file) {
+                $imageName = $request->id . '_' . $index++ . '.png';
+                $file->move($destinationPath, $imageName);
+                $img = new Image([
+                    'productID' => $request->id,
+                    'imageName' => $imageName,
+                ]);
+                $img->save();
+            }
+        }
+
         return redirect()->back()->with('success', 'Product updated successfully!');
     }
+
+    public function deleteImage($id)
+    {
+        $image = Image::where('imageID', '=', $id)->first();
+        if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
+            File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
+        Image::where('imageID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'Image deleted successfully!');
+    }
+    public function deleteCover($id)
+    {
+        $cover = Product::where('productID', '=', $id)->first()->cover;
+        if (File::exists(public_path('admjn/images/uploads/products/' . $cover)))
+            File::delete(public_path('admjn/images/uploads/products/' . $cover));
+
+        Product::where('productID', '=', $id)
+            ->update([
+                'cover' => NULL,
+            ]);
+        return redirect()->back()->with('success', 'Cover deleted successfully!');
+    }
+
+
+
+
+
+    public function productDelete($id)
+    {
+        $product = Product::where('productID', '=', $id)->first();
+        if (File::exists(public_path('admjn/images/uploads/products/' . $product->cover)))
+            File::delete(public_path('admjn/images/uploads/products/' . $product->cover));
+
+        $images = Image::where('productID', '=', $id)->get();
+        foreach ($images as $image) {
+            if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
+                File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
+        }
+
+        Product::where('productID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'A product deleted successfully');
+    }
+
 
     // customer dashboard
     public function index()
@@ -86,9 +191,9 @@ class ProductController extends Controller
     public function productDetails($id)
     {
         $product = Product::join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')
-        ->select('products.*', 'manufacturers.name as manufacturerName')
-        ->where('productID', $id)
-        ->first();
+            ->select('products.*', 'manufacturers.name as manufacturerName')
+            ->where('productID', $id)
+            ->first();
         $products = Product::join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')
             ->select('products.*', 'manufacturers.name as manufacturerName')
             ->where('categoryID', $product->categoryID)

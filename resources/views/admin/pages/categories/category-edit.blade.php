@@ -28,8 +28,8 @@
                             </div>
                             <div class="row">
                                 <div class="form-group col-md-12">
-                                    <label for="details">Descriptions:</label>
-                                    <textarea class="form-control" rows="5" id="descriptions" placeholder="Enter Category descriptions" value="{{$cat->decriptions}}" name="descriptions"></textarea>
+                                    <label for="descriptions">Descriptions:</label>
+                                    <textarea class="form-control" rows="5" id="descriptions" placeholder="Enter Category descriptions" name="descriptions">{{$cat->descriptions}}</textarea>
                                 </div>
                             </div>
                             <button type="submit" class="btn btn-outline-danger">Submit</button>

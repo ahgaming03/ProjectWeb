@@ -120,8 +120,13 @@
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
                                                     <a href="{{ route('product-detail', [$product->productID]) }}">
-                                                        <img src="{{ asset('admjn/images/uploads/products/' . $product->productID . '_0.png') }}"
-                                                            alt="Product Image">
+                                                        @if ($product->cover)
+                                                            <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
+                                                                alt="Product Image">
+                                                        @else
+                                                            <img src="{{ asset('admjn/images/uploads/products/default_image.jpg') }}"
+                                                                alt="Product Image">
+                                                        @endif
                                                     </a>
                                                 </div>
                                                 <div class="product_desc">

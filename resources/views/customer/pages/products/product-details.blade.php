@@ -8,6 +8,12 @@
                     <!-- Product Details Left -->
                     <div class="product-details-left">
                         <div class="product-details-images slider-navigation-1">
+                            @if ($product->cover)
+                                <div class="lg-image">
+                                    <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
+                                        alt="product image">
+                                </div>
+                            @endif
                             @foreach ($images as $image)
                                 @if ($image->productID == $product->productID)
                                     <div class="lg-image">
@@ -18,6 +24,12 @@
                             @endforeach
                         </div>
                         <div class="product-details-thumbs slider-thumbs-1">
+                            @if ($product->cover)
+                                <div class="sm-image">
+                                    <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
+                                        alt="product image thumb">
+                                </div>
+                            @endif
                             @foreach ($images as $image)
                                 @if ($image->productID == $product->productID)
                                     <div class="sm-image"><img
@@ -60,7 +72,7 @@
                                     <button class="add-to-cart" type="submit">Add to cart</button>
                                 </form>
                             </div>
-                            
+
                         </div>
                     </div>
                 </div>
@@ -75,7 +87,8 @@
                 <div class="col-lg-12">
                     <div class="li-product-tab">
                         <ul class="nav li-product-menu">
-                            <li><a class="active" data-toggle="tab" href="#product-details"><span>Product Details</span></a>
+                            <li><a class="active" data-toggle="tab" href="#product-details"><span>Product
+                                        Details</span></a>
                             </li>
                             <li><a data-toggle="tab" href="#reviews"><span>Reviews</span></a></li>
                         </ul>
@@ -111,7 +124,8 @@
                                 <p>Good</p>
                             </div>
                             <div class="review-btn">
-                                <a class="review-links" href="#" data-toggle="modal" data-target="#mymodal">Write Your
+                                <a class="review-links" href="#" data-toggle="modal" data-target="#mymodal">Write
+                                    Your
                                     Review!</a>
                             </div>
                             <!-- Begin Quick View | Modal Area -->
@@ -223,8 +237,13 @@
                                     <div class="single-product-wrap">
                                         <div class="product-image">
                                             <a href="{{ route('product-detail', [$product->productID]) }}">
-                                                <img src="{{ asset('admjn/images/uploads/products/' . $product->productID . '_0.png') }}"
-                                                    alt="Product Image">
+                                                @if ($product->cover)
+                                                    <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
+                                                        alt="Product Image">
+                                                @else
+                                                    <img src="{{ asset('admjn/images/uploads/products/default_image.jpg') }}"
+                                                        alt="Product Image">
+                                                @endif
                                             </a>
                                         </div>
                                         <div class="product_desc">

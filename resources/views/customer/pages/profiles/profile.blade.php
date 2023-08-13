@@ -119,7 +119,7 @@
                                     @enderror
                                 </div>
                                 <div class="form-group col-md-4">
-                                    <label for="birthday">Birthday</label>
+                                    <label for="birthday">Birthday<span class="text-danger">*</span></label>
                                     <input type="date" class="form-control form-control-sm" id="birthday"
                                         name="birthday" value="{{ $customer->birthday }}">
                                     @error('birthday')

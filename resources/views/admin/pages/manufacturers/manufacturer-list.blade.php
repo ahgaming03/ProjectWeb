@@ -16,8 +16,8 @@
                         <thead class="thead-light">
                             <tr>
                                 <th>ID</th>
-                                <th>Logo</th>
                                 <th>Name</th>
+                                <th>Description</th>
                                 <th>Action</th>
                             </tr>
                         </thead>
@@ -25,9 +25,8 @@
                             @foreach ($manufacturer as $manufacturers)
                                 <tr>
                                     <td>{{ $manufacturers->manufacturerID }}</td>
-                                    <th><img src="{{ asset('admjn/images/uploads/manufacturers/' . ($manufacturers->logo == '' ? 'default_logo.png' : $manufacturers->logo)) }}"
-                                            alt="" height="50px" width="50px"></th>
                                     <th>{{ $manufacturers->name }}</th>
+                                    <th>{{ Str::limit($manufacturers->descriptions,  100, '...') }}</th>
                                     <td>
                                         <a href="{{ url('admin/manufacturers/manufacturer-edit/') }}\{{ $manufacturers->manufacturerID }}"
                                             title="Edit this manufacturer"><i class="bi bi-pencil-fill"></i></a> &nbsp;

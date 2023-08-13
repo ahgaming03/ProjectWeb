@@ -55,16 +55,14 @@
                                         <td>{{ $admin->updated_at }}</td>
                                         <td>{{ $admin->created_at }}</td>
                                         <td>
-                                            <span>
-                                                <a href="{{ url('admin/admin-edit/' . $admin->adminID) }}"
-                                                    title="Edit this account" class="btn btn-inverse-primary btn-sm"><i
-                                                        class="bi bi-pencil-fill"></i></a> &nbsp;
-                                                <!-- Button trigger modal delete -->
-                                                <button type="button" title="Delete this account"
-                                                    class="btn btn-inverse-danger btn-sm" data-toggle="modal"
-                                                    data-target="#deleteModal{{ $admin->adminID }}"><i
-                                                        class="bi bi-trash-fill"></i></button> &nbsp;
-                                            </span>
+                                            <a href="{{ url('admin/admin-edit/' . $admin->adminID) }}"
+                                                title="Edit this account" class="btn btn-inverse-primary btn-sm"><i
+                                                    class="bi bi-pencil-fill"></i></a> &nbsp;
+                                            <!-- Button trigger modal delete -->
+                                            <button type="button" title="Delete this account"
+                                                class="btn btn-inverse-danger btn-sm" data-toggle="modal"
+                                                data-target="#deleteModal{{ $admin->adminID }}"><i
+                                                    class="bi bi-trash-fill"></i></button> &nbsp;
                                             <!-- Modal delete -->
                                             <div class="modal fade" id="deleteModal{{ $admin->adminID }}" tabindex="-1"
                                                 aria-labelledby="deleteLabel" aria-hidden="true">

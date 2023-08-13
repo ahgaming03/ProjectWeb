@@ -38,7 +38,7 @@ class CategoryController extends Controller
         return redirect()->back()->with('success', 'category deleted successfully');
     }
 
-    public function categoryupdate(Request $request)
+    public function categoryUpdate(Request $request)
     {
         Category::where('categoryID', '=', $request->id)
         -> update([

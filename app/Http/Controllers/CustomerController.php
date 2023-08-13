@@ -177,7 +177,7 @@ class CustomerController extends Controller
         $request->validate([
             'firstName' => 'required|min:3',
             // 'lastName' => 'min:4',
-            // 'birthday' => 'date|before:' . Carbon::now()->subYears(18)->toDateString(),
+            'birthday' => 'required|before:' . Carbon::now()->subYears(18)->toDateString(),
             'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
             'email' => 'required|email',
         ]);

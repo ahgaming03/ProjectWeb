@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Manufacturer;
-use Illuminate\Http\Request; 
+use Illuminate\Http\Request;
 
 class ManufacturerController extends Controller
 {
@@ -23,28 +23,30 @@ class ManufacturerController extends Controller
     {
         $manufacturers = new Manufacturer();
         $manufacturers->name = $request->name;
-        $manufacturers->logo = $request->logo;
+        $manufacturers->descriptions = $request->descriptions;
         $manufacturers->save();
         return redirect()->back()->with('success', 'Manufacturer added successfully!');
     }
 
-    public function manufacturerEdit($id){
+    public function manufacturerEdit($id)
+    {
         $manufacturers = Manufacturer::where('manufacturerID', '=', $id)->first();
         return view('admin.pages.manufacturers.manufacturer-edit', compact('manufacturers'));
     }
 
-    public function manufacturerDelete($id){
+    public function manufacturerUpdate(Request $request)
+    {
+        Manufacturer::where('manufacturerID', '=', $request->id)
+            ->update([
+                'name' => $request->name,
+                'descriptions' => $request->descriptions,
+            ]);
+        return redirect()->back()->with('success', 'Manufacturer updated successfully!');
+    }
+    public function manufacturerDelete($id)
+    {
         Manufacturer::where('manufacturerID', '=', $id)->delete();
         return redirect()->back()->with('success', 'Manufacturer deleted successfully');
     }
 
-    public function manufacturerupdate(Request $request)
-    {
-        Manufacturer::where('manufacturerID', '=', $request->id)
-        -> update([
-            'name'=>$request->name,
-            'logo'=>$request->logo
-        ]);
-        return redirect()->back()->with('success', 'Manufacturer updated successfully!');
-    }
 }

@@ -50,7 +50,7 @@
 
 
                                             <!-- Button trigger modal delete -->
-                                            <button type="button" title="Delete this account"
+                                            <button type="button" title="Delete this product"
                                                 class="btn btn-outline-danger btn-sm" data-toggle="modal"
                                                 data-target="#deleteModal{{ $pros->productID }}"><i
                                                     class="bi bi-trash3-fill"></i></button> &nbsp;

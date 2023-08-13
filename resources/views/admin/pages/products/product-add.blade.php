@@ -49,7 +49,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="price">Price:</label>
-                                <input type="number" class="form-control" id="price" value="{{ old('price') }}"
+                                <input type="number" step="0.01" class="form-control" id="price" value="{{ old('price') }}"
                                     placeholder="Enter Product Price" name="price">
                                 @error('price')
                                     <div class="text-danger mt-1">{{ $message }}</div>

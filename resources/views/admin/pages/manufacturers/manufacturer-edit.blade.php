@@ -5,7 +5,7 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Edit New Manufactrers</h4>
+                    <h4 class="card-title">Edit Manufactrers</h4>
                     @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}

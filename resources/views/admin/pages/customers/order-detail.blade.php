@@ -20,7 +20,7 @@
                     <div><b>Phone Number:</b>{{ $information->first()->phoneNumber }}</div>
                     <div><b>Address:</b>{{ $information->first()->address }}</div>
                     <!-- Button trigger modal delete -->
-                    <button type="button" title="Delete this account" class="btn btn-inverse-danger btn-sm float-right mb-1"
+                    <button type="button" title="Delete this order" class="btn btn-inverse-danger btn-sm float-right mb-1"
                         data-toggle="modal" data-target="#deleteModal{{ $information->first()->orderID }}"><i
                             class="bi bi-trash-fill"></i>Delete order</button> &nbsp;
                     <!-- Modal delete -->

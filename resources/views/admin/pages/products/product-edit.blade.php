@@ -17,7 +17,7 @@
         <div class="col-12 grid-margin stretch-card">
             <div class="card">
                 <div class="card-body">
-                    <h4 class="card-title">Edit new product</h4>
+                    <h4 class="card-title">Edit product</h4>
                     @if (Session::has('success'))
                         <div class="alert alert-success" role="alert">
                             {{ Session::get('success') }}
@@ -44,7 +44,7 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="price">Price:</label>
-                                <input type="number" class="form-control" id="price" value="{{ $pro->price }}"
+                                <input type="number" step="0.01" class="form-control" id="price" value="{{ $pro->price }}"
                                     name="price">
                             </div>
                             <div class="form-group col-md-4">

@@ -44,10 +44,10 @@
                                         <td>{{ $role->description }}</td>
                                         <td>
                                             <a href="{{ url('admin/roles/role-edit/' . $role->roleID) }}"
-                                                title="Edit this account" class="btn btn-inverse-primary btn-sm"><i
+                                                title="Edit this role" class="btn btn-inverse-primary btn-sm"><i
                                                     class="bi bi-pencil-fill"></i></a> &nbsp;
                                             <!-- Button trigger modal delete -->
-                                            <button type="button" title="Delete this account"
+                                            <button type="button" title="Delete this role"
                                                 class="btn btn-inverse-danger btn-sm" data-toggle="modal"
                                                 data-target="#deleteModal{{ $role->roleID }}"><i
                                                     class="bi bi-trash-fill"></i></button> &nbsp;

@@ -21,7 +21,6 @@ class CategoryController extends Controller
     public function categorySave(Request $request)
     {
         $cats = new Category();
-        $cats->categoryID = $request->id;
         $cats->name = $request->name;
         $cats->descriptions = $request->descriptions;
         $cats->save(); 
@@ -33,11 +32,6 @@ class CategoryController extends Controller
         return view('admin.pages.categories.category-edit', compact('cat'));
     }
 
-    public function categoryDelete($id){
-        Category::where('categoryID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'category deleted successfully');
-    }
-
     public function categoryUpdate(Request $request)
     {
         Category::where('categoryID', '=', $request->id)
@@ -46,5 +40,9 @@ class CategoryController extends Controller
             'descriptions'=>$request->descriptions
         ]);
         return redirect()->back()->with('success', 'category updated successfully!');
+    }
+    public function categoryDelete($id){
+        Category::where('categoryID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'category deleted successfully');
     }
 }

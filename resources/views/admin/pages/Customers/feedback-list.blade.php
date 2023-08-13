@@ -6,8 +6,8 @@
             <div class="card-body">
                 <h4 class="card-title">Customer List</h4>
                 <div class="table-responsive">
-                    <table class="table table-hover table-striped table-bordered table-info">sss
-                            <thead>
+                    <table class="table table-hover table-striped table-bordered ">
+                            <thead class="table-info">
                                 <tr>
                                     <th>Feedback ID</th>
                                     <th>CustomerID</th>

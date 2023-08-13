@@ -8,6 +8,7 @@ use App\Models\Product;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
@@ -37,7 +38,12 @@ class ProductController extends Controller
             // 'images.*' => 'required|image|max:2048',
         ]);
 
-
+        $productID = Str::upper($request->id);
+        $name = $request->name;
+        $price = $request->price;
+        $categoryID = $request->category;
+        $manufacturerID = $request->manufacturer;
+        $details = $request->details;
 
         if ($request->hasFile('cover') && $request->id) {
             $file = $request->file('cover');
@@ -46,12 +52,12 @@ class ProductController extends Controller
             $file->move($destinationPath, $imageName);
 
             $pros = new Product([
-                'productID' => $request->id,
-                'name' => $request->name,
-                'price' => $request->price,
-                'categoryID' => $request->category,
-                'manufacturerID' => $request->manufacturer,
-                'details' => $request->details,
+                'productID' => $productID,
+                'name' => $name,
+                'price' => $price,
+                'categoryID' => $categoryID,
+                'manufacturerID' => $manufacturerID,
+                'details' => $details,
                 'cover' => $imageName,
             ]);
             $pros->save();

@@ -40,6 +40,11 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/admin-edit/{id}', [AdminController::class, 'adminEdit']);
     Route::post('admin/admin-update', [AdminController::class, 'adminUpdate'])->name('admin-update');
     Route::get('admin/admin-delete/{id}', [AdminController::class, 'adminDelete'])->name('admin-delete');
+    // admin profile
+    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('admin-upload-image');
+    Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin-profile');
+    // admin change password
+    Route::post('admin/change-password', [AdminController::class, 'changePassword'])->name('admin-change-password');
 
     //Roles
     Route::get('admin/roles/role-list', [RoleController::class, 'roleList'])->name('role-list');
@@ -49,14 +54,8 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::post('admin/role-update', [RoleController::class, 'roleUpdate'])->name('role-update');
     Route::get('admin/roles/role-delete/{id}', [RoleController::class, 'roleDelete'])->name('role-delete');
 
-    // admin upload image
-    Route::post('admin/admin-upload-image', [AdminController::class, 'uploadImage'])->name('upload-image');
 
-    // admin profile
-    Route::get('admin/profile', [AdminController::class, 'profile'])->name('admin-profile');
 
-    // admin change password
-    Route::post('admin/change-password', [AdminController::class, 'changePassword'])->name('change-password');
 
     // admin products management
     Route::get('admin/products/product-list', [ProductController::class, 'productList'])->name('product-list');
@@ -88,16 +87,17 @@ Route::middleware(['isLoggedIn'])->group(function () {
     Route::get('admin/customers/customer-list', [CustomerController::class, 'customerList'])->name('customer-list');
     Route::get('admin/customers/order-list', [OrderController::class, 'orderList'])->name('customer-order');
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
+
     // admin orders management
+    Route::get('admin/orders/order-list', [OrderController::class, 'orderList'])->name('order-list');
+    Route::get('admin/orders/order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order-delete');
+    Route::get('admin/orders/order-detail/{id}', [OrderController::class, 'orderDetail'])->name('order-detail');
+    
     // customer delete
     Route::get('admin/customer-delete/{id}', [CustomerController::class, 'customerDelete'])->name('customer-delete');
     //customer edit
     Route::post('admin/customer-update', [CustomerController::class, 'customerUpdate'])->name('customer-update');
-
-    //order
-    Route::get('admin/orders/order-list', [OrderController::class, 'orderList'])->name('order-list');
-    Route::get('admin/orders/order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order-delete');
-    Route::get('admin/orders/order-detail/{id}', [OrderController::class, 'orderDetail'])->name('order-detail');
+    
 });
 
 

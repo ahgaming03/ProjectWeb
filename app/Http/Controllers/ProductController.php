@@ -35,7 +35,6 @@ class ProductController extends Controller
             'id' => 'required|unique:products,productID',
             'name' => 'required',
             'cover' => 'required|image|max:2048',
-            // 'images.*' => 'required|image|max:2048',
         ]);
 
         $productID = Str::upper($request->id);
@@ -45,9 +44,9 @@ class ProductController extends Controller
         $manufacturerID = $request->manufacturer;
         $details = $request->details;
 
-        if ($request->hasFile('cover') && $request->id) {
+        if ($request->hasFile('cover') && $productID) {
             $file = $request->file('cover');
-            $imageName = $request->id . '_C.png';
+            $imageName = $productID . '_C.png';
             $destinationPath = public_path('admjn/images/uploads/products/');
             $file->move($destinationPath, $imageName);
 
@@ -101,7 +100,7 @@ class ProductController extends Controller
             $file = $request->file('cover');
             $imageName = $request->id . '_C.png';
             $destinationPath = public_path('admjn/images/uploads/products/');
-            $file->move($destinationPath, $imageName);
+            $file->move($destinationPath, $imageName);      
 
             Product::where('productID', '=', $request->id)
                 ->update([
@@ -127,6 +126,14 @@ class ProductController extends Controller
             $index = 0;
             $files = $request->file('images');
             $destinationPath = public_path('admjn/images/uploads/products/');
+            
+            $images = Image::where('productID', '=', $request->id);
+            foreach ($images as $image) {
+                if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
+                    File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
+            }
+            Image::where('productID', '=', $request->id)->delete();
+
             foreach ($files as $file) {
                 $imageName = $request->id . '_' . $index++ . '.png';
                 $file->move($destinationPath, $imageName);
@@ -161,10 +168,6 @@ class ProductController extends Controller
             ]);
         return redirect()->back()->with('success', 'Cover deleted successfully!');
     }
-
-
-
-
 
     public function productDelete($id)
     {

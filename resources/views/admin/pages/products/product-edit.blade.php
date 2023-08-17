@@ -44,8 +44,8 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="price">Price:</label>
-                                <input type="number" step="0.01" class="form-control" id="price" value="{{ $pro->price }}"
-                                    name="price">
+                                <input type="number" step="0.01" class="form-control" id="price"
+                                    value="{{ $pro->price }}" name="price">
                             </div>
                             <div class="form-group col-md-4">
                                 <label for="category">Category:</label>
@@ -70,8 +70,8 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="details">Details:</label>
-                                <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" 
-                                    placeholder="Enter Product Details" name="details">{{ $pro->details }}</textarea>
+                                <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" placeholder="Enter Product Details"
+                                    name="details">{{ $pro->details }}</textarea>
                             </div>
                             <div class="form-group col-md-4">
                                 <label>Cover:</label>
@@ -102,14 +102,14 @@
                             <div class="card card-body">
                                 <h5 class="card-title">Cover preview:</h5>
                                 @if ($pro->cover)
-                                    <form action="{{ route('delete-cover', [$pro->productID]) }}" method="POST">
-                                        <button type="submit" class="btn btn-outline-danger btn-sm">
-                                            <i class="bi bi-trash3-fill"></i>
-                                        </button>
-                                        @csrf
-                                        @method('delete')
-                                    </form>
                                     <div id="imagePreview1" class="image-preview">
+                                        <form action="{{ route('delete-cover', [$pro->productID]) }}" method="POST">
+                                            <button type="submit" class="btn btn-outline-danger btn-sm">
+                                                <i class="bi bi-trash3-fill"></i>
+                                            </button>
+                                            @csrf
+                                            @method('delete')
+                                        </form>
                                         <img src="{{ asset('admjn/images/uploads/products/' . $pro->cover) }}"
                                             style="max-width: 200px; margin: 10px">
                                     </div>

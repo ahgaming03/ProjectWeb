@@ -219,13 +219,13 @@ class AdminController extends Controller
             $photo = 'admin_' . $adminID . '.png';
             $file->move(public_path('admjn/images/uploads/faces'), $photo);
 
-            Admin::where('adminID', '=', $request->adminID)->update([
+            Admin::where('adminID', '=', $adminID)->update([
                 'photo' => $photo,
             ]);
             if (session('admin.adminID') == $adminID) {
                 Session::put('admin.photo', $photo);
+                return redirect()->back()->with('success', 'Photo changed successfully.');
             }
-            return redirect()->back()->with('success', 'Photo changed successfully.');
         }
 
         return redirect()->back()->with('error', 'Invalid photo.');

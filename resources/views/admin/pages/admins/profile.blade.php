@@ -1,6 +1,7 @@
 @extends('admin.layout.frontend')
 
 @section('content')
+{{-- @dd(session()->all()) --}}
     @if (Session::has('success'))
         <div class="alert alert-success" role="alert">
             {{ Session::get('success') }}
@@ -34,7 +35,7 @@
                             @enderror
                         </div>
                         <div class="col-12 d-flex justify-content-center align-items-center mt-1 mb-2">
-                            <form action="{{ route('upload-image') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('admin-upload-image') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <button type="button"
                                     class="file-upload-browse btn btn-inverse-primary btn-sm">Chose</button>
@@ -152,7 +153,7 @@
             <div class="card">
                 <h4 class="card-header">Change password</h4>
                 <div class="card-body">
-                    <form action="{{ route('change-password') }}" method="POST">
+                    <form action="{{ route('admin-change-password') }}" method="POST">
                         @csrf
                         <div class="form-group">
                             <label for="old-passord">Old password</label>

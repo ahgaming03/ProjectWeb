@@ -245,13 +245,13 @@ class CustomerController extends Controller
             $photo = 'customer_' . $customerID . '.png';
             $file->move(public_path('customer/images/uploads/faces'), $photo);
 
-            Customer::where('customerID', '=', $request->customerID)->update([
+            Customer::where('customerID', '=', $customerID)->update([
                 'photo' => $photo,
             ]);
             if (session('customer.customerID') == $customerID) {
-                Session::put('customerID.photo', $photo);
+                Session::put('customer.photo', $photo);
+                return redirect()->back()->with('success', 'Photo changed successfully.');
             }
-            return redirect()->back()->with('success', 'Photo changed successfully.');
         }
 
         return redirect()->back()->with('error', 'Invalid photo.');

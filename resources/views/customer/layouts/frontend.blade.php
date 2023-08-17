@@ -61,7 +61,7 @@
     <!-- Begin Body Wrapper -->
     <div class="body-wrapper">
 
-        
+
 
         {{-- Begin content --}}
         @yield('content')
@@ -84,24 +84,35 @@
                                         <!-- Product Details Left -->
                                         <div class="product-details-left">
                                             <div class="product-details-images slider-navigation-1">
-                                                @php
-                                                    $imgs = DB::table('images')
-                                                        ->where('productID', $product->productID)
-                                                        ->get();
-                                                @endphp
-                                                @foreach ($imgs as $img)
+                                                @if ($product->cover)
                                                     <div class="lg-image">
-                                                        <img src="{{ asset('admjn/images/uploads/products/' . $img->imageName) }}"
+                                                        <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
                                                             alt="product image">
                                                     </div>
+                                                @endif
+                                                @foreach ($images as $image)
+                                                    @if ($image->productID == $product->productID)
+                                                        <div class="lg-image">
+                                                            <img src="{{ asset('admjn/images/uploads/products/' . $image->imageName) }}"
+                                                                alt="product image">
+                                                        </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                             <div class="product-details-thumbs slider-thumbs-1">
-                                                @foreach ($imgs as $img)
-                                                    <div class="sm-image"><img
-                                                            src="{{ asset('admjn/images/uploads/products/' . $img->imageName) }}"
+                                                @if ($product->cover)
+                                                    <div class="sm-image">
+                                                        <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
                                                             alt="product image thumb">
                                                     </div>
+                                                @endif
+                                                @foreach ($images as $image)
+                                                    @if ($image->productID == $product->productID)
+                                                        <div class="sm-image"><img
+                                                                src="{{ asset('admjn/images/uploads/products/' . $image->imageName) }}"
+                                                                alt="product image thumb">
+                                                        </div>
+                                                    @endif
                                                 @endforeach
                                             </div>
                                         </div>
@@ -139,7 +150,8 @@
                                                                         class="fa fa-angle-up"></i></div>
                                                             </div>
                                                         </div>
-                                                        <button class="add-to-cart" type="submit">Add to cart</button>
+                                                        <button class="add-to-cart" type="submit">Add to
+                                                            cart</button>
                                                     </form>
                                                 </div>
                                                 <div class="product-additional-info pt-25">

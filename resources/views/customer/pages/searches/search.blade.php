@@ -6,8 +6,54 @@
         <div class="container">
             @if (isset($products))
                 <div class="row">
+                    <div class="col-lg-3 order-2 order-lg-1">
+                        <!--sidebar-categores-box start  -->
+                        <div class="sidebar-categores-box">
+                            <div class="sidebar-title">
+                                <h2>Filter By</h2>
+                            </div>
+                            <!-- btn-clear-all start -->
+                            <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
+                            <!-- btn-clear-all end -->
+                            <!-- filter-sub-area start -->
+                            <div class="filter-sub-area">
+                                <h5 class="filter-sub-titel">Manufacturer</h5>
+                                <div class="categori-checkbox">
+                                    <form action="#">
+                                        <ul>
+                                            @foreach ($manufacturers as $manufacturer)
+                                                <li><input type="checkbox" name="product-categori"><a
+                                                        href="#">{{ $manufacturer->name }}
+                                                    </a></li>
+                                            @endforeach
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- filter-sub-area end -->
+                            <!-- filter-sub-area start -->
+                            <div class="filter-sub-area pt-sm-10 pt-xs-10">
+                                <h5 class="filter-sub-titel">Categories</h5>
+                                <div class="categori-checkbox">
+                                    <form action="#">
+                                        <ul>
+                                            @foreach ($categories as $category)
+                                                <li><input type="checkbox" name="product-categori"><a
+                                                        href="#">{{ $category->name }}
+                                                    </a></li>
+                                            @endforeach
+                                        </ul>
+                                    </form>
+                                </div>
+                            </div>
+                            <!-- filter-sub-area end -->
+                        </div>
+                        <!--sidebar-categores-box end  -->
+                    </div>
                     <div class="col-lg-9 order-1 order-lg-2">
                         @if (count($products) > 0)
+                            <h4 class="d-flex justify-content-center">Found {{ count($products) }} item(s) with keyword:
+                                "{{ $search_text }}"</h4>
                             <!-- shop-top-bar start -->
                             <div class="shop-top-bar mt-30">
                                 <div class="shop-bar-inner">
@@ -31,22 +77,6 @@
                                         </span>
                                     </div>
                                 </div>
-                                <!-- product-select-box start -->
-                                <div class="product-select-box">
-                                    <div class="product-short">
-                                        <p>Sort By:</p>
-                                        <select class="nice-select">
-                                            <option value="trending">Relevance</option>
-                                            <option value="sales">Name (A - Z)</option>
-                                            <option value="sales">Name (Z - A)</option>
-                                            <option value="rating">Price (Low &gt; High)</option>
-                                            <option value="date">Rating (Lowest)</option>
-                                            <option value="price-asc">Model (A - Z)</option>
-                                            <option value="price-asc">Model (Z - A)</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <!-- product-select-box end -->
                             </div>
                             <!-- shop-top-bar end -->
                             <!-- shop-products-wrapper start -->
@@ -204,53 +234,6 @@
                                 "{{ $search_text }}"
                             </h3>
                         @endif
-                    </div>
-                    <div class="col-lg-3 order-2 order-lg-1">
-                        <!--sidebar-categores-box start  -->
-                        <div class="sidebar-categores-box">
-                            <div class="sidebar-title">
-                                <h2>Filter By</h2>
-                            </div>
-                            <!-- btn-clear-all start -->
-                            <button class="btn-clear-all mb-sm-30 mb-xs-30">Clear all</button>
-                            <!-- btn-clear-all end -->
-                            <!-- filter-sub-area start -->
-                            <div class="filter-sub-area">
-                                <h5 class="filter-sub-titel">Manufacturer</h5>
-                                <div class="categori-checkbox">
-                                    <form action="#">
-                                        <ul>
-                                            <li><input type="checkbox" name="product-categori"><a href="#">Prime
-                                                    Video
-                                                    (13)</a></li>
-                                            <li><input type="checkbox" name="product-categori"><a
-                                                    href="#">Computers
-                                                    (12)</a></li>
-                                            <li><input type="checkbox" name="product-categori"><a
-                                                    href="#">Electronics
-                                                    (11)</a></li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- filter-sub-area end -->
-                            <!-- filter-sub-area start -->
-                            <div class="filter-sub-area pt-sm-10 pt-xs-10">
-                                <h5 class="filter-sub-titel">Categories</h5>
-                                <div class="categori-checkbox">
-                                    <form action="#">
-                                        <ul>
-                                            <li><input type="checkbox" name="product-categori"><a href="#">Graphic
-                                                    Corner (10)</a></li>
-                                            <li><input type="checkbox" name="product-categori"><a href="#"> Studio
-                                                    Design (6)</a></li>
-                                        </ul>
-                                    </form>
-                                </div>
-                            </div>
-                            <!-- filter-sub-area end -->
-                        </div>
-                        <!--sidebar-categores-box end  -->
                     </div>
                 </div>
             @else

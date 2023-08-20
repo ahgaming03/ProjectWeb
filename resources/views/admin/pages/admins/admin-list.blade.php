@@ -45,7 +45,7 @@
                                         </td>
                                         <td>{{ $admin->adminID }}</td>
                                         <td title="{{ $admin->firstName . ' ' . $admin->lastName }}">
-                                            {{ Str::limit($admin->firstName . ' ' . $admin->lastName, 15, '...') }}</td>
+                                            {{ Str::limit($admin->firstName . ' ' . $admin->lastName, 10, '...') }}</td>
                                         <td title="{{ $admin->address }}">{{ Str::limit($admin->address, 15, '...') }}</td>
                                         <td>{{ $admin->birthday }}</td>
                                         <td>{{ $admin->gender == 1 ? 'Male' : 'Female' }}</td>
@@ -55,9 +55,9 @@
                                         <td>{{ $admin->updated_at }}</td>
                                         <td>{{ $admin->created_at }}</td>
                                         <td>
-                                            <a href="{{ route('admin-edit', $admin->adminID) }}"
-                                                title="Edit this account" class="btn btn-inverse-primary btn-sm"><i
-                                                    class="bi bi-pencil-fill"></i></a> &nbsp;
+                                            <a href="{{ route('admin-edit', $admin->adminID) }}" title="Edit this account"
+                                                class="btn btn-inverse-primary btn-sm"><i class="bi bi-pencil-fill"></i></a>
+                                            &nbsp;
                                             <!-- Button trigger modal delete -->
                                             <button type="button" title="Delete this account"
                                                 class="btn btn-inverse-danger btn-sm" data-toggle="modal"
@@ -92,6 +92,9 @@
                                 @endforeach
                             </tbody>
                         </table>
+                    </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        {{ $admins->links('pagination::bootstrap-4') }}
                     </div>
                 </div>
             </div>

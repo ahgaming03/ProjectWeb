@@ -84,7 +84,7 @@ class AdminController extends Controller
         $admins = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
             ->select('admins.*', 'roles.name as roleName')
             ->whereNotIn('admins.roleID', [session('admin.adminID')])
-            ->get();
+            ->paginate(5);
         return view('admin.pages.admins.admin-list', compact('admins'));
     }
 

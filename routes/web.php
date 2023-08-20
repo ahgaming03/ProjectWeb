@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\Auth\ProviderController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\ManufacturerController;
@@ -8,6 +9,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
+use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -106,6 +108,14 @@ Route::get('/register', [CustomerController::class, 'register'])->name('customer
 Route::post('/register-process', [CustomerController::class, 'registerProcess'])->name('customer-register-process');
 Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-logout');
 
+// login with google
+// Route::get('/login/google', [ProviderController::class, 'redirect']);
+// Route::get('/login/google/callback', [ProviderController::class, 'callback']);
+
+// login with 
+Route::get('/login/{provider}/redirect', [ProviderController::class, 'redirect']);
+Route::get('/login/{provider}/callback', [ProviderController::class, 'callback']);
+
 // customer profile
 Route::get('/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
 Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])->name('customer-update');
@@ -119,3 +129,5 @@ Route::get('/products/{id}', [ProductController::class, 'productDetails'])->name
 
 // search
 Route::get('/search', [SearchController::class, 'search'])->name('web.search');
+
+

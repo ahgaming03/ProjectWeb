@@ -14,11 +14,22 @@
                                 @if (session()->has('error'))
                                     <div class="text-danger">{{ session()->get('error') }}</div>
                                 @endif
-                                @if(session('success'))
-                                <div class="alert alert-success">
-                                    {{ session('success') }}
-                                </div>
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
                                 @endif
+                                <div class="form-group row">
+                                    <div class="col-md-12">
+                                        <a href="/login/github/redirect" class="btn btn-secondary btn-block">
+                                            <i class="fa-brands fa-github"></i> Login with Github
+                                        </a>
+                                        <a href="/login/google/redirect" class="btn btn-danger btn-block">
+                                            <i class="fa-brands fa-google"></i> Login with Google
+                                        </a>
+                                    </div>
+                                </div>
+                                <p class="mt-2" style="text-align: center">OR</p>
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-20">
                                         <label>Username</label>
@@ -43,6 +54,15 @@
                                         <button type="submit" class="register-button mt-0">Login</button>
                                     </div>
                                 </div>
+                                <div class="mt-2">
+                                    Don't have an account? Click
+                                    <span class="font-weight-bold">
+                                        <u style="cursor: pointer">
+                                            <a href="{{ route('customer-register') }}">here</a>
+                                        </u>
+                                    </span>
+                                    to register.
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -50,5 +70,4 @@
             </div>
         </div>
     </div>
-    <!-- Login Content Area End Here -->
 @endsection

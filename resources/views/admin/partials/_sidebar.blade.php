@@ -14,10 +14,20 @@
                     <i class="menu-arrow"></i>
                 </a>
                 <div class="collapse" id="admin">
-                <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('admin-list') }}">Admin List</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('role-list') }}">Role List</a></li>
-                </ul>
+                    <ul class="nav flex-column sub-menu">
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('admin-list') }}">Admin List</a>
+                            <ul class="nav flex-column sub-menu" hidden>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('admin-add') }}">Add new</a>
+                                </li>
+                            </ul>
+                        </li>
+                        <li class="nav-item"> <a class="nav-link" href="{{ route('role-list') }}">Role List</a>
+                            <ul class="nav flex-column sub-menu" hidden>
+                                <li class="nav-item"><a class="nav-link" href="{{ route('role-add') }}">Add new</a>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
                 </div>
             </li>
         @endif
@@ -29,9 +39,25 @@
             </a>
             <div class="collapse" id="product">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('product-list') }}">Product list</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('category-list') }}">Category list</a></li>
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('manufacturer-list') }}">Manufacturer list</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('product-list') }}">Product list</a>
+                        <ul class="nav flex-column sub-menu" hidden>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('product-add') }}">Add new</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('category-list') }}">Category list</a>
+                        <ul class="nav flex-column sub-menu" hidden>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('category-add') }}">Add new</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('manufacturer-list') }}">Manufacturer
+                            list</a>
+                        <ul class="nav flex-column sub-menu" hidden>
+                            <li class="nav-item"><a class="nav-link" href="{{ route('manufacturer-add') }}">Add new</a>
+                            </li>
+                        </ul>
+                    </li>
                 </ul>
             </div>
         </li>
@@ -43,7 +69,8 @@
             </a>
             <div class="collapse" id="customer">
                 <ul class="nav flex-column sub-menu">
-                    <li class="nav-item"> <a class="nav-link" href="{{ route('customer-list') }}">Customer list</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="{{ route('customer-list') }}">Customer list</a>
+                    </li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('order-list') }}">Order list</a></li>
                     <li class="nav-item"> <a class="nav-link" href="{{ route('customer-feedback') }}">Feedback list</a>
                     </li>

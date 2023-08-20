@@ -8,10 +8,12 @@ use App\Models\Product;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
-use Illuminate\Support\Str;
 
 class ProductController extends Controller
 {
+    /**
+     * Admin
+     */
     public function productList()
     {
         $pro = Product::join('categories', 'products.categoryID', 'categories.categoryID')
@@ -37,13 +39,14 @@ class ProductController extends Controller
             'cover' => 'required|image|max:2048',
         ]);
 
-        $productID = Str::upper($request->id);
+        $productID = strtoupper($request->id);
         $name = $request->name;
         $price = $request->price;
         $categoryID = $request->category;
         $manufacturerID = $request->manufacturer;
         $details = $request->details;
 
+        // Check cover image and product ID have exist
         if ($request->hasFile('cover') && $productID) {
             $file = $request->file('cover');
             $imageName = $productID . '_C.png';
@@ -65,10 +68,10 @@ class ProductController extends Controller
                 $index = 0;
                 $files = $request->file('images');
                 foreach ($files as $file) {
-                    $imageName = $request->id . '_' . $index++ . '.png';
+                    $imageName = $productID . '_' . $index++ . '.png';
                     $file->move($destinationPath, $imageName);
                     $img = new Image([
-                        'productID' => $request->id,
+                        'productID' => $productID,
                         'imageName' => $imageName,
                     ]);
                     $img->save();
@@ -100,7 +103,7 @@ class ProductController extends Controller
             $file = $request->file('cover');
             $imageName = $request->id . '_C.png';
             $destinationPath = public_path('admjn/images/uploads/products/');
-            $file->move($destinationPath, $imageName);      
+            $file->move($destinationPath, $imageName);
 
             Product::where('productID', '=', $request->id)
                 ->update([
@@ -126,7 +129,7 @@ class ProductController extends Controller
             $index = 0;
             $files = $request->file('images');
             $destinationPath = public_path('admjn/images/uploads/products/');
-            
+
             $images = Image::where('productID', '=', $request->id);
             foreach ($images as $image) {
                 if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
@@ -147,15 +150,6 @@ class ProductController extends Controller
 
         return redirect()->back()->with('success', 'Product updated successfully!');
     }
-
-    public function deleteImage($id)
-    {
-        $image = Image::where('imageID', '=', $id)->first();
-        if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
-            File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
-        Image::where('imageID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'Image deleted successfully!');
-    }
     public function deleteCover($id)
     {
         $cover = Product::where('productID', '=', $id)->first()->cover;
@@ -168,6 +162,15 @@ class ProductController extends Controller
             ]);
         return redirect()->back()->with('success', 'Cover deleted successfully!');
     }
+    public function deleteImage($id)
+    {
+        $image = Image::where('imageID', '=', $id)->first();
+        if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
+            File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
+        Image::where('imageID', '=', $id)->delete();
+        return redirect()->back()->with('success', 'Image deleted successfully!');
+    }
+
 
     public function productDelete($id)
     {
@@ -185,8 +188,9 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'A product deleted successfully');
     }
 
-
-    // customer dashboard
+    /**
+     * customer
+     */
     public function index()
     {
         $products = Product::join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')

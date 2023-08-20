@@ -45,8 +45,12 @@ class ManufacturerController extends Controller
     }
     public function manufacturerDelete($id)
     {
-        Manufacturer::where('manufacturerID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'Manufacturer deleted successfully');
+        try {
+            Manufacturer::where('manufacturerID', '=', $id)->delete();
+            return redirect()->back()->with('success', 'Manufacturer deleted successfully');
+        } catch (\Exception $ex) {
+            return redirect()->back()->with('error', 'Manufacturer cannot be deleted!');
+        }
     }
 
 }

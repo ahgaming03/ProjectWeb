@@ -68,21 +68,22 @@ class AdminController extends Controller
             ->take(5)
             ->get();
 
-        return view('admin.dashboard', compact( 'orders', 'customers'));
+        return view('admin.dashboard', compact('orders', 'customers'));
     }
 
     public function profile()
     {
         $admin = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
-        ->where('adminID', '=', Session('admin.adminID'))
-        ->select('admins.*', 'roles.name as roleName')
-        ->first();
+            ->where('adminID', '=', Session('admin.adminID'))
+            ->select('admins.*', 'roles.name as roleName')
+            ->first();
         return view('admin.pages.admins.profile', compact('admin'));
     }
     public function adminList()
     {
         $admins = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
             ->select('admins.*', 'roles.name as roleName')
+            ->whereNotIn('admins.roleID', [session('admin.adminID')])
             ->get();
         return view('admin.pages.admins.admin-list', compact('admins'));
     }

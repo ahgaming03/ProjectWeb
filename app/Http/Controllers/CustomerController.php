@@ -2,19 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Image;
-use App\Models\Manufacturer;
-use App\Models\Product;
 use Illuminate\Http\Request;
 use App\Models\Customer;
 use App\Models\Feedback; // Add the import for the Feedback model
 use Carbon\Carbon;
-use Illuminate\Foundation\Auth\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
-
-use Illuminate\Support\Facades\DB;
 
 
 class CustomerController extends Controller
@@ -30,7 +23,12 @@ class CustomerController extends Controller
         $customers = Customer::all();
         return view('admin.pages.Customers.customer-list', compact('customers'));
     }
-
+    public function customerDelete($ID)
+    {
+        Customer::where('customerID', '=', $ID)->delete();
+        return redirect()->back()->with('success', 'An account deleted successfully');
+    }
+    // admin feedback management
     public function feedbackList()
     {
         // Fetch all feedbacks for the currently logged-in customer
@@ -41,7 +39,7 @@ class CustomerController extends Controller
     /**
      * customer role
      */
-    
+
     //function login
     public function login()
     {
@@ -54,7 +52,6 @@ class CustomerController extends Controller
     }
 
     public function registerProcess(Request $request)
-
     {
         // Validate the received data
         $request->validate([
@@ -119,7 +116,6 @@ class CustomerController extends Controller
         }
     }
 
-    // profile
     public function profile()
     {
         if (session()->has('customer')) {
@@ -132,8 +128,6 @@ class CustomerController extends Controller
         }
     }
 
-
-    // customer save
     public function customerSave(Request $request)
     {
         $request->validate([
@@ -202,7 +196,6 @@ class CustomerController extends Controller
 
         return redirect()->back()->with('success', 'Account updated successfully');
     }
-    // changePassword
     public function changePassword(Request $request)
     {
         $request->validate([
@@ -221,9 +214,6 @@ class CustomerController extends Controller
         }
     }
 
-
-
-    // upload image
     public function uploadImage(Request $request)
     {
         $request->validate([
@@ -256,14 +246,11 @@ class CustomerController extends Controller
 
         return redirect()->back()->with('error', 'Invalid photo.');
     }
-    public function customerDelete($ID)
-    {
-        Customer::where('customerID', '=', $ID)->delete();
-        return redirect()->back()->with('success', 'An account deleted successfully');
-    }
     public function customerEdit($ID)
     {
         $customer = Customer::where('customerID', '=', $ID)->first();
         return view('customer-edit', compact('customer'));
     }
+
+    
 }

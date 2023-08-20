@@ -76,9 +76,9 @@
                 <!-- Begin Header Middle Right Area -->
                 <div class="col-lg-9">
                     <!-- Begin Header Middle Searchbox Area -->
-                    <form action="#" class="hm-searchbox">
-                        <input type="text" placeholder="Enter your search key ...">
-                        <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                    <form action="{{route('web.search')}}" method="GET" class="hm-searchbox">
+                        <input type="text" name="search" placeholder="Enter your search key ...">
+                        <button type="submit" class="li-btn" ><i class="fa fa-search"></i></button>
                     </form>
                     <!-- Header Middle Searchbox Area End Here -->
                     <!-- Begin Header Middle Right Area -->

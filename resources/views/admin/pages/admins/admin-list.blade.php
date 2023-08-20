@@ -55,7 +55,7 @@
                                         <td>{{ $admin->updated_at }}</td>
                                         <td>{{ $admin->created_at }}</td>
                                         <td>
-                                            <a href="{{ url('admin/admin-edit/' . $admin->adminID) }}"
+                                            <a href="{{ route('admin-edit', $admin->adminID) }}"
                                                 title="Edit this account" class="btn btn-inverse-primary btn-sm"><i
                                                     class="bi bi-pencil-fill"></i></a> &nbsp;
                                             <!-- Button trigger modal delete -->
@@ -81,7 +81,7 @@
                                                             <button type="button"
                                                                 class="btn btn-inverse-danger btn-rounded"
                                                                 data-dismiss="modal">Cancel</button>
-                                                            <a href="{{ url('admin/admin-delete/' . $admin->adminID) }}"
+                                                            <a href="{{ route('admin-delete', $admin->adminID) }}"
                                                                 class="btn btn-inverse-success btn-rounded ">Delete</a>
                                                         </div>
                                                     </div>

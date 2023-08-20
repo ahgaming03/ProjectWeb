@@ -88,29 +88,25 @@ Route::middleware(['isLoggedIn'])->group(function () {
 
     // feedbacks management
     Route::get('admin/customers/feedback-list', [CustomerController::class, 'feedbackList'])->name('customer-feedback');
-    
+
     // orders management
     Route::get('admin/orders/order-list', [OrderController::class, 'orderList'])->name('order-list');
     Route::get('admin/orders/order-detail/{id}', [OrderController::class, 'orderDetail'])->name('order-detail');
     Route::get('admin/orders/order-delete/{id}', [OrderController::class, 'orderDelete'])->name('order-delete');
-    
+
 });
 
 
 /**
  * customer
  */
-
+// login/register/logout
 Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
-Route::get('/login', [CustomerController::class, 'login'])->name('customer-login');
+Route::get('/login', [CustomerController::class, 'login'])->name('customer-login')->middleware('alreadyLoggedIn');
 Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('customer-login-process');
-Route::get('/register', [CustomerController::class, 'register'])->name('customer-register');
+Route::get('/register', [CustomerController::class, 'register'])->name('customer-register')->middleware('alreadyLoggedIn');
 Route::post('/register-process', [CustomerController::class, 'registerProcess'])->name('customer-register-process');
 Route::get('/logout', [CustomerController::class, 'logout'])->name('customer-logout');
-
-// login with google
-// Route::get('/login/google', [ProviderController::class, 'redirect']);
-// Route::get('/login/google/callback', [ProviderController::class, 'callback']);
 
 // login with 
 Route::get('/login/{provider}/redirect', [ProviderController::class, 'redirect']);
@@ -129,5 +125,3 @@ Route::get('/products/{id}', [ProductController::class, 'productDetails'])->name
 
 // search
 Route::get('/search', [SearchController::class, 'search'])->name('web.search');
-
-

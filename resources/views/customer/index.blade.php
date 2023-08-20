@@ -1,6 +1,7 @@
 @extends('customer.layouts.frontend')
 
 @section('content')
+{{-- @dd(session()->all()) --}}
     <!-- Begin Slider With Category Menu Area -->
     <link rel="stylesheet" href="{{ asset('customer/vendors/ti-icons/css/themify-icons.css') }}">
     <div class="slider-with-banner">

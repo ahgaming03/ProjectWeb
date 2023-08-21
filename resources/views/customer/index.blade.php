@@ -1,7 +1,6 @@
 @extends('customer.layouts.frontend')
 
 @section('content')
-{{-- @dd(session()->all()) --}}
     <!-- Begin Slider With Category Menu Area -->
     <link rel="stylesheet" href="{{ asset('customer/vendors/ti-icons/css/themify-icons.css') }}">
     <div class="slider-with-banner">
@@ -120,7 +119,7 @@
                                             <!-- single-product-wrap start -->
                                             <div class="single-product-wrap">
                                                 <div class="product-image">
-                                                    <a href="{{ route('product-detail', [$product->productID]) }}">
+                                                    <a href="{{ route('product-detail', $product->productID) }}">
                                                         @if ($product->cover)
                                                             <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
                                                                 alt="Product Image">
@@ -157,7 +156,7 @@
                                                     </div>
                                                     <div class="add-actions">
                                                         <ul class="add-actions-link">
-                                                            <li class="add-cart active"><a href="#">Add to cart</a>
+                                                            <li class="add-cart active"><a href="{{route('add-to-cart', $product->productID)}}">Add to cart</a>
                                                             </li>
                                                             <li><a class="links-details" href="#"><i
                                                                         class="fa fa-heart-o"></i></a></li>

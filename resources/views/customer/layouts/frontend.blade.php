@@ -138,18 +138,9 @@
                                                     <span class="new-price new-price-2">${{ $product->price }}</span>
                                                 </div>
                                                 <div class="single-add-to-cart">
-                                                    <form action="#" class="cart-quantity">
-                                                        <div class="quantity">
-                                                            <label>Quantity</label>
-                                                            <div class="cart-plus-minus">
-                                                                <input class="cart-plus-minus-box" value="1"
-                                                                    type="text">
-                                                                <div class="dec qtybutton"><i
-                                                                        class="fa fa-angle-down"></i></div>
-                                                                <div class="inc qtybutton"><i
-                                                                        class="fa fa-angle-up"></i></div>
-                                                            </div>
-                                                        </div>
+                                                    <form action="{{ route('add-to-cart', $product->productID) }}"
+                                                        class="cart-quantity">
+                                                        @csrf
                                                         <button class="add-to-cart" type="submit">Add to
                                                             cart</button>
                                                     </form>

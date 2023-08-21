@@ -55,4 +55,6 @@ class OrderController extends Controller
         return view('admin.pages.customers.order-detail', compact('orderDetails', 'information'));
 
     }
+
+    
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Role;
+use Exception;
 
 
 class RoleController extends Controller
@@ -49,7 +50,7 @@ class RoleController extends Controller
         try {
             Role::where('roleID', '=', $id)->delete();
             return redirect()->back()->with('success', 'Role deleted successfully');
-        } catch (\Exception $ex) {
+        } catch (Exception $ex) {
             return redirect()->back()->with('error', 'This role is being used by another account!');
         }
     }

@@ -88,7 +88,6 @@
                             <div class="form-group col-md-4">
                                 <label for="role">Role<span class="text-danger">*</span></label>
                                 <select class="form-control form-control-sm" id="role" name="role">
-                                    <option></option>
                                     @foreach ($roles as $role)
                                         <option value="{{ $role->roleID }}">{{ $role->name }}</option>
                                     @endforeach

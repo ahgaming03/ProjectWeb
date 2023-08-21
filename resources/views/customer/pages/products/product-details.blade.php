@@ -60,15 +60,8 @@
                                 <span class="new-price new-price-2">${{ $product->price }}</span>
                             </div>
                             <div class="single-add-to-cart">
-                                <form action="#" class="cart-quantity">
-                                    <div class="quantity">
-                                        <label>Quantity</label>
-                                        <div class="cart-plus-minus">
-                                            <input class="cart-plus-minus-box" value="1" type="text">
-                                            <div class="dec qtybutton"><i class="fa fa-angle-down"></i></div>
-                                            <div class="inc qtybutton"><i class="fa fa-angle-up"></i></div>
-                                        </div>
-                                    </div>
+                                <form action="{{ route('add-to-cart', $product->productID) }}" class="cart-quantity">
+                                    @csrf
                                     <button class="add-to-cart" type="submit">Add to cart</button>
                                 </form>
                             </div>
@@ -103,7 +96,8 @@
                     </div>
                 </div>
                 <div id="reviews" class="tab-pane" role="tabpanel">
-                    <div class="product-reviews">
+                    <h3 class="mt-2" style="color: red">Coming soon</h3>
+                    {{-- <div class="product-reviews">
                         <div class="product-details-comment-block">
                             <div class="comment-review">
                                 <span>Grade</span>
@@ -212,7 +206,7 @@
                             </div>
                             <!-- Quick View | Modal Area End Here -->
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -273,7 +267,9 @@
                                             </div>
                                             <div class="add-actions">
                                                 <ul class="add-actions-link">
-                                                    <li class="add-cart active"><a href="#">Add to cart</a></li>
+                                                    <li class="add-cart active"><a
+                                                            href="{{ route('add-to-cart', $product->productID) }}">Add to
+                                                            cart</a></li>
                                                     <li><a href="#" title="quick view" class="quick-view-btn"
                                                             data-toggle="modal"
                                                             data-target="#modalCenter-{{ $product->productID }}"><i

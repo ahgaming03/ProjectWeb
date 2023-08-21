@@ -9,7 +9,6 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
 use Illuminate\Support\Facades\Route;
-use Laravel\Socialite\Facades\Socialite;
 
 /*
 |--------------------------------------------------------------------------
@@ -100,8 +99,10 @@ Route::middleware(['isLoggedIn'])->group(function () {
 /**
  * customer
  */
-// login/register/logout
+// dashboard
 Route::get('/', [CustomerController::class, 'index'])->name('customer-index');
+
+// login/register/logout
 Route::get('/login', [CustomerController::class, 'login'])->name('customer-login')->middleware('alreadyLoggedIn');
 Route::post('/login-process', [CustomerController::class, 'loginProcess'])->name('customer-login-process');
 Route::get('/register', [CustomerController::class, 'register'])->name('customer-register')->middleware('alreadyLoggedIn');
@@ -125,3 +126,11 @@ Route::get('/products/{id}', [ProductController::class, 'productDetails'])->name
 
 // search
 Route::get('/search', [SearchController::class, 'search'])->name('web.search');
+
+// carts
+Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add-to-cart');
+Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+Route::get('remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('remove-from-cart');
+Route::post('cart-update', [ProductController::class, 'cartUpdate'])->name('cart-update');
+Route::get('cart-info-order', [ProductController::class, 'cartInfoOrder'])->name('cart-info-order');
+Route::post('checkout', [ProductController::class, 'checkout'])->name('checkout');

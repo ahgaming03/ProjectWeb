@@ -76,9 +76,9 @@
                 <!-- Begin Header Middle Right Area -->
                 <div class="col-lg-9">
                     <!-- Begin Header Middle Searchbox Area -->
-                    <form action="{{route('web.search')}}" method="GET" class="hm-searchbox">
+                    <form action="{{ route('web.search') }}" method="GET" class="hm-searchbox">
                         <input type="text" name="query" placeholder="Enter your search key ..." required>
-                        <button type="submit" class="li-btn" ><i class="fa fa-search"></i></button>
+                        <button type="submit" class="li-btn"><i class="fa fa-search"></i></button>
                     </form>
                     <!-- Header Middle Searchbox Area End Here -->
                     <!-- Begin Header Middle Right Area -->
@@ -86,7 +86,7 @@
                         <ul class="hm-menu">
                             <!-- Begin Header Middle Wishlist Area -->
                             <li class="hm-wishlist">
-                                <a href="wishlist.html">
+                                <a href="#">
                                     <span class="cart-item-count wishlist-item-count">0</span>
                                     <i class="fa fa-heart-o"></i>
                                 </a>
@@ -96,43 +96,52 @@
                             <li class="hm-minicart">
                                 <div class="hm-minicart-trigger">
                                     <span class="item-icon"></span>
-                                    <span class="item-text">$80.00
-                                        <span class="cart-item-count">2</span>
+                                    @php
+                                        $totalCost = 0;
+                                        $totalCost = array_reduce((array) session('cart'), function ($carry, $item) {
+                                            return $carry + $item['quantity'] * $item['price'];
+                                        });
+                                    @endphp
+                                    <span class="item-text">${{ $totalCost }}
+                                        @php
+                                            $totalQuantity = array_reduce(
+                                                (array) session('cart'),
+                                                function ($carry, $item) {
+                                                    return $carry + $item['quantity'];
+                                                },
+                                                0,
+                                            );
+                                        @endphp
+                                        <span class="cart-item-count">{{ $totalQuantity }}</span>
                                     </span>
                                 </div>
-                                <span></span>
                                 <div class="minicart">
                                     <ul class="minicart-product-list">
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="{{ asset('customer/images/product/small-size/1.jpg') }}"
-                                                    alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>$40 x 1</span>
-                                            </div>
-                                            <button class="close">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
-                                        <li>
-                                            <a href="single-product.html" class="minicart-product-image">
-                                                <img src="{{ asset('customer/images/product/small-size/2.jpg') }}"
-                                                    alt="cart products">
-                                            </a>
-                                            <div class="minicart-product-details">
-                                                <h6><a href="single-product.html">Aenean eu tristique</a></h6>
-                                                <span>$40 x 1</span>
-                                            </div>
-                                            <button class="close">
-                                                <i class="fa fa-close"></i>
-                                            </button>
-                                        </li>
+                                        @php
+                                            $carts = session('cart');
+                                        @endphp
+                                        @php $total = 0 @endphp
+                                        @if (session('cart'))
+                                            @foreach (session('cart') as $item => $details)
+                                                <li>
+                                                    <a href="{{route('product-detail', $item)}}" class="minicart-product-image">
+                                                        <img src="{{ asset('admjn/images/uploads/products/' . $details['cover']) }}"
+                                                            alt="cart products">
+                                                    </a>
+                                                    <div class="minicart-product-details">
+                                                        <h6><a href="{{route('product-detail', $item)}}">{{ $details['name'] }}</a></h6>
+                                                        <span>${{ $details['price'] }} x {{ $details['quantity'] }}</span>
+                                                    </div>
+                                                    <button class="close">
+                                                        <i class="fa fa-close"></i>
+                                                    </button>
+                                                </li>
+                                            @endforeach
+                                        @endif
                                     </ul>
-                                    <p class="minicart-total">SUBTOTAL: <span>$80.00</span></p>
+                                    <p class="minicart-total">SUBTOTAL: <span>${{ $totalCost }}</span></p>
                                     <div class="minicart-button">
-                                        <a href="#"
+                                        <a href="{{ route('cart') }}"
                                             class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                             <span>View Full Cart</span>
                                         </a>

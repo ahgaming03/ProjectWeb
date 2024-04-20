@@ -3,12 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Category;
-use App\Models\Customer;
 use App\Models\Manufacturer;
-use App\Models\Order;
-use App\Models\OrderDetail;
-use App\Models\PaymentMethod;
-use App\Models\Payment_method;
 use App\Models\Product;
 use App\Models\Image;
 use Illuminate\Http\Request;
@@ -24,6 +19,7 @@ class ProductController extends Controller
         $pro = Product::join('categories', 'products.categoryID', 'categories.categoryID')
             ->join('manufacturers', 'products.manufacturerID', 'manufacturers.manufacturerID')
             ->select('products.*', 'categories.name as categoryName', 'manufacturers.name as manufacturerName')
+            ->orderBy('products.productID')
             ->get();
         return view('admin.pages.products.product-list', compact('pro'));
     }
@@ -42,6 +38,8 @@ class ProductController extends Controller
             'id' => 'required|unique:products,productID',
             'name' => 'required',
             'cover' => 'required|image|max:2048',
+            'images.*' => 'image|max:2048',
+            'price' => 'required|numeric',
         ]);
 
         $productID = strtoupper($request->id);
@@ -59,15 +57,14 @@ class ProductController extends Controller
             $file->move($destinationPath, $imageName);
 
             // insert to database
-            $pros = new Product([
-                'productID' => $productID,
-                'name' => $name,
-                'price' => $price,
-                'categoryID' => $categoryID,
-                'manufacturerID' => $manufacturerID,
-                'details' => $details,
-                'cover' => $imageName,
-            ]);
+            $pros = new Product;
+            $pros->productID = $productID;
+            $pros->name = $name;
+            $pros->price = $price;
+            $pros->categoryID = $categoryID;
+            $pros->manufacturerID = $manufacturerID;
+            $pros->details = $details;
+            $pros->cover = $imageName;
             $pros->save();
 
             if ($request->hasFile('images')) {
@@ -76,10 +73,11 @@ class ProductController extends Controller
                 foreach ($files as $file) {
                     $imageName = $productID . '_' . $index++ . '.png';
                     $file->move($destinationPath, $imageName);
-                    $img = new Image([
-                        'productID' => $productID,
-                        'imageName' => $imageName,
-                    ]);
+
+                    // insert to database
+                    $img = new Image;
+                    $img->productID = $productID;
+                    $img->imageName = $imageName;
                     $img->save();
                 }
             }
@@ -103,6 +101,7 @@ class ProductController extends Controller
             'name' => 'required',
             'cover' => 'image|max:2048',
             'images.*' => 'image|max:2048',
+            'price' => 'required|numeric',
         ]);
 
         // update cover image
@@ -133,7 +132,6 @@ class ProductController extends Controller
         }
 
         if ($request->hasFile('images')) {
-            $index = 0;
             $files = $request->file('images');
             $destinationPath = public_path('admjn/images/uploads/products/');
 
@@ -144,13 +142,14 @@ class ProductController extends Controller
             }
             Image::where('productID', '=', $request->id)->delete();
 
+            $index = 0;
             foreach ($files as $file) {
                 $imageName = $request->id . '_' . $index++ . '.png';
                 $file->move($destinationPath, $imageName);
-                $img = new Image([
-                    'productID' => $request->id,
-                    'imageName' => $imageName,
-                ]);
+
+                $img = new Image;
+                $img->productID = $request->id;
+                $img->imageName = $imageName;
                 $img->save();
             }
         }
@@ -181,18 +180,22 @@ class ProductController extends Controller
 
     public function productDelete($id)
     {
-        $product = Product::where('productID', '=', $id)->first();
-        if (File::exists(public_path('admjn/images/uploads/products/' . $product->cover)))
-            File::delete(public_path('admjn/images/uploads/products/' . $product->cover));
+        try {
+            $product = Product::where('productID', '=', $id)->first();
+            $images = Image::where('productID', '=', $id)->get();
+            Product::where('productID', '=', $id)->delete();
+            if (File::exists(public_path('admjn/images/uploads/products/' . $product->cover)))
+                File::delete(public_path('admjn/images/uploads/products/' . $product->cover));
 
-        $images = Image::where('productID', '=', $id)->get();
-        foreach ($images as $image) {
-            if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
-                File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
+            foreach ($images as $image) {
+                if (File::exists(public_path('admjn/images/uploads/products/' . $image->imageName)))
+                    File::delete(public_path('admjn/images/uploads/products/' . $image->imageName));
+            }
+
+            return redirect()->back()->with('success', 'A product deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Cannot delete this product');
         }
-
-        Product::where('productID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'A product deleted successfully');
     }
 
     /**
@@ -206,6 +209,7 @@ class ProductController extends Controller
         $categories = Category::get();
         $manufacturers = Manufacturer::get();
         $images = Image::get();
+        
         return view('customer.index', compact('products', 'categories', 'manufacturers', 'images'));
     }
     public function productDetails($id)
@@ -224,109 +228,7 @@ class ProductController extends Controller
         return view('customer.pages.products.product-details', compact('products', 'images', 'product'));
     }
 
-    public function addToCart($id)
-    {
-        $product = Product::where('productID', $id)->first();
 
-        $cart = session()->get('cart', []);
-
-        if (isset($cart[$id])) {
-            $cart[$id]['quantity']++;
-        } else {
-            $cart[$id] = [
-                'name' => $product->name,
-                'quantity' => 1,
-                'price' => $product->price,
-                'cover' => $product->cover,
-            ];
-        }
-
-        session()->put('cart', $cart);
-        return redirect()->back();
-    }
-
-    public function cart()
-    {
-        return view('customer.pages.carts.cart');
-    }
-
-    public function removeFromCart($id)
-    {
-        $cart = session()->get('cart');
-        if (isset($cart[$id])) {
-            unset($cart[$id]);
-            session()->put('cart', $cart);
-        }
-        return redirect()->back();
-    }
-
-    public function cartUpdate(Request $request)
-    {
-        if ($request->has('productId') && $request->has('quantity')) {
-            $cart = session()->get('cart');
-            $cart[$request->productId]['quantity'] = $request->quantity;
-            session()->put('cart', $cart);
-            return response()->json(['success' => true]);
-        }
-        return response()->json(['success' => false]);
-    }
-    public function cartInfoOrder()
-    {
-        $cart = session()->get('cart');
-        $total = 0;
-        foreach ($cart as $item) {
-            $total += $item['quantity'] * $item['price'];
-        }
-        $customer = Customer::where('customerID', '=', session()->get('customer.ID'))->first();
-        $paymentMethods = PaymentMethod::get();
-        return view('customer.pages.carts.cart-info-order', compact('cart', 'total', 'customer', 'paymentMethods'));
-    }
-    public function checkout(Request $request){
-        $cart = session()->get('cart');
-        $total = 0;
-        foreach ($cart as $item) {
-            $total += $item['quantity'] * $item['price'];
-        }
-        
-
-        $request->validate([
-            'name' => 'required|min: 3',
-            'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
-            'address' => 'required',
-        ]);
-
-        $customerID = session()->get('customer.ID');
-        $fullName = $request->fullName;
-        $phoneNumber = $request->phoneNumber;
-        $address = $request->address;
-        $paymentMethod = $request->paymentMethod;
-
-        session('customer.fullName', $fullName);
-        session('customer.phoneNumber', $phoneNumber);
-        session('customer.address', $address);
-
-        
-        $order = new Order([
-            'customerID' => $customerID,
-            'totalPrice' => $total,
-            'orderStatus' => 1,
-            'address' => $address,
-            'paymentMethodID' => $paymentMethod,
-        ]);
-        $order->save();
-
-        foreach ($cart as $item) {
-            $orderDetail = new OrderDetail([
-                'orderID' => $order->orderID,
-                'productID' => $item['id'],
-                'quantity' => $item['quantity'],
-            ]);
-            $orderDetail->save();
-        }
-
-        session()->forget('cart');
-        return redirect()->route('product-index')->with('success', 'Order successfully!');
-    }
 
 
 }

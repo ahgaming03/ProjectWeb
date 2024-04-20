@@ -35,7 +35,7 @@ class ProviderController extends Controller
                 'username' => Customer::generateUsername($socialUser->nickname),
                 'password' => Hash::make(Str::random(25)),
                 'email' => $socialUser->email,
-                'photo' => $socialUser->avatar,
+                'photo' => 'default_profile_photo.jpg',
                 'provider_token' => $socialUser->token,
             ]);
         }

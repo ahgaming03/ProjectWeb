@@ -8,6 +8,7 @@ use App\Http\Controllers\OrderController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SearchController;
+use App\Http\Controllers\ShoppingCartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -114,7 +115,7 @@ Route::get('/login/{provider}/redirect', [ProviderController::class, 'redirect']
 Route::get('/login/{provider}/callback', [ProviderController::class, 'callback']);
 
 // customer profile
-Route::get('/profiles/profile', [CustomerController::class, 'profile'])->name('customer-profile');
+Route::get('/profile', [CustomerController::class, 'profile'])->name('customer-profile');
 Route::post('/customer-update', [CustomerController::class, 'customerUpdate'])->name('customer-update');
 Route::post('/customer-save', [CustomerController::class, 'customerSave'])->name('customer-save');
 Route::post('/change-password', [CustomerController::class, 'changePassword'])->name('change-password');
@@ -128,9 +129,9 @@ Route::get('/products/{id}', [ProductController::class, 'productDetails'])->name
 Route::get('/search', [SearchController::class, 'search'])->name('web.search');
 
 // carts
-Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add-to-cart');
-Route::get('cart', [ProductController::class, 'cart'])->name('cart');
-Route::get('remove-from-cart/{id}', [ProductController::class, 'removeFromCart'])->name('remove-from-cart');
-Route::post('cart-update', [ProductController::class, 'cartUpdate'])->name('cart-update');
-Route::get('cart-info-order', [ProductController::class, 'cartInfoOrder'])->name('cart-info-order');
-Route::post('checkout', [ProductController::class, 'checkout'])->name('checkout');
+Route::get('add-to-cart/{id}', [ShoppingCartController::class, 'addToCart'])->name('add-to-cart');
+Route::get('cart', [ShoppingCartController::class, 'cart'])->name('cart');
+Route::get('remove-from-cart/{id}', [ShoppingCartController::class, 'removeFromCart'])->name('remove-from-cart');
+Route::post('cart-update', [ShoppingCartController::class, 'cartUpdate'])->name('cart-update');
+Route::get('cart-info-order', [ShoppingCartController::class, 'cartInfoOrder'])->name('cart-info-order');
+Route::post('checkout', [ShoppingCartController::class, 'checkout'])->name('checkout');

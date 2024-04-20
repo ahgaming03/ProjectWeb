@@ -98,9 +98,12 @@
                                     <span class="item-icon"></span>
                                     @php
                                         $totalCost = 0;
-                                        $totalCost = array_reduce((array) session('cart'), function ($carry, $item) {
-                                            return $carry + $item['quantity'] * $item['price'];
-                                        });
+                                        if (session('cart')) {
+                                            $cart = session('cart');
+                                            foreach ($cart as $item) {
+                                                $totalCost += $item['quantity'] * $item['price'];
+                                            }
+                                        }
                                     @endphp
                                     <span class="item-text">${{ $totalCost }}
                                         @php
@@ -115,6 +118,7 @@
                                         <span class="cart-item-count">{{ $totalQuantity }}</span>
                                     </span>
                                 </div>
+
                                 <div class="minicart">
                                     <ul class="minicart-product-list">
                                         @php
@@ -124,13 +128,17 @@
                                         @if (session('cart'))
                                             @foreach (session('cart') as $item => $details)
                                                 <li>
-                                                    <a href="{{route('product-detail', $item)}}" class="minicart-product-image">
+                                                    <a href="{{ route('product-detail', $item) }}"
+                                                        class="minicart-product-image">
                                                         <img src="{{ asset('admjn/images/uploads/products/' . $details['cover']) }}"
                                                             alt="cart products">
                                                     </a>
                                                     <div class="minicart-product-details">
-                                                        <h6><a href="{{route('product-detail', $item)}}">{{ $details['name'] }}</a></h6>
-                                                        <span>${{ $details['price'] }} x {{ $details['quantity'] }}</span>
+                                                        <h6><a
+                                                                href="{{ route('product-detail', $item) }}">{{ $details['name'] }}</a>
+                                                        </h6>
+                                                        <span>${{ $details['price'] }} x
+                                                            {{ $details['quantity'] }}</span>
                                                     </div>
                                                     <button class="close">
                                                         <i class="fa fa-close"></i>
@@ -145,11 +153,14 @@
                                             class="li-button li-button-dark li-button-fullwidth li-button-sm">
                                             <span>View Full Cart</span>
                                         </a>
-                                        <a href="#" class="li-button li-button-fullwidth li-button-sm">
-                                            <span>Checkout</span>
-                                        </a>
-                                    </div>
+                                        @if (session('cart'))
+                                            <a href="{{ route('cart-info-order') }}"
+                                                class="li-button li-button-fullwidth li-button-sm">
+                                                <span>Checkout</span>
+                                            </a>
+                                        @endif
 
+                                    </div>
                                 </div>
                             </li>
                             <!-- Header Mini Cart Area End Here -->

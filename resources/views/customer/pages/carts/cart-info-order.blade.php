@@ -4,37 +4,58 @@
         <div class="card">
             <div class="card-body">
                 <h4>Information order</h4>
-                <form action="{{route('checkout')}}" method="POST">
+                <form action="{{ route('checkout') }}" method="POST">
                     @csrf
                     <div class="row">
                         <div class="form-group col-md-6">
                             <label for="fullName">Full name:</label>
+                            @php
+                                if (session('customer.fullName')) {
+                                    $fullName = session('customer.fullName');
+                                } else {
+                                    $fullName = session('customer.firstName') . ' ' . session('customer.lastName');
+                                }
+                            @endphp
                             <input type="text" class="form-control" name="fullName" id="fullName"
-                                value="{{ session('customer.fullName') == null ? $customer->firstName . ' ' . $customer->lastName : old('fullName') }}">
-                                @error('fullName')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
+                                value="{{ $fullName }}">
+                            @error('fullName')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                         <div class="form-group col-md-6">
                             <label for="phoneNumber">Phone number:</label>
+                            @php
+                                if (session('customer.phoneNumber')) {
+                                    $phoneNumber = session('customer.phoneNumber');
+                                } else {
+                                    $phoneNumber = $customer->phoneNumber;
+                                }
+                            @endphp
                             <input type="text" class="form-control" name="phoneNumber" id="phoneNumber"
-                                value="{{ session('customer.phoneNumber') == null ? $customer->phoneNumber : old('phoneNumber') }}">
-                                @error('phoneNumber')
-                                    <div class="text-danger mt-2">{{ $message }}</div>
-                                @enderror
+                                value="{{ $phoneNumber }}">
+                            @error('phoneNumber')
+                                <div class="text-danger mt-2">{{ $message }}</div>
+                            @enderror
                         </div>
                     </div>
                     <div class="form-group">
                         <label for="address">Address:</label>
+                        @php
+                            if (session('customer.address')) {
+                                $address = session('customer.address');
+                            } else {
+                                $address = $customer->address;
+                            }
+                        @endphp
                         <input type="text" class="form-control" name="address" id="address"
-                            value="{{ session('customer.address') == null ? $customer->address : old('address') }}">
-                            @error('address')
-                                <div class="text-danger mt-2">{{ $message }}</div>
-                            @enderror
+                            value="{{ $address }}">
+                        @error('address')
+                            <div class="text-danger mt-2">{{ $message }}</div>
+                        @enderror
                     </div>
                     <div class="form-group">
-                        <label for="payment">Payment method:</label>
-                        <select class="form-control" name="payment" id="payment">
+                        <label for="paymentMethod">Payment method:</label>
+                        <select class="form-control" name="paymentMethod" id="paymentMethod">
                             @foreach ($paymentMethods as $paymentMethod)
                                 <option value="{{ $paymentMethod->paymentMethodID }}">
                                     {{ $paymentMethod->paymentType }}</option>

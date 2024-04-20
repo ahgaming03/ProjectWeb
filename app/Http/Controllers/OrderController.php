@@ -13,33 +13,27 @@ class OrderController extends Controller
     public function orderList()
     {
 
-        $orders = Order::all();
+        $orders = Order::select('orders.*')->paginate(10);
 
         return view('admin.pages.Customers.order-list', compact('orders'));
     }
     public function orderDelete($id)
     {
-        OrderDetail::where('orderID', 2)
+        OrderDetail::where('orderID', $id)
+            ->delete();
+        Order::where('orderID', $id)
             ->delete();
         return redirect()->route('order-list')->with('success', 'An order deleted successfully');
     }
     public function orderDetail($id)
     {
-        $information = DB::table('orders')
-            ->where('orderID', '=', $id)
-            ->join('customers', 'customers.customerID', 'orders.customerID')
+        $information = Order::where('orderID', '=', $id)
             ->join('payment_methods', 'payment_methods.paymentMethodID', 'orders.paymentMethodID')
             ->select(
-                'orders.orderID',
-                'customers.customerID',
-                'customers.firstName',
-                'customers.lastName',
-                'customers.phoneNumber',
-                'customers.address',
-                'orders.created_at',
+                'orders.*',
                 'payment_methods.paymentType'
             )
-            ->get();
+            ->first();
         $orderDetails = Order::join('order_details', 'orders.orderID', 'order_details.orderID')
             ->join('products', 'products.productID', 'order_details.productID')
             ->select(
@@ -55,6 +49,4 @@ class OrderController extends Controller
         return view('admin.pages.customers.order-detail', compact('orderDetails', 'information'));
 
     }
-
-    
 }

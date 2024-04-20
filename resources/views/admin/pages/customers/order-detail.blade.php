@@ -12,19 +12,41 @@
                                     aria-hidden="true">&times;</span></button>
                         </div>
                     @endif
-                    <div><b>Order ID:</b>{{ $information->first()->orderID }}</div>
-                    <div><b>Date:</b>{{ $information->first()->created_at }}</div>
-                    <div><b>Payment Method:</b>{{ $information->first()->paymentType }}</div>
-                    <div><b>Customer Name:</b>{{ $information->first()->firstName . ' ' . $information->first()->lastName }}
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div><b>Order ID: </b>{{ $information->orderID }}</div>
+                            <div><b>Customer Name: </b>{{ $information->fullName }}</div>
+                            <div><b>Phone Number: </b>{{ $information->phoneNumber }}</div>
+                            <div><b>Address: </b>{{ $information->address }}</div>
+                            <div><b>Payment Method: </b>{{ $information->paymentType }}</div>
+                            <div><b>Date: </b>{{ $information->created_at }}</div>
+                        </div>
+                        <div class="col-md-6">
+                            @php
+                                if ($information->orderStatus == 1) {
+                                    $status = 'Pending';
+                                } elseif ($information->orderStatus == 2) {
+                                    $status = 'Processing';
+                                } elseif ($information->orderStatus == 3) {
+                                    $status = 'Delivering';
+                                } elseif ($information->orderStatus == 4) {
+                                    $status = 'Delivered';
+                                } elseif ($information->orderStatus == 0) {
+                                    $status = 'Cancelled';
+                                }
+                            @endphp
+                            <div ><span style="font-weight: bolder;">Order Status: </span>{{ $status }}</div>
+                            <div><b>Shipping Fee: </b> <span style="color: red;">Free</span></div>
+                            <div><b>Total Price: </b>${{ $information->totalPrice }}</div>
+                        </div>
                     </div>
-                    <div><b>Phone Number:</b>{{ $information->first()->phoneNumber }}</div>
-                    <div><b>Address:</b>{{ $information->first()->address }}</div>
+                    <hr>
                     <!-- Button trigger modal delete -->
                     <button type="button" title="Delete this order" class="btn btn-inverse-danger btn-sm float-right mb-1"
-                        data-toggle="modal" data-target="#deleteModal{{ $information->first()->orderID }}"><i
+                        data-toggle="modal" data-target="#deleteModal{{ $information->orderID }}"><i
                             class="bi bi-trash-fill"></i>Delete order</button> &nbsp;
                     <!-- Modal delete -->
-                    <div class="modal fade" id="deleteModal{{ $information->first()->orderID}}" tabindex="-1"
+                    <div class="modal fade" id="deleteModal{{ $information->orderID }}" tabindex="-1"
                         aria-labelledby="deleteLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
@@ -39,7 +61,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-inverse-danger btn-rounded"
                                         data-dismiss="modal">Cancel</button>
-                                    <a href="{{ url('admin/orders/order-delete/' . $information->first()->orderID) }}"
+                                    <a href="{{ route('order-delete', $information->orderID) }}"
                                         class="btn btn-inverse-success btn-rounded ">Delete </a>
                                 </div>
                             </div>
@@ -53,7 +75,6 @@
                                     <th>Quantity</th>
                                     <th>Unit price</th>
                                     <th>Ext price</th>
-
                                 </tr>
                             </thead>
                             <tbody>
@@ -69,7 +90,6 @@
                                     <td colspan="3">Total</td>
                                     <td>${{ $order->totalPrice }}</td>
                                 </tr>
-
                             </tbody>
                         </table>
                     </div>

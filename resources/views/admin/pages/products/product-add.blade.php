@@ -32,7 +32,7 @@
                             <div class="form-group col-md-6">
                                 <label for="id">Product ID:</label>
                                 <input type="text" class="form-control form-control-sm" id="id"
-                                    value="{{ old('id') }}" name="id"placeholder="Enter Product ID" name="id">
+                                    value="{{ old('id') }}" name="id" placeholder="Enter Product ID">
                                 @error('id')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -49,8 +49,9 @@
                         <div class="row">
                             <div class="form-group col-md-4">
                                 <label for="price">Price:</label>
-                                <input type="number" step="0.01" class="form-control" id="price" value="{{ old('price') }}"
-                                    placeholder="Enter Product Price" name="price">
+                                <input type="number" step="0.01" class="form-control" id="price" min="0"
+                                    value="{{ old('price') == null ? 0 : old('price') }}" placeholder="Enter Product Price"
+                                    name="price">
                                 @error('price')
                                     <div class="text-danger mt-1">{{ $message }}</div>
                                 @enderror
@@ -74,7 +75,7 @@
                             </div>
                             <div class="form-group col-md-12">
                                 <label for="details">Details:</label>
-                                <textarea class="form-control" style="color:Tomato" rows="8 12" id="details" value="{{ old('details') }}"
+                                <textarea class="form-control" rows="8 12" id="details" value="{{ old('details') }}"
                                     placeholder="Enter Product Details" name="details"></textarea>
                             </div>
                             <div class="form-group col-md-4">

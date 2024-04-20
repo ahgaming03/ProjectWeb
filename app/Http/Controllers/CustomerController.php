@@ -25,8 +25,14 @@ class CustomerController extends Controller
     }
     public function customerDelete($ID)
     {
-        Customer::where('customerID', '=', $ID)->delete();
-        return redirect()->back()->with('success', 'An account deleted successfully');
+        try {
+            Customer::where('customerID', '=', $ID)->delete();
+            if (session()->has('customer'))
+                session()->forget('customer');
+            return redirect()->back()->with('success', 'An account deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'Cannot delete this account');
+        }
     }
     // admin feedback management
     public function feedbackList()
@@ -105,6 +111,8 @@ class CustomerController extends Controller
             } else {
                 return redirect()->back()->with('error', 'Username or password is incorrect');
             }
+        } else {
+            return redirect()->back()->with('error', 'Username or password is incorrect');
         }
     }
 
@@ -170,7 +178,6 @@ class CustomerController extends Controller
     {
         $request->validate([
             'firstName' => 'required|min:3',
-            // 'lastName' => 'min:4',
             'birthday' => 'required|before:' . Carbon::now()->subYears(18)->toDateString(),
             'phoneNumber' => 'required|regex:/^0[0-9]{2}[0-9]{3}[0-9]{4}$/',
             'email' => 'required|email',
@@ -193,6 +200,9 @@ class CustomerController extends Controller
             "gender" => $gender,
             "address" => $address,
         ]);
+
+        session()->put('customer.firstName', $firstName);
+        session()->put('customer.lastName', $lastName);
 
         return redirect()->back()->with('success', 'Account updated successfully');
     }
@@ -224,7 +234,7 @@ class CustomerController extends Controller
             [
                 'photo.required' => 'A photo is required',
                 'photo.image' => 'The file must be an image',
-                'photo.max' => 'The image size must not exceed 5MB',
+                'photo.max' => 'The image size must not exceed 2MB',
             ],
         ]);
 
@@ -238,7 +248,7 @@ class CustomerController extends Controller
             Customer::where('customerID', '=', $customerID)->update([
                 'photo' => $photo,
             ]);
-            if (session('customer.customerID') == $customerID) {
+            if (session('customer.ID') == $customerID) {
                 Session::put('customer.photo', $photo);
                 return redirect()->back()->with('success', 'Photo changed successfully.');
             }
@@ -252,5 +262,5 @@ class CustomerController extends Controller
         return view('customer-edit', compact('customer'));
     }
 
-    
+
 }

@@ -83,7 +83,7 @@ class AdminController extends Controller
     {
         $admins = Admin::join('roles', 'admins.roleID', '=', 'roles.roleID')
             ->select('admins.*', 'roles.name as roleName')
-            ->whereNotIn('admins.roleID', [session('admin.adminID')])
+            ->whereNotIn('admins.adminID', [session('admin.adminID')])
             ->paginate(5);
         return view('admin.pages.admins.admin-list', compact('admins'));
     }
@@ -160,6 +160,7 @@ class AdminController extends Controller
         $email = $request->email;
         $gender = $request->gender;
         $address = $request->address;
+        $role = $request->role;
 
         Admin::where('adminID', '=', $request->adminID)->update([
             "firstName" => $firstName,
@@ -169,6 +170,7 @@ class AdminController extends Controller
             "email" => $email,
             "gender" => $gender,
             "address" => $address,
+            "roleID" => $role,
         ]);
         return redirect()->back()->with('success', 'An account updated successfully');
     }
@@ -209,7 +211,7 @@ class AdminController extends Controller
             [
                 'photo.required' => 'A photo is required',
                 'photo.image' => 'The file must be an image',
-                'photo.max' => 'The image size must not exceed 5MB',
+                'photo.max' => 'The image size must not exceed 2MB',
             ],
         ]);
 

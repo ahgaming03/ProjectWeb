@@ -12,6 +12,20 @@
                             </a>
                         </div>
                     </div>
+                    @if (Session::has('success'))
+                        <div class="alert alert-success alert-dismissible" role="alert">
+                            {{ Session::get('success') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                    @endif
+                    @if (Session::has('error'))
+                        <div class="alert alert-danger alert-dismissible" role="alert">
+                            {{ Session::get('error') }}
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                    aria-hidden="true">&times;</span></button>
+                        </div>
+                    @endif
                     <table class="table table-hover">
                         <thead class="thead-light">
                             <tr>
@@ -26,7 +40,7 @@
                                 <tr>
                                     <td>{{ $ncat->categoryID }}</td>
                                     <th>{{ $ncat->name }}</th>
-                                    <th>{{ Str::limit($ncat->descriptions, 50, '...')  }}</th>
+                                    <th>{{ Str::limit($ncat->descriptions, 50, '...') }}</th>
                                     <td>
                                         <a href="{{ url('admin/categories/category-edit/') }}\{{ $ncat->categoryID }}"
                                             title="Edit this product"><i class="bi bi-pencil-fill"></i></a> &nbsp;

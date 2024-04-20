@@ -13,7 +13,8 @@ class CategoryController extends Controller
         return view('admin.pages.categories.category-list', compact('cat'));
     }
 
-    public function categoryAdd(){
+    public function categoryAdd()
+    {
         $cat = Category::get();
         return view('admin.pages.categories.category-add', compact('cat'));
     }
@@ -23,11 +24,12 @@ class CategoryController extends Controller
         $cats = new Category();
         $cats->name = $request->name;
         $cats->descriptions = $request->descriptions;
-        $cats->save(); 
+        $cats->save();
         return redirect()->back()->with('success', 'Category added successfully!');
     }
 
-    public function categoryEdit($id){
+    public function categoryEdit($id)
+    {
         $cat = Category::where('categoryID', '=', $id)->first();
         return view('admin.pages.categories.category-edit', compact('cat'));
     }
@@ -35,14 +37,19 @@ class CategoryController extends Controller
     public function categoryUpdate(Request $request)
     {
         Category::where('categoryID', '=', $request->id)
-        -> update([
-            'name'=>$request->name,
-            'descriptions'=>$request->descriptions
-        ]);
+            ->update([
+                'name' => $request->name,
+                'descriptions' => $request->descriptions
+            ]);
         return redirect()->back()->with('success', 'category updated successfully!');
     }
-    public function categoryDelete($id){
-        Category::where('categoryID', '=', $id)->delete();
-        return redirect()->back()->with('success', 'category deleted successfully');
+    public function categoryDelete($id)
+    {
+        try {
+            Category::where('categoryID', '=', $id)->delete();
+            return redirect()->back()->with('success', 'Category deleted successfully');
+        } catch (\Exception $e) {
+            return redirect()->back()->with('error', 'This category is being used by another product!');
+        }
     }
 }

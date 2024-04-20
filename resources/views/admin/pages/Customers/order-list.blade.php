@@ -42,6 +42,9 @@
                             </tbody>
                         </table>
                     </div>
+                    <div class="d-flex justify-content-end mt-2">
+                        {{ $orders->links('pagination::bootstrap-4') }}
+                    </div>
                 </div>
             </div>
         </div>

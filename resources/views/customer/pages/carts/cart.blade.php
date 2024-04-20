@@ -95,15 +95,14 @@
                                                 </td>
                                                 <td class="quantity">
                                                     <input data-product-id="{{ $item }}" class="cart_update"
-                                                        value="{{ $details['quantity'] }}" type="number" min="1"
-                                                        style="width: 75px;">
+                                                        value="{{ $details['quantity'] }}" type="number" min="1" max="10"
+                                                        style="width: 75px;" onkeydown="return false;">
                                                 </td>
                                                 <td class="product-subtotal"><span
                                                         class="amount">${{ $details['price'] * $details['quantity'] }}</span>
                                                 </td>
                                             </tr>
                                         @endforeach
-
                                     </tbody>
                                 </table>
                             </div>

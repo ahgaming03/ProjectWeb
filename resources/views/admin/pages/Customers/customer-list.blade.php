@@ -4,6 +4,20 @@
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title">Customer List</h4>
+                @if (Session::has('success'))
+                    <div class="alert alert-success alert-dismissible" role="alert">
+                        {{ Session::get('success') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                @endif
+                @if (Session::has('error'))
+                    <div class="alert alert-danger alert-dismissible" role="alert">
+                        {{ Session::get('error') }}
+                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
+                                aria-hidden="true">&times;</span></button>
+                    </div>
+                @endif
                 <div class="table-responsive">
                     <table class="table table-hover table-striped table-bordered">
                         <thead>
@@ -30,7 +44,8 @@
                                     <td>{{ $customer->customerID }}</td>
                                     <td title="{{ $customer->firstName . ' ' . $customer->lastName }}">
                                         {{ Str::limit($customer->firstName . ' ' . $customer->lastName, 15, '...') }}</td>
-                                    <td title="{{ $customer->address }}">{{ Str::limit($customer->address, 15, '...') }}</td>
+                                    <td title="{{ $customer->address }}">{{ Str::limit($customer->address, 15, '...') }}
+                                    </td>
                                     <td>{{ $customer->birthday }}</td>
                                     <td>{{ $customer->gender == 1 ? 'Male' : 'Female' }}</td>
                                     <td>{{ $customer->phoneNumber }}</td>

@@ -11,14 +11,7 @@
                             @csrf
                             <div class="login-form">
                                 <h4 class="login-title">Login</h4>
-                                @if (session()->has('error'))
-                                    <div class="text-danger">{{ session()->get('error') }}</div>
-                                @endif
-                                @if (session('success'))
-                                    <div class="alert alert-success">
-                                        {{ session('success') }}
-                                    </div>
-                                @endif
+
                                 <div class="form-group row">
                                     <div class="col-md-12">
                                         <a href="/login/github/redirect" class="btn btn-secondary btn-block">
@@ -30,6 +23,16 @@
                                     </div>
                                 </div>
                                 <p class="mt-2" style="text-align: center">OR</p>
+                                @if (session('success'))
+                                    <div class="alert alert-success">
+                                        {{ session('success') }}
+                                    </div>
+                                @endif
+                                @if (session('error'))
+                                    <div class="alert alert-danger">
+                                        {{ session('error') }}
+                                    </div>
+                                @endif
                                 <div class="row">
                                     <div class="col-md-12 col-12 mb-20">
                                         <label>Username</label>

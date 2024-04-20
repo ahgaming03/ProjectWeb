@@ -17,7 +17,7 @@
                             <ul>
                                 @foreach ($categories as $category)
                                     @continue(count($products->where('categoryID', $category->categoryID)) == 0)
-                                    <li class="right-menu"><a href="shop-left-sidebar.html">{{ $category->name }}</a>
+                                    <li class="right-menu"><a href="#">{{ $category->name }}</a>
                                         <ul class="cat-mega-menu">
                                             <li class="right-menu cat-mega-title">
                                                 <a href="#">Manufacturer</a>
@@ -96,7 +96,7 @@
         @continue(count($products->where('categoryID', $category->categoryID)) == 0)
         <!-- Begin {{ $category->name }} Product Area -->
         <section class="product-area li-laptop-product pt-60 pb-45">
-            <div class="container">
+            <div class="container " >
                 <div class="row">
                     <!-- Begin Section Area -->
                     <div class="col-lg-12">
@@ -122,7 +122,7 @@
                                                     <a href="{{ route('product-detail', $product->productID) }}">
                                                         @if ($product->cover)
                                                             <img src="{{ asset('admjn/images/uploads/products/' . $product->cover) }}"
-                                                                alt="Product Image">
+                                                                alt="Product Image" loading="lazy">
                                                         @else
                                                             <img src="{{ asset('admjn/images/uploads/products/default_image.jpg') }}"
                                                                 alt="Product Image">
